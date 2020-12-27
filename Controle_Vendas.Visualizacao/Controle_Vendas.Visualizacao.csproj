@@ -58,6 +58,12 @@
     <Compile Include="FormCadVendas.Designer.cs">
       <DependentUpon>FormCadVendas.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoginVendedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginVendedor.Designer.cs">
+      <DependentUpon>LoginVendedor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormCadClientes.resx">
@@ -65,6 +71,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCadVendas.resx">
       <DependentUpon>FormCadVendas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginVendedor.resx">
+      <DependentUpon>LoginVendedor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

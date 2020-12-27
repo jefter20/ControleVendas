@@ -29,7 +29,7 @@ namespace Controle_Vendas.Visualizacao
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.GridVendas = new System.Windows.Forms.DataGridView();
             this.codigoVenda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codigoCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,6 +69,8 @@ namespace Controle_Vendas.Visualizacao
             this.label10 = new System.Windows.Forms.Label();
             this.txtPreco = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.txtPesquisar = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.GridVendas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,14 +78,14 @@ namespace Controle_Vendas.Visualizacao
             // 
             this.GridVendas.AllowUserToAddRows = false;
             this.GridVendas.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridVendas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridVendas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.GridVendas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridVendas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigoVenda,
@@ -97,7 +99,7 @@ namespace Controle_Vendas.Visualizacao
             this.quantidade,
             this.preco,
             this.dataHora});
-            this.GridVendas.Location = new System.Drawing.Point(121, 242);
+            this.GridVendas.Location = new System.Drawing.Point(138, 242);
             this.GridVendas.Name = "GridVendas";
             this.GridVendas.ReadOnly = true;
             this.GridVendas.Size = new System.Drawing.Size(788, 225);
@@ -191,7 +193,7 @@ namespace Controle_Vendas.Visualizacao
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 20);
+            this.label1.Location = new System.Drawing.Point(42, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 13);
             this.label1.TabIndex = 0;
@@ -199,14 +201,14 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtCodigoVenda
             // 
-            this.txtCodigoVenda.Location = new System.Drawing.Point(121, 12);
+            this.txtCodigoVenda.Location = new System.Drawing.Point(138, 10);
             this.txtCodigoVenda.Name = "txtCodigoVenda";
             this.txtCodigoVenda.Size = new System.Drawing.Size(61, 20);
             this.txtCodigoVenda.TabIndex = 1;
             // 
             // txtNomeProduto
             // 
-            this.txtNomeProduto.Location = new System.Drawing.Point(335, 93);
+            this.txtNomeProduto.Location = new System.Drawing.Point(352, 91);
             this.txtNomeProduto.Name = "txtNomeProduto";
             this.txtNomeProduto.Size = new System.Drawing.Size(319, 20);
             this.txtNomeProduto.TabIndex = 10;
@@ -214,7 +216,7 @@ namespace Controle_Vendas.Visualizacao
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(239, 100);
+            this.label2.Location = new System.Drawing.Point(256, 98);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 13);
             this.label2.TabIndex = 9;
@@ -222,7 +224,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtNomeVendedor
             // 
-            this.txtNomeVendedor.Location = new System.Drawing.Point(335, 129);
+            this.txtNomeVendedor.Location = new System.Drawing.Point(352, 127);
             this.txtNomeVendedor.Name = "txtNomeVendedor";
             this.txtNomeVendedor.Size = new System.Drawing.Size(319, 20);
             this.txtNomeVendedor.TabIndex = 14;
@@ -230,7 +232,7 @@ namespace Controle_Vendas.Visualizacao
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(230, 137);
+            this.label3.Location = new System.Drawing.Point(247, 135);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(99, 13);
             this.label3.TabIndex = 13;
@@ -238,7 +240,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtNomeCliente
             // 
-            this.txtNomeCliente.Location = new System.Drawing.Point(335, 58);
+            this.txtNomeCliente.Location = new System.Drawing.Point(352, 56);
             this.txtNomeCliente.Name = "txtNomeCliente";
             this.txtNomeCliente.Size = new System.Drawing.Size(319, 20);
             this.txtNomeCliente.TabIndex = 6;
@@ -246,7 +248,7 @@ namespace Controle_Vendas.Visualizacao
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(244, 66);
+            this.label4.Location = new System.Drawing.Point(261, 64);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 13);
             this.label4.TabIndex = 5;
@@ -254,7 +256,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtCreditoLoja
             // 
-            this.txtCreditoLoja.Location = new System.Drawing.Point(121, 164);
+            this.txtCreditoLoja.Location = new System.Drawing.Point(138, 162);
             this.txtCreditoLoja.Name = "txtCreditoLoja";
             this.txtCreditoLoja.Size = new System.Drawing.Size(84, 20);
             this.txtCreditoLoja.TabIndex = 16;
@@ -262,7 +264,7 @@ namespace Controle_Vendas.Visualizacao
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(34, 171);
+            this.label5.Location = new System.Drawing.Point(51, 169);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(81, 13);
             this.label5.TabIndex = 15;
@@ -270,7 +272,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtDataHora
             // 
-            this.txtDataHora.Location = new System.Drawing.Point(749, 129);
+            this.txtDataHora.Location = new System.Drawing.Point(766, 127);
             this.txtDataHora.Name = "txtDataHora";
             this.txtDataHora.Size = new System.Drawing.Size(160, 20);
             this.txtDataHora.TabIndex = 18;
@@ -278,7 +280,7 @@ namespace Controle_Vendas.Visualizacao
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(685, 137);
+            this.label6.Location = new System.Drawing.Point(702, 135);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(58, 13);
             this.label6.TabIndex = 17;
@@ -286,7 +288,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // btnNovo
             // 
-            this.btnNovo.Location = new System.Drawing.Point(23, 284);
+            this.btnNovo.Location = new System.Drawing.Point(34, 289);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(75, 23);
             this.btnNovo.TabIndex = 19;
@@ -296,7 +298,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(24, 323);
+            this.btnSalvar.Location = new System.Drawing.Point(35, 328);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(75, 23);
             this.btnSalvar.TabIndex = 20;
@@ -306,7 +308,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(24, 401);
+            this.btnExcluir.Location = new System.Drawing.Point(35, 406);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 23);
             this.btnExcluir.TabIndex = 22;
@@ -316,7 +318,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(24, 362);
+            this.btnEditar.Location = new System.Drawing.Point(35, 367);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
             this.btnEditar.TabIndex = 21;
@@ -326,7 +328,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtCodigoProduto
             // 
-            this.txtCodigoProduto.Location = new System.Drawing.Point(121, 93);
+            this.txtCodigoProduto.Location = new System.Drawing.Point(138, 91);
             this.txtCodigoProduto.Name = "txtCodigoProduto";
             this.txtCodigoProduto.Size = new System.Drawing.Size(84, 20);
             this.txtCodigoProduto.TabIndex = 8;
@@ -334,7 +336,7 @@ namespace Controle_Vendas.Visualizacao
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(14, 100);
+            this.label7.Location = new System.Drawing.Point(31, 98);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(102, 13);
             this.label7.TabIndex = 7;
@@ -342,7 +344,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtCodigoCliente
             // 
-            this.txtCodigoCliente.Location = new System.Drawing.Point(121, 57);
+            this.txtCodigoCliente.Location = new System.Drawing.Point(138, 55);
             this.txtCodigoCliente.Name = "txtCodigoCliente";
             this.txtCodigoCliente.Size = new System.Drawing.Size(84, 20);
             this.txtCodigoCliente.TabIndex = 4;
@@ -350,7 +352,7 @@ namespace Controle_Vendas.Visualizacao
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(19, 65);
+            this.label8.Location = new System.Drawing.Point(36, 63);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(97, 13);
             this.label8.TabIndex = 3;
@@ -358,7 +360,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtCodigoVendedor
             // 
-            this.txtCodigoVendedor.Location = new System.Drawing.Point(121, 129);
+            this.txtCodigoVendedor.Location = new System.Drawing.Point(138, 127);
             this.txtCodigoVendedor.Name = "txtCodigoVendedor";
             this.txtCodigoVendedor.Size = new System.Drawing.Size(84, 20);
             this.txtCodigoVendedor.TabIndex = 12;
@@ -366,7 +368,7 @@ namespace Controle_Vendas.Visualizacao
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(4, 132);
+            this.label9.Location = new System.Drawing.Point(21, 130);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(111, 13);
             this.label9.TabIndex = 11;
@@ -374,9 +376,9 @@ namespace Controle_Vendas.Visualizacao
             // 
             // btnCadastroClientes
             // 
-            this.btnCadastroClientes.Location = new System.Drawing.Point(783, 213);
+            this.btnCadastroClientes.Location = new System.Drawing.Point(7, 242);
             this.btnCadastroClientes.Name = "btnCadastroClientes";
-            this.btnCadastroClientes.Size = new System.Drawing.Size(126, 23);
+            this.btnCadastroClientes.Size = new System.Drawing.Size(125, 27);
             this.btnCadastroClientes.TabIndex = 24;
             this.btnCadastroClientes.Text = "Cadastro de Clientes";
             this.btnCadastroClientes.UseVisualStyleBackColor = true;
@@ -384,7 +386,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtQuantidade
             // 
-            this.txtQuantidade.Location = new System.Drawing.Point(749, 57);
+            this.txtQuantidade.Location = new System.Drawing.Point(766, 55);
             this.txtQuantidade.Name = "txtQuantidade";
             this.txtQuantidade.Size = new System.Drawing.Size(84, 20);
             this.txtQuantidade.TabIndex = 26;
@@ -392,7 +394,7 @@ namespace Controle_Vendas.Visualizacao
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(674, 65);
+            this.label10.Location = new System.Drawing.Point(691, 63);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(69, 13);
             this.label10.TabIndex = 25;
@@ -400,7 +402,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtPreco
             // 
-            this.txtPreco.Location = new System.Drawing.Point(749, 93);
+            this.txtPreco.Location = new System.Drawing.Point(766, 91);
             this.txtPreco.Name = "txtPreco";
             this.txtPreco.Size = new System.Drawing.Size(84, 20);
             this.txtPreco.TabIndex = 28;
@@ -408,17 +410,36 @@ namespace Controle_Vendas.Visualizacao
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(708, 100);
+            this.label11.Location = new System.Drawing.Point(725, 98);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(35, 13);
             this.label11.TabIndex = 27;
             this.label11.Text = "Preço";
             // 
+            // txtPesquisar
+            // 
+            this.txtPesquisar.Location = new System.Drawing.Point(822, 216);
+            this.txtPesquisar.Name = "txtPesquisar";
+            this.txtPesquisar.Size = new System.Drawing.Size(104, 20);
+            this.txtPesquisar.TabIndex = 30;
+            this.txtPesquisar.TextChanged += new System.EventHandler(this.txtPesquisar_TextChanged);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(763, 222);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(53, 13);
+            this.label12.TabIndex = 29;
+            this.label12.Text = "Pesquisar";
+            // 
             // FormCadVendas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(920, 479);
+            this.ClientSize = new System.Drawing.Size(932, 473);
+            this.Controls.Add(this.txtPesquisar);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.txtPreco);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.txtQuantidade);
@@ -498,5 +519,7 @@ namespace Controle_Vendas.Visualizacao
         private System.Windows.Forms.DataGridViewTextBoxColumn quantidade;
         private System.Windows.Forms.DataGridViewTextBoxColumn preco;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataHora;
+        private System.Windows.Forms.TextBox txtPesquisar;
+        private System.Windows.Forms.Label label12;
     }
 }

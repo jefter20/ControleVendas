@@ -12,6 +12,52 @@ namespace Controle_Vendas.Dados
 {
     public class VendaDados
     {
+        public List<VendaDominio> Buscar(VendaDominio objVenda)
+        {
+            using (SqlConnection con = new SqlConnection())
+            {
+                con.ConnectionString = Properties.Settings.Default.banco;
+                SqlCommand comando = new SqlCommand();
+                comando.CommandType = CommandType.Text;
+
+                con.Open();
+
+                comando.CommandText = "SELECT VAS.CODIGO_VENDA, C.CODIGO_CLIENTE, C.NOME, P.CODIGO_PRODUTO, P.NOME_PRODUTO, VES.CODIGO_VENDEDOR, VES.NOME_VENDEDOR, VAS.CREDITO_LOJA, VAS.QUANTIDADE, VAS.PRECO, VAS.DATA_HORA FROM TABELA_VENDAS AS VAS INNER JOIN TABELA_CLIENTES AS C ON VAS.CODIGO_CLIENTE = C.CODIGO_CLIENTE INNER JOIN TABELA_PRODUTOS AS P ON VAS.CODIGO_PRODUTO = P.CODIGO_PRODUTO INNER JOIN TABELA_VENDEDORES AS VES ON VAS.CODIGO_VENDEDOR = VES.CODIGO_VENDEDOR WHERE NOME LIKE @NOME";
+
+                comando.Parameters.Add("NOME", SqlDbType.VarChar).Value = objVenda.NomeCliente + "%";
+
+                comando.Connection = con;
+
+                SqlDataReader dr;
+                List<VendaDominio> lista = new List<VendaDominio>();
+
+                dr = comando.ExecuteReader();
+
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        VendaDominio dado = new VendaDominio();
+
+                        dado.CodigoVenda = Convert.ToInt32(dr["CODIGO_VENDA"]);
+                        dado.CodigoCliente = Convert.ToInt32(dr["CODIGO_CLIENTE"]);
+                        dado.CodigoProduto = Convert.ToInt32(dr["CODIGO_PRODUTO"]);
+                        dado.CodigoVendedor = Convert.ToInt32(dr["CODIGO_VENDEDOR"]);
+                        dado.CreditoLoja = Convert.ToDouble(dr["CREDITO_LOJA"]);
+                        dado.NomeCliente = Convert.ToString(dr["NOME"]);
+                        dado.NomeProduto = Convert.ToString(dr["NOME_PRODUTO"]);
+                        dado.NomeVendedor = Convert.ToString(dr["NOME_VENDEDOR"]);
+                        dado.Quantidade = Convert.ToInt32(dr["QUANTIDADE"]);
+                        dado.Preco = Convert.ToDouble(dr["PRECO"]);
+                        dado.DataHora = Convert.ToString(dr["DATA_HORA"]);
+
+                        lista.Add(dado);
+                    }
+                }
+                return lista;
+            }
+        }
+
         public int Inserir(VendaDominio objVenda)
         {
             using (SqlConnection con = new SqlConnection())

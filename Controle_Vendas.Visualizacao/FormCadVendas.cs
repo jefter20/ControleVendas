@@ -27,6 +27,22 @@ namespace Controle_Vendas.Visualizacao
         {
             switch (opcoes)
             {
+                case "Pesquisar":
+                    try
+                    {
+                        objVenda.NomeCliente = txtPesquisar.Text;
+
+                        List<VendaDominio> lista = new List<VendaDominio>();
+                        lista = new VendaNegocios().Buscar(objVenda);
+                        GridVendas.AutoGenerateColumns = false;
+                        GridVendas.DataSource = lista;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao pesquisar Dados" + ex.Message);
+                    }
+                    break;
+
                 case "Novo":
                     HabilitarCampos();
                     LimparCampos();
@@ -147,7 +163,7 @@ namespace Controle_Vendas.Visualizacao
             btnSalvar.Enabled = false;
             btnEditar.Enabled = true;
             btnExcluir.Enabled = true;
-            txtCodigoVenda.Enabled = false;
+            txtCodigoVenda.Enabled = false;                
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
@@ -284,6 +300,12 @@ namespace Controle_Vendas.Visualizacao
             FormCadClientes form =  new FormCadClientes();
             this.Hide();
             form.Show();
+        }
+
+        private void txtPesquisar_TextChanged(object sender, EventArgs e)
+        {
+            opcoes = "Pesquisar";
+            IniciarOpcoes();
         }
     }
 }

@@ -11,6 +11,11 @@ namespace Controle_Vendas.Negocios
 {
     public class VendaNegocios
     {
+        public List<VendaDominio> Buscar(VendaDominio objVenda)
+        {
+            return new VendaDados().Buscar(objVenda);
+        }
+
         public static int Inserir(VendaDominio objVenda)
         {
             return new VendaDados().Inserir(objVenda);

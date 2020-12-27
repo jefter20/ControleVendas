@@ -49,6 +49,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="VendedorDados.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Controle_Vendas.Dominio\Controle_Vendas.Dominio.csproj">

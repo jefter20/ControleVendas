@@ -225,5 +225,12 @@ namespace Controle_Vendas.Visualizacao
             btnEditar.Enabled = true;
             btnExcluir.Enabled = true;
         }
+
+        private void btnCadastroVendas_Click(object sender, EventArgs e)
+        {
+            FormCadVendas form = new FormCadVendas();
+            this.Hide();
+            form.Show();
+        }
     }
 }

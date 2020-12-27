@@ -80,12 +80,13 @@ namespace Controle_Vendas.Visualizacao
             this.txtVolumeCompra = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.txtLimiteCredito = new System.Windows.Forms.TextBox();
+            this.btnCadastroVendas = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
             this.SuspendLayout();
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(23, 374);
+            this.btnExcluir.Location = new System.Drawing.Point(23, 415);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 23);
             this.btnExcluir.TabIndex = 47;
@@ -95,7 +96,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(23, 336);
+            this.btnEditar.Location = new System.Drawing.Point(23, 377);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
             this.btnEditar.TabIndex = 46;
@@ -105,7 +106,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(23, 298);
+            this.btnSalvar.Location = new System.Drawing.Point(23, 339);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(75, 23);
             this.btnSalvar.TabIndex = 45;
@@ -115,7 +116,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // btnNovo
             // 
-            this.btnNovo.Location = new System.Drawing.Point(23, 260);
+            this.btnNovo.Location = new System.Drawing.Point(23, 301);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(75, 23);
             this.btnNovo.TabIndex = 44;
@@ -176,11 +177,11 @@ namespace Controle_Vendas.Visualizacao
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.Grid.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Grid.Location = new System.Drawing.Point(116, 260);
+            this.Grid.Location = new System.Drawing.Point(116, 291);
             this.Grid.Name = "Grid";
             this.Grid.ReadOnly = true;
             this.Grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Grid.Size = new System.Drawing.Size(687, 137);
+            this.Grid.Size = new System.Drawing.Size(687, 158);
             this.Grid.TabIndex = 40;
             this.Grid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grid_CellDoubleClick);
             // 
@@ -514,11 +515,22 @@ namespace Controle_Vendas.Visualizacao
             this.txtLimiteCredito.Size = new System.Drawing.Size(146, 20);
             this.txtLimiteCredito.TabIndex = 54;
             // 
+            // btnCadastroVendas
+            // 
+            this.btnCadastroVendas.Location = new System.Drawing.Point(676, 262);
+            this.btnCadastroVendas.Name = "btnCadastroVendas";
+            this.btnCadastroVendas.Size = new System.Drawing.Size(126, 23);
+            this.btnCadastroVendas.TabIndex = 60;
+            this.btnCadastroVendas.Text = "Cadastro de Vendas";
+            this.btnCadastroVendas.UseVisualStyleBackColor = true;
+            this.btnCadastroVendas.Click += new System.EventHandler(this.btnCadastroVendas_Click);
+            // 
             // FormCadClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(827, 413);
+            this.ClientSize = new System.Drawing.Size(814, 461);
+            this.Controls.Add(this.btnCadastroVendas);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.txtPrimeiraCompra);
             this.Controls.Add(this.label14);
@@ -617,6 +629,7 @@ namespace Controle_Vendas.Visualizacao
         private System.Windows.Forms.DataGridViewTextBoxColumn LIMITE_CREDITO;
         private System.Windows.Forms.DataGridViewTextBoxColumn VOLUME_COMPRA;
         private System.Windows.Forms.DataGridViewTextBoxColumn PRIMEIRA_COMPRA;
+        private System.Windows.Forms.Button btnCadastroVendas;
     }
 }
 

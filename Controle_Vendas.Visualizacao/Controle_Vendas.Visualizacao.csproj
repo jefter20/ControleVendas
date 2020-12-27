@@ -63,6 +63,9 @@
     <EmbeddedResource Include="FormCadClientes.resx">
       <DependentUpon>FormCadClientes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCadVendas.resx">
+      <DependentUpon>FormCadVendas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

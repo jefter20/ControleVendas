@@ -214,49 +214,6 @@ namespace Controle_Vendas.Visualizacao
             btnExcluir.Enabled = true;
         }
 
-        private void HabilitarCampos()
-        {
-            txtCodigoCliente.Enabled = true;
-            txtCodigoProduto.Enabled = true;
-            txtCodigoVendedor.Enabled = true;
-            txtCreditoLoja.Enabled = true;
-            txtNomeCliente.Enabled = true;
-            txtNomeProduto.Enabled = true;
-            txtNomeVendedor.Enabled = true;
-            txtQuantidade.Enabled = true;
-            txtPreco.Enabled = true;
-            txtDataHora.Enabled = true;
-        }
-
-        private void DesabilitarCampos()
-        {
-            txtCodigoCliente.Enabled = false;
-            txtCodigoProduto.Enabled = false;
-            txtCodigoVendedor.Enabled = false;
-            txtCreditoLoja.Enabled = false;
-            txtNomeCliente.Enabled = false;
-            txtNomeProduto.Enabled = false;
-            txtNomeVendedor.Enabled = false;
-            txtQuantidade.Enabled = false;
-            txtPreco.Enabled = false;
-            txtDataHora.Enabled = false;
-        }
-
-        private void LimparCampos()
-        {
-            txtCodigoVenda.Text = "";
-            txtCodigoCliente.Text = "";
-            txtCodigoProduto.Text = "";
-            txtCodigoVendedor.Text = "";
-            txtCreditoLoja.Text = "";
-            txtNomeCliente.Text = "";
-            txtNomeProduto.Text = "";
-            txtNomeVendedor.Text = "";
-            txtQuantidade.Text = "";
-            txtPreco.Text = "";
-            txtDataHora.Text = "";
-        }
-
         public void ListarGrid()
         {
             try
@@ -306,6 +263,49 @@ namespace Controle_Vendas.Visualizacao
         {
             opcoes = "Pesquisar";
             IniciarOpcoes();
+        }
+
+        private void HabilitarCampos()
+        {
+            txtCodigoCliente.Enabled = true;
+            txtCodigoProduto.Enabled = true;
+            txtCodigoVendedor.Enabled = true;
+            txtCreditoLoja.Enabled = true;
+            txtNomeCliente.Enabled = true;
+            txtNomeProduto.Enabled = true;
+            txtNomeVendedor.Enabled = true;
+            txtQuantidade.Enabled = true;
+            txtPreco.Enabled = true;
+            txtDataHora.Enabled = true;
+        }
+
+        private void DesabilitarCampos()
+        {
+            txtCodigoCliente.Enabled = false;
+            txtCodigoProduto.Enabled = false;
+            txtCodigoVendedor.Enabled = false;
+            txtCreditoLoja.Enabled = false;
+            txtNomeCliente.Enabled = false;
+            txtNomeProduto.Enabled = false;
+            txtNomeVendedor.Enabled = false;
+            txtQuantidade.Enabled = false;
+            txtPreco.Enabled = false;
+            txtDataHora.Enabled = false;
+        }
+
+        private void LimparCampos()
+        {
+            txtCodigoVenda.Text = "";
+            txtCodigoCliente.Text = "";
+            txtCodigoProduto.Text = "";
+            txtCodigoVendedor.Text = "";
+            txtCreditoLoja.Text = "";
+            txtNomeCliente.Text = "";
+            txtNomeProduto.Text = "";
+            txtNomeVendedor.Text = "";
+            txtQuantidade.Text = "";
+            txtPreco.Text = "";
+            txtDataHora.Text = "";
         }
     }
 }

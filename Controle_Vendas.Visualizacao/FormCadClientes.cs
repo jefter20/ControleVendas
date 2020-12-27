@@ -26,7 +26,23 @@ namespace Controle_Vendas.Visualizacao
         {
             switch (opcoes)
             {
-                case"Novo":
+                case "Pesquisar":
+                    try
+                    {
+                        objCliente.Nome = txtPesquisar.Text;
+
+                        List<ClienteDominio> lista = new List<ClienteDominio>();
+                        lista = new ClienteNegocios().Buscar(objCliente);
+                        Grid.AutoGenerateColumns = false;
+                        Grid.DataSource = lista;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao pesquisar Dados" + ex.Message);
+                    }
+                    break;
+
+                case "Novo":
                     HabilitarCampos();
                     LimparCampos();
                     break;
@@ -132,6 +148,60 @@ namespace Controle_Vendas.Visualizacao
             btnExcluir.Enabled = true;
         }
 
+        public void ListarGrid()
+        {
+            try
+            {
+                List<ClienteDominio> lista = new List<ClienteDominio>();
+                lista = new ClienteNegocios().Lista();
+                Grid.AutoGenerateColumns = false;
+                Grid.DataSource = lista;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Erro ao listar Dados" + ex.Message);
+            }
+        }
+
+        private void Grid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtCodigoCliente.Text = Grid.CurrentRow.Cells[0].Value.ToString();
+            txtNomeCliente.Text = Grid.CurrentRow.Cells[1].Value.ToString();
+            txtCPF.Text = Grid.CurrentRow.Cells[2].Value.ToString();
+            txtEndereco1.Text = Grid.CurrentRow.Cells[3].Value.ToString();
+            txtEndereco2.Text = Grid.CurrentRow.Cells[4].Value.ToString();
+            txtBairro.Text = Grid.CurrentRow.Cells[5].Value.ToString();
+            txtCidade.Text = Grid.CurrentRow.Cells[6].Value.ToString();
+            txtUF.Text = Grid.CurrentRow.Cells[7].Value.ToString();
+            txtCEP.Text = Grid.CurrentRow.Cells[8].Value.ToString();
+            txtDataNascimento.Text = Grid.CurrentRow.Cells[9].Value.ToString();
+            txtSexo.Text = Grid.CurrentRow.Cells[10].Value.ToString();
+            txtLimiteCredito.Text = Grid.CurrentRow.Cells[11].Value.ToString();
+            txtVolumeCompra.Text = Grid.CurrentRow.Cells[12].Value.ToString();
+            txtPrimeiraCompra.Text = Grid.CurrentRow.Cells[13].Value.ToString();
+
+            HabilitarCampos();
+
+            btnNovo.Enabled = true;
+            btnSalvar.Enabled = false;
+            btnEditar.Enabled = true;
+            btnExcluir.Enabled = true;
+        }
+
+        private void btnCadastroVendas_Click(object sender, EventArgs e)
+        {
+            FormCadVendas form = new FormCadVendas();
+            this.Hide();
+            form.Show();
+        }
+
+        private void txtPesquisar_TextChanged(object sender, EventArgs e)
+        {
+            opcoes = "Pesquisar";
+            IniciarOpcoes();
+        }
+
         private void HabilitarCampos()
         {
             txtNomeCliente.Enabled = true;
@@ -183,54 +253,6 @@ namespace Controle_Vendas.Visualizacao
             txtLimiteCredito.Text = "";
             txtVolumeCompra.Text = "";
             txtPrimeiraCompra.Text = "";
-        }
-
-        public void ListarGrid()
-        {
-            try
-            {
-                List<ClienteDominio> lista = new List<ClienteDominio>();
-                lista = new ClienteNegocios().Lista();
-                Grid.AutoGenerateColumns = false;
-                Grid.DataSource = lista;
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show("Erro ao listar Dados" + ex.Message);
-            }
-        }
-
-        private void Grid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            txtCodigoCliente.Text = Grid.CurrentRow.Cells[0].Value.ToString();
-            txtNomeCliente.Text = Grid.CurrentRow.Cells[1].Value.ToString();
-            txtCPF.Text = Grid.CurrentRow.Cells[2].Value.ToString();
-            txtEndereco1.Text = Grid.CurrentRow.Cells[3].Value.ToString();
-            txtEndereco2.Text = Grid.CurrentRow.Cells[4].Value.ToString();
-            txtBairro.Text = Grid.CurrentRow.Cells[5].Value.ToString();
-            txtCidade.Text = Grid.CurrentRow.Cells[6].Value.ToString();
-            txtUF.Text = Grid.CurrentRow.Cells[7].Value.ToString();
-            txtCEP.Text = Grid.CurrentRow.Cells[8].Value.ToString();
-            txtDataNascimento.Text = Grid.CurrentRow.Cells[9].Value.ToString();
-            txtSexo.Text = Grid.CurrentRow.Cells[10].Value.ToString();
-            txtLimiteCredito.Text = Grid.CurrentRow.Cells[11].Value.ToString();
-            txtVolumeCompra.Text = Grid.CurrentRow.Cells[12].Value.ToString();
-            txtPrimeiraCompra.Text = Grid.CurrentRow.Cells[13].Value.ToString();
-
-            HabilitarCampos();
-
-            btnNovo.Enabled = true;
-            btnSalvar.Enabled = false;
-            btnEditar.Enabled = true;
-            btnExcluir.Enabled = true;
-        }
-
-        private void btnCadastroVendas_Click(object sender, EventArgs e)
-        {
-            FormCadVendas form = new FormCadVendas();
-            this.Hide();
-            form.Show();
         }
     }
 }

@@ -11,7 +11,56 @@ using Controle_Vendas.Dados;
 namespace Controle_Vendas.Dados
 {
     public class ClienteDados
-    {        
+    {
+        public List<ClienteDominio> Buscar(ClienteDominio objCliente)
+        {
+            using (SqlConnection con = new SqlConnection())
+            {
+                con.ConnectionString = Properties.Settings.Default.banco;
+                SqlCommand comando = new SqlCommand();
+                comando.CommandType = CommandType.Text;
+
+                con.Open();
+
+                comando.CommandText = "SELECT * FROM TABELA_CLIENTES WHERE NOME LIKE @NOME";
+
+                comando.Parameters.Add("NOME", SqlDbType.VarChar).Value = objCliente.Nome + "%";
+
+                comando.Connection = con;
+
+                SqlDataReader dr;
+                List<ClienteDominio> lista = new List<ClienteDominio>();
+
+                dr = comando.ExecuteReader();
+
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        ClienteDominio dado = new ClienteDominio();
+
+                        dado.CodigoCliente = Convert.ToInt32(dr["CODIGO_CLIENTE"]);
+                        dado.Nome = Convert.ToString(dr["NOME"]);
+                        dado.Cpf = Convert.ToString(dr["CPF"]);
+                        dado.Endereco1 = Convert.ToString(dr["ENDERECO_1"]);
+                        dado.Endereco2 = Convert.ToString(dr["ENDERECO_2"]);
+                        dado.Bairro = Convert.ToString(dr["BAIRRO"]);
+                        dado.Cidade = Convert.ToString(dr["CIDADE"]);
+                        dado.Uf = Convert.ToString(dr["UF"]);
+                        dado.Cep = Convert.ToString(dr["CEP"]);
+                        dado.DataNascimento = Convert.ToString(dr["DATA_NASCIMENTO"]);
+                        dado.Sexo = Convert.ToString(dr["SEXO"]);
+                        dado.LimiteCredito = Convert.ToString(dr["LIMITE_CREDITO"]);
+                        dado.VolumeCompra = Convert.ToString(dr["VOLUME_COMPRA"]);
+                        dado.PrimeiraCompra = Convert.ToString(dr["PRIMEIRA_COMPRA"]);
+
+                        lista.Add(dado);
+                    }
+                }
+                return lista;
+            }
+        }
+
         public int Inserir(ClienteDominio objCliente)
         {
             using (SqlConnection con = new SqlConnection())
@@ -45,7 +94,7 @@ namespace Controle_Vendas.Dados
                 return qtd;
             }
         }
-                
+
         public List<ClienteDominio> Lista()
         {
             using (SqlConnection con = new SqlConnection())

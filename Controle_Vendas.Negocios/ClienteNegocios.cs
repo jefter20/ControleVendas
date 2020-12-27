@@ -11,6 +11,11 @@ namespace Controle_Vendas.Negocios
 {
     public class ClienteNegocios
     {
+        public List<ClienteDominio> Buscar(ClienteDominio objCliente)
+        {
+            return new ClienteDados().Buscar(objCliente);
+        }
+
         public static int Inserir(ClienteDominio objCliente)
         {
             return new ClienteDados().Inserir(objCliente);
@@ -20,5 +25,7 @@ namespace Controle_Vendas.Negocios
         {
             return new ClienteDados().Lista();
         }
+
+        
     }
 }

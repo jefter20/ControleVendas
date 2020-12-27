@@ -29,12 +29,11 @@ namespace Controle_Vendas.Visualizacao
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnNovo = new System.Windows.Forms.Button();
-            this.btnPesquisar = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.txtPesquisar = new System.Windows.Forms.TextBox();
             this.Grid = new System.Windows.Forms.DataGridView();
@@ -86,7 +85,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(23, 415);
+            this.btnExcluir.Location = new System.Drawing.Point(34, 449);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 23);
             this.btnExcluir.TabIndex = 47;
@@ -96,7 +95,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(23, 377);
+            this.btnEditar.Location = new System.Drawing.Point(34, 411);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
             this.btnEditar.TabIndex = 46;
@@ -106,7 +105,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(23, 339);
+            this.btnSalvar.Location = new System.Drawing.Point(34, 373);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(75, 23);
             this.btnSalvar.TabIndex = 45;
@@ -116,7 +115,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // btnNovo
             // 
-            this.btnNovo.Location = new System.Drawing.Point(23, 301);
+            this.btnNovo.Location = new System.Drawing.Point(34, 335);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(75, 23);
             this.btnNovo.TabIndex = 44;
@@ -124,19 +123,10 @@ namespace Controle_Vendas.Visualizacao
             this.btnNovo.UseVisualStyleBackColor = true;
             this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
-            // btnPesquisar
-            // 
-            this.btnPesquisar.Location = new System.Drawing.Point(756, 10);
-            this.btnPesquisar.Name = "btnPesquisar";
-            this.btnPesquisar.Size = new System.Drawing.Size(47, 22);
-            this.btnPesquisar.TabIndex = 43;
-            this.btnPesquisar.Text = "??";
-            this.btnPesquisar.UseVisualStyleBackColor = true;
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(563, 17);
+            this.label9.Location = new System.Drawing.Point(655, 273);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(53, 13);
             this.label9.TabIndex = 42;
@@ -144,10 +134,11 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtPesquisar
             // 
-            this.txtPesquisar.Location = new System.Drawing.Point(622, 10);
+            this.txtPesquisar.Location = new System.Drawing.Point(714, 266);
             this.txtPesquisar.Name = "txtPesquisar";
             this.txtPesquisar.Size = new System.Drawing.Size(116, 20);
             this.txtPesquisar.TabIndex = 41;
+            this.txtPesquisar.TextChanged += new System.EventHandler(this.txtPesquisar_TextChanged);
             // 
             // Grid
             // 
@@ -169,19 +160,19 @@ namespace Controle_Vendas.Visualizacao
             this.LIMITE_CREDITO,
             this.VOLUME_COMPRA,
             this.PRIMEIRA_COMPRA});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Grid.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Grid.Location = new System.Drawing.Point(116, 291);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Grid.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Grid.Location = new System.Drawing.Point(143, 292);
             this.Grid.Name = "Grid";
             this.Grid.ReadOnly = true;
             this.Grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Grid.Size = new System.Drawing.Size(687, 158);
+            this.Grid.Size = new System.Drawing.Size(687, 188);
             this.Grid.TabIndex = 40;
             this.Grid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grid_CellDoubleClick);
             // 
@@ -294,7 +285,7 @@ namespace Controle_Vendas.Visualizacao
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(736, 146);
+            this.label8.Location = new System.Drawing.Point(763, 146);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(21, 13);
             this.label8.TabIndex = 39;
@@ -302,7 +293,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtUF
             // 
-            this.txtUF.Location = new System.Drawing.Point(763, 139);
+            this.txtUF.Location = new System.Drawing.Point(790, 139);
             this.txtUF.Name = "txtUF";
             this.txtUF.Size = new System.Drawing.Size(40, 20);
             this.txtUF.TabIndex = 38;
@@ -310,7 +301,7 @@ namespace Controle_Vendas.Visualizacao
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(361, 146);
+            this.label6.Location = new System.Drawing.Point(388, 146);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(40, 13);
             this.label6.TabIndex = 37;
@@ -318,7 +309,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtCidade
             // 
-            this.txtCidade.Location = new System.Drawing.Point(407, 139);
+            this.txtCidade.Location = new System.Drawing.Point(434, 139);
             this.txtCidade.Name = "txtCidade";
             this.txtCidade.Size = new System.Drawing.Size(311, 20);
             this.txtCidade.TabIndex = 36;
@@ -326,7 +317,7 @@ namespace Controle_Vendas.Visualizacao
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(20, 146);
+            this.label7.Location = new System.Drawing.Point(101, 146);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(34, 13);
             this.label7.TabIndex = 35;
@@ -334,7 +325,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtBairro
             // 
-            this.txtBairro.Location = new System.Drawing.Point(116, 139);
+            this.txtBairro.Location = new System.Drawing.Point(143, 139);
             this.txtBairro.Name = "txtBairro";
             this.txtBairro.Size = new System.Drawing.Size(211, 20);
             this.txtBairro.TabIndex = 34;
@@ -342,7 +333,7 @@ namespace Controle_Vendas.Visualizacao
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(432, 104);
+            this.label4.Location = new System.Drawing.Point(459, 108);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(62, 13);
             this.label4.TabIndex = 33;
@@ -350,7 +341,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtEndereco2
             // 
-            this.txtEndereco2.Location = new System.Drawing.Point(500, 101);
+            this.txtEndereco2.Location = new System.Drawing.Point(527, 101);
             this.txtEndereco2.Name = "txtEndereco2";
             this.txtEndereco2.Size = new System.Drawing.Size(303, 20);
             this.txtEndereco2.TabIndex = 32;
@@ -358,7 +349,7 @@ namespace Controle_Vendas.Visualizacao
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(20, 108);
+            this.label5.Location = new System.Drawing.Point(75, 108);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(62, 13);
             this.label5.TabIndex = 31;
@@ -366,7 +357,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtEndereco1
             // 
-            this.txtEndereco1.Location = new System.Drawing.Point(116, 101);
+            this.txtEndereco1.Location = new System.Drawing.Point(143, 101);
             this.txtEndereco1.Name = "txtEndereco1";
             this.txtEndereco1.Size = new System.Drawing.Size(285, 20);
             this.txtEndereco1.TabIndex = 30;
@@ -374,7 +365,7 @@ namespace Controle_Vendas.Visualizacao
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(572, 69);
+            this.label3.Location = new System.Drawing.Point(599, 69);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(27, 13);
             this.label3.TabIndex = 29;
@@ -382,7 +373,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtCPF
             // 
-            this.txtCPF.Location = new System.Drawing.Point(605, 62);
+            this.txtCPF.Location = new System.Drawing.Point(632, 62);
             this.txtCPF.Name = "txtCPF";
             this.txtCPF.Size = new System.Drawing.Size(198, 20);
             this.txtCPF.TabIndex = 28;
@@ -390,7 +381,7 @@ namespace Controle_Vendas.Visualizacao
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 69);
+            this.label2.Location = new System.Drawing.Point(52, 69);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(85, 13);
             this.label2.TabIndex = 27;
@@ -398,7 +389,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtNomeCliente
             // 
-            this.txtNomeCliente.Location = new System.Drawing.Point(116, 62);
+            this.txtNomeCliente.Location = new System.Drawing.Point(143, 62);
             this.txtNomeCliente.Name = "txtNomeCliente";
             this.txtNomeCliente.Size = new System.Drawing.Size(436, 20);
             this.txtNomeCliente.TabIndex = 26;
@@ -406,7 +397,7 @@ namespace Controle_Vendas.Visualizacao
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 30);
+            this.label1.Location = new System.Drawing.Point(47, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 13);
             this.label1.TabIndex = 25;
@@ -414,7 +405,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtCodigoCliente
             // 
-            this.txtCodigoCliente.Location = new System.Drawing.Point(116, 23);
+            this.txtCodigoCliente.Location = new System.Drawing.Point(143, 23);
             this.txtCodigoCliente.Name = "txtCodigoCliente";
             this.txtCodigoCliente.Size = new System.Drawing.Size(64, 20);
             this.txtCodigoCliente.TabIndex = 24;
@@ -422,7 +413,7 @@ namespace Controle_Vendas.Visualizacao
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(726, 183);
+            this.label10.Location = new System.Drawing.Point(753, 183);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(31, 13);
             this.label10.TabIndex = 53;
@@ -430,7 +421,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtSexo
             // 
-            this.txtSexo.Location = new System.Drawing.Point(763, 176);
+            this.txtSexo.Location = new System.Drawing.Point(790, 176);
             this.txtSexo.Name = "txtSexo";
             this.txtSexo.Size = new System.Drawing.Size(40, 20);
             this.txtSexo.TabIndex = 52;
@@ -438,7 +429,7 @@ namespace Controle_Vendas.Visualizacao
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(297, 183);
+            this.label11.Location = new System.Drawing.Point(324, 183);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(104, 13);
             this.label11.TabIndex = 51;
@@ -446,7 +437,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtDataNascimento
             // 
-            this.txtDataNascimento.Location = new System.Drawing.Point(407, 176);
+            this.txtDataNascimento.Location = new System.Drawing.Point(434, 176);
             this.txtDataNascimento.Name = "txtDataNascimento";
             this.txtDataNascimento.Size = new System.Drawing.Size(152, 20);
             this.txtDataNascimento.TabIndex = 50;
@@ -454,7 +445,7 @@ namespace Controle_Vendas.Visualizacao
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(20, 183);
+            this.label12.Location = new System.Drawing.Point(109, 183);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(28, 13);
             this.label12.TabIndex = 49;
@@ -462,7 +453,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtCEP
             // 
-            this.txtCEP.Location = new System.Drawing.Point(116, 176);
+            this.txtCEP.Location = new System.Drawing.Point(143, 176);
             this.txtCEP.Name = "txtCEP";
             this.txtCEP.Size = new System.Drawing.Size(146, 20);
             this.txtCEP.TabIndex = 48;
@@ -470,7 +461,7 @@ namespace Controle_Vendas.Visualizacao
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(674, 219);
+            this.label13.Location = new System.Drawing.Point(701, 219);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(83, 13);
             this.label13.TabIndex = 59;
@@ -478,7 +469,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtPrimeiraCompra
             // 
-            this.txtPrimeiraCompra.Location = new System.Drawing.Point(763, 212);
+            this.txtPrimeiraCompra.Location = new System.Drawing.Point(790, 212);
             this.txtPrimeiraCompra.Name = "txtPrimeiraCompra";
             this.txtPrimeiraCompra.Size = new System.Drawing.Size(40, 20);
             this.txtPrimeiraCompra.TabIndex = 58;
@@ -486,7 +477,7 @@ namespace Controle_Vendas.Visualizacao
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(297, 219);
+            this.label14.Location = new System.Drawing.Point(332, 219);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(96, 13);
             this.label14.TabIndex = 57;
@@ -494,7 +485,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtVolumeCompra
             // 
-            this.txtVolumeCompra.Location = new System.Drawing.Point(407, 212);
+            this.txtVolumeCompra.Location = new System.Drawing.Point(434, 212);
             this.txtVolumeCompra.Name = "txtVolumeCompra";
             this.txtVolumeCompra.Size = new System.Drawing.Size(152, 20);
             this.txtVolumeCompra.TabIndex = 56;
@@ -502,7 +493,7 @@ namespace Controle_Vendas.Visualizacao
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(20, 219);
+            this.label15.Location = new System.Drawing.Point(52, 219);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(85, 13);
             this.label15.TabIndex = 55;
@@ -510,16 +501,16 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtLimiteCredito
             // 
-            this.txtLimiteCredito.Location = new System.Drawing.Point(116, 212);
+            this.txtLimiteCredito.Location = new System.Drawing.Point(143, 212);
             this.txtLimiteCredito.Name = "txtLimiteCredito";
             this.txtLimiteCredito.Size = new System.Drawing.Size(146, 20);
             this.txtLimiteCredito.TabIndex = 54;
             // 
             // btnCadastroVendas
             // 
-            this.btnCadastroVendas.Location = new System.Drawing.Point(676, 262);
+            this.btnCadastroVendas.Location = new System.Drawing.Point(11, 292);
             this.btnCadastroVendas.Name = "btnCadastroVendas";
-            this.btnCadastroVendas.Size = new System.Drawing.Size(126, 23);
+            this.btnCadastroVendas.Size = new System.Drawing.Size(124, 23);
             this.btnCadastroVendas.TabIndex = 60;
             this.btnCadastroVendas.Text = "Cadastro de Vendas";
             this.btnCadastroVendas.UseVisualStyleBackColor = true;
@@ -529,7 +520,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(814, 461);
+            this.ClientSize = new System.Drawing.Size(840, 484);
             this.Controls.Add(this.btnCadastroVendas);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.txtPrimeiraCompra);
@@ -547,7 +538,6 @@ namespace Controle_Vendas.Visualizacao
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.btnNovo);
-            this.Controls.Add(this.btnPesquisar);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtPesquisar);
             this.Controls.Add(this.Grid);
@@ -583,7 +573,6 @@ namespace Controle_Vendas.Visualizacao
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnNovo;
-        private System.Windows.Forms.Button btnPesquisar;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtPesquisar;
         private System.Windows.Forms.DataGridView Grid;

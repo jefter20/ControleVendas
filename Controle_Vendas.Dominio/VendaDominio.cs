@@ -10,6 +10,7 @@ namespace Controle_Vendas.Dominio
     {
         private int codigoVenda;
         private int codigoCliente;
+        private string cpf;
         private int codigoProduto;
         private int codigoVendedor;
         private double creditoLoja;
@@ -22,6 +23,7 @@ namespace Controle_Vendas.Dominio
 
         public int CodigoVenda { get => codigoVenda; set => codigoVenda = value; }
         public int CodigoCliente { get => codigoCliente; set => codigoCliente = value; }
+        public string Cpf { get => cpf; set => cpf = value; }
         public int CodigoProduto { get => codigoProduto; set => codigoProduto = value; }
         public int CodigoVendedor { get => codigoVendedor; set => codigoVendedor = value; }
         public double CreditoLoja { get => creditoLoja; set => creditoLoja = value; }

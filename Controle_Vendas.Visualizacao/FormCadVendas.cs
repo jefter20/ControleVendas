@@ -15,6 +15,10 @@ namespace Controle_Vendas.Visualizacao
     public partial class FormCadVendas : Form
     {
         VendaDominio objVenda = new VendaDominio();
+        ClienteDominio objCliente = new ClienteDominio();
+        ProdutoDominio objProduto = new ProdutoDominio();
+        VendedorDominio objVendedor = new VendedorDominio();
+        
 
         public FormCadVendas()
         {
@@ -43,6 +47,67 @@ namespace Controle_Vendas.Visualizacao
                     }
                     break;
 
+                case "BuscaCliente":
+                    try
+                    {
+                        
+
+                        objCliente.Cpf = Convert.ToString(txtBuscaCliente.Text);
+
+                        List<ClienteDominio> lista = new List<ClienteDominio>();
+                        lista = new VendaNegocios().BuscaCliente(objCliente);
+
+                        foreach (var item in lista)
+                        {
+                            txtNomeCliente.Text = Convert.ToString(item.Nome);
+                            txtCodigoCliente.Text = Convert.ToString(item.CodigoCliente);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao buscar cliente" + ex.Message);
+                    }
+                    break;
+
+                case "BuscaProduto":
+                    try
+                    {
+                        objProduto.CodigoProduto = Convert.ToInt32(txtCodigoProduto.Text);
+
+                        List<ProdutoDominio> lista = new List<ProdutoDominio>();
+                        lista = new VendaNegocios().BuscaProduto(objProduto);
+
+                        foreach (var item in lista)
+                        {
+                            txtNomeProduto.Text = Convert.ToString(item.NomeProduto);
+                            txtPreco.Text = Convert.ToString(item.PrecoDeLista);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao buscar produto" + ex.Message);
+                    }
+                    break;
+
+                case "BuscaVendedor":
+                    try
+                    {
+                        objVendedor.CodigoVendedor = Convert.ToInt32(txtCodigoVendedor.Text);
+
+                        List<VendedorDominio> lista = new List<VendedorDominio>();
+                        lista = new VendaNegocios().BuscaVendedor(objVendedor);
+
+                        foreach (var item in lista)
+                        {
+                            txtNomeVendedor.Text = Convert.ToString(item.NomeVendedor);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao buscar vendedor" + ex.Message);
+                    }
+                    break;
+
                 case "Novo":
                     HabilitarCampos();
                     LimparCampos();
@@ -65,9 +130,9 @@ namespace Controle_Vendas.Visualizacao
                         objVenda.NomeCliente = txtNomeCliente.Text;
                         objVenda.NomeProduto = txtNomeProduto.Text;
                         objVenda.NomeVendedor = txtNomeVendedor.Text;
+                        objVenda.DataHora = txtDataHora.Text;
                         objVenda.Quantidade = Convert.ToInt32(txtQuantidade.Text);
                         objVenda.Preco = Convert.ToDouble(txtPreco.Text);
-                        objVenda.DataHora = txtDataHora.Text;
                      
                         int x = VendaNegocios.Inserir(objVenda);
 
@@ -94,16 +159,17 @@ namespace Controle_Vendas.Visualizacao
                     try
                     {
                         objVenda.CodigoVenda = Convert.ToInt32(txtCodigoVenda.Text);
-                        objVenda.CodigoCliente = Convert.ToInt32(txtCodigoCliente.Text);
+                        objVenda.CodigoCliente = Convert.ToInt32(objCliente.CodigoCliente);
                         objVenda.CodigoProduto = Convert.ToInt32(txtCodigoProduto.Text);
                         objVenda.CodigoVendedor = Convert.ToInt32(txtCodigoVendedor.Text);
                         objVenda.CreditoLoja = Convert.ToDouble(txtCreditoLoja.Text);
                         objVenda.NomeCliente = txtNomeCliente.Text.ToString();
                         objVenda.NomeProduto = txtNomeProduto.Text.ToString();
                         objVenda.NomeVendedor = txtNomeVendedor.Text.ToString();
+                        objVenda.DataHora = txtDataHora.Text.ToString();
+                        objVenda.Cpf = txtBuscaCliente.Text.ToString();
                         objVenda.Quantidade = Convert.ToInt32(txtQuantidade.Text);
                         objVenda.Preco = Convert.ToDouble(txtPreco.Text);
-                        objVenda.DataHora = txtDataHora.Text.ToString();
 
                         int x = VendaNegocios.Editar(objVenda);
 
@@ -163,7 +229,8 @@ namespace Controle_Vendas.Visualizacao
             btnSalvar.Enabled = false;
             btnEditar.Enabled = true;
             btnExcluir.Enabled = true;
-            txtCodigoVenda.Enabled = false;                
+            txtCodigoVenda.Enabled = false;
+            LimparCampos();
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
@@ -235,14 +302,15 @@ namespace Controle_Vendas.Visualizacao
             txtCodigoVenda.Text = GridVendas.CurrentRow.Cells[0].Value.ToString();
             txtCodigoCliente.Text = GridVendas.CurrentRow.Cells[1].Value.ToString();
             txtNomeCliente.Text = GridVendas.CurrentRow.Cells[2].Value.ToString();
-            txtCodigoProduto.Text = GridVendas.CurrentRow.Cells[3].Value.ToString();
-            txtNomeProduto.Text = GridVendas.CurrentRow.Cells[4].Value.ToString();
-            txtCodigoVendedor.Text = GridVendas.CurrentRow.Cells[5].Value.ToString();
-            txtNomeVendedor.Text = GridVendas.CurrentRow.Cells[6].Value.ToString();
-            txtCreditoLoja.Text = GridVendas.CurrentRow.Cells[7].Value.ToString();
-            txtQuantidade.Text = GridVendas.CurrentRow.Cells[8].Value.ToString();
-            txtPreco.Text = GridVendas.CurrentRow.Cells[9].Value.ToString();
-            txtDataHora.Text = GridVendas.CurrentRow.Cells[10].Value.ToString();
+            txtBuscaCliente.Text = GridVendas.CurrentRow.Cells[3].Value.ToString();
+            txtCodigoProduto.Text = GridVendas.CurrentRow.Cells[4].Value.ToString();
+            txtNomeProduto.Text = GridVendas.CurrentRow.Cells[5].Value.ToString();
+            txtCodigoVendedor.Text = GridVendas.CurrentRow.Cells[6].Value.ToString();
+            txtNomeVendedor.Text = GridVendas.CurrentRow.Cells[7].Value.ToString();
+            txtCreditoLoja.Text = GridVendas.CurrentRow.Cells[8].Value.ToString();
+            txtQuantidade.Text = GridVendas.CurrentRow.Cells[9].Value.ToString();
+            txtPreco.Text = GridVendas.CurrentRow.Cells[10].Value.ToString();
+            txtDataHora.Text = GridVendas.CurrentRow.Cells[11].Value.ToString();
 
             HabilitarCampos();
 
@@ -274,9 +342,10 @@ namespace Controle_Vendas.Visualizacao
             txtNomeCliente.Enabled = true;
             txtNomeProduto.Enabled = true;
             txtNomeVendedor.Enabled = true;
+            txtDataHora.Enabled = true;
+            txtBuscaCliente.Enabled = true;
             txtQuantidade.Enabled = true;
             txtPreco.Enabled = true;
-            txtDataHora.Enabled = true;
         }
 
         private void DesabilitarCampos()
@@ -288,9 +357,10 @@ namespace Controle_Vendas.Visualizacao
             txtNomeCliente.Enabled = false;
             txtNomeProduto.Enabled = false;
             txtNomeVendedor.Enabled = false;
+            txtDataHora.Enabled = false;
+            txtBuscaCliente.Enabled = false;
             txtQuantidade.Enabled = false;
             txtPreco.Enabled = false;
-            txtDataHora.Enabled = false;
         }
 
         private void LimparCampos()
@@ -303,9 +373,38 @@ namespace Controle_Vendas.Visualizacao
             txtNomeCliente.Text = "";
             txtNomeProduto.Text = "";
             txtNomeVendedor.Text = "";
+            txtDataHora.Text = "";
+            txtBuscaCliente.Text = "";
             txtQuantidade.Text = "";
             txtPreco.Text = "";
-            txtDataHora.Text = "";
+        }
+
+        private void txtCodigoProduto_Leave(object sender, EventArgs e)
+        {
+            opcoes = "BuscaProduto";
+            IniciarOpcoes();
+        }
+
+        private void txtCodigoVendedor_Leave(object sender, EventArgs e)
+        {
+            opcoes = "BuscaVendedor";
+            IniciarOpcoes();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            opcoes = "BuscaCliente";
+            IniciarOpcoes();
+        }
+
+        private void txtBuscaCliente_Enter(object sender, EventArgs e)
+        {
+            MessageBox.Show("Para buscar o cliente, insira o CPF!");
+        }
+
+        private void txtDataHora_Enter(object sender, EventArgs e)
+        {
+            txtDataHora.Text = DateTime.Now.ToString("yyyy/MM/dd " + "HH:mm:ss");
         }
     }
 }

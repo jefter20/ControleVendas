@@ -16,6 +16,11 @@ namespace Controle_Vendas.Negocios
             return new VendaDados().Buscar(objVenda);
         }
 
+        public List<ClienteDominio> BuscaCliente(ClienteDominio objCliente)
+        {
+            return new VendaDados().BuscaCliente(objCliente);
+        }
+
         public static int Inserir(VendaDominio objVenda)
         {
             return new VendaDados().Inserir(objVenda);
@@ -34,6 +39,16 @@ namespace Controle_Vendas.Negocios
         public static int Excluir(VendaDominio objVenda)
         {
             return new VendaDados().Excluir(objVenda);
+        }
+
+        public List<ProdutoDominio> BuscaProduto(ProdutoDominio objProduto)
+        {
+            return new VendaDados().BuscaProduto(objProduto);
+        }
+
+        public List<VendedorDominio> BuscaVendedor(VendedorDominio objVendedor)
+        {
+            return new VendaDados().BuscaVendedor(objVendedor);
         }
     }
 }

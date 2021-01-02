@@ -21,14 +21,19 @@ namespace Controle_Vendas.Negocios
             return new VendaDados().BuscaCliente(objCliente);
         }
 
+        public List<ProdutoDominio> BuscaProduto(ProdutoDominio objProduto)
+        {
+            return new VendaDados().BuscaProduto(objProduto);
+        }
+
+        public List<VendedorDominio> BuscaVendedor(VendedorDominio objVendedor)
+        {
+            return new VendaDados().BuscaVendedor(objVendedor);
+        }
+
         public static int Inserir(VendaDominio objVenda)
         {
             return new VendaDados().Inserir(objVenda);
-        }
-
-        public List<VendaDominio> Lista()
-        {
-            return new VendaDados().Lista();
         }
 
         public static int Editar(VendaDominio objVenda)
@@ -41,14 +46,9 @@ namespace Controle_Vendas.Negocios
             return new VendaDados().Excluir(objVenda);
         }
 
-        public List<ProdutoDominio> BuscaProduto(ProdutoDominio objProduto)
+        public List<VendaDominio> Lista()
         {
-            return new VendaDados().BuscaProduto(objProduto);
-        }
-
-        public List<VendedorDominio> BuscaVendedor(VendedorDominio objVendedor)
-        {
-            return new VendaDados().BuscaVendedor(objVendedor);
+            return new VendaDados().Lista();
         }
     }
 }

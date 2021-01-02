@@ -133,6 +133,7 @@ namespace Controle_Vendas.Visualizacao
                         objVenda.DataHora = txtDataHora.Text;
                         objVenda.Quantidade = Convert.ToInt32(txtQuantidade.Text);
                         objVenda.Preco = Convert.ToDouble(txtPreco.Text);
+                        objVenda.PrecoTotal = Convert.ToDouble(txtQuantidade.Text) * Convert.ToDouble(txtPreco.Text);
                      
                         int x = VendaNegocios.Inserir(objVenda);
 
@@ -167,9 +168,9 @@ namespace Controle_Vendas.Visualizacao
                         objVenda.NomeProduto = txtNomeProduto.Text.ToString();
                         objVenda.NomeVendedor = txtNomeVendedor.Text.ToString();
                         objVenda.DataHora = txtDataHora.Text.ToString();
-                        objVenda.Cpf = txtBuscaCliente.Text.ToString();
                         objVenda.Quantidade = Convert.ToInt32(txtQuantidade.Text);
                         objVenda.Preco = Convert.ToDouble(txtPreco.Text);
+                        objVenda.PrecoTotal = Convert.ToDouble(txtQuantidade.Text) * Convert.ToDouble(txtPreco.Text);
 
                         int x = VendaNegocios.Editar(objVenda);
 
@@ -242,7 +243,7 @@ namespace Controle_Vendas.Visualizacao
             btnSalvar.Enabled = true;
             btnEditar.Enabled = false;
             btnExcluir.Enabled = false;
-            txtCodigoCliente.Focus();
+            txtBuscaCliente.Focus();
 
         }
 
@@ -302,15 +303,15 @@ namespace Controle_Vendas.Visualizacao
             txtCodigoVenda.Text = GridVendas.CurrentRow.Cells[0].Value.ToString();
             txtCodigoCliente.Text = GridVendas.CurrentRow.Cells[1].Value.ToString();
             txtNomeCliente.Text = GridVendas.CurrentRow.Cells[2].Value.ToString();
-            txtBuscaCliente.Text = GridVendas.CurrentRow.Cells[3].Value.ToString();
-            txtCodigoProduto.Text = GridVendas.CurrentRow.Cells[4].Value.ToString();
-            txtNomeProduto.Text = GridVendas.CurrentRow.Cells[5].Value.ToString();
-            txtCodigoVendedor.Text = GridVendas.CurrentRow.Cells[6].Value.ToString();
-            txtNomeVendedor.Text = GridVendas.CurrentRow.Cells[7].Value.ToString();
-            txtCreditoLoja.Text = GridVendas.CurrentRow.Cells[8].Value.ToString();
+            txtCodigoProduto.Text = GridVendas.CurrentRow.Cells[3].Value.ToString();
+            txtNomeProduto.Text = GridVendas.CurrentRow.Cells[4].Value.ToString();
+            txtCodigoVendedor.Text = GridVendas.CurrentRow.Cells[5].Value.ToString();
+            txtNomeVendedor.Text = GridVendas.CurrentRow.Cells[6].Value.ToString();
+            txtCreditoLoja.Text = GridVendas.CurrentRow.Cells[7].Value.ToString();
+            txtDataHora.Text = GridVendas.CurrentRow.Cells[8].Value.ToString();
             txtQuantidade.Text = GridVendas.CurrentRow.Cells[9].Value.ToString();
             txtPreco.Text = GridVendas.CurrentRow.Cells[10].Value.ToString();
-            txtDataHora.Text = GridVendas.CurrentRow.Cells[11].Value.ToString();
+            txtPrecoTotal.Text = GridVendas.CurrentRow.Cells[11].Value.ToString();
 
             HabilitarCampos();
 
@@ -346,6 +347,7 @@ namespace Controle_Vendas.Visualizacao
             txtBuscaCliente.Enabled = true;
             txtQuantidade.Enabled = true;
             txtPreco.Enabled = true;
+            txtPrecoTotal.Enabled = true;
         }
 
         private void DesabilitarCampos()
@@ -361,6 +363,7 @@ namespace Controle_Vendas.Visualizacao
             txtBuscaCliente.Enabled = false;
             txtQuantidade.Enabled = false;
             txtPreco.Enabled = false;
+            txtPrecoTotal.Enabled = false;
         }
 
         private void LimparCampos()
@@ -377,6 +380,7 @@ namespace Controle_Vendas.Visualizacao
             txtBuscaCliente.Text = "";
             txtQuantidade.Text = "";
             txtPreco.Text = "";
+            txtPrecoTotal.Text = "";
         }
 
         private void txtCodigoProduto_Leave(object sender, EventArgs e)
@@ -399,12 +403,39 @@ namespace Controle_Vendas.Visualizacao
 
         private void txtBuscaCliente_Enter(object sender, EventArgs e)
         {
-            MessageBox.Show("Para buscar o cliente, insira o CPF!");
+            if (txtCodigoCliente.Text == "" | txtNomeCliente.Text == "")
+            {
+                MessageBox.Show("Para buscar o nome do cliente, insira o CPF do mesmo!");
+            }
         }
 
         private void txtDataHora_Enter(object sender, EventArgs e)
         {
             txtDataHora.Text = DateTime.Now.ToString("yyyy/MM/dd " + "HH:mm:ss");
+        }
+
+        private void txtNomeCliente_Enter(object sender, EventArgs e)
+        {
+            if (txtNomeCliente.Text == "")
+            {
+                MessageBox.Show("Por favor, insira o CPF do cliente no campo de busca!");
+            }
+        }
+
+        private void txtNomeProduto_Enter(object sender, EventArgs e)
+        {
+            if (txtCodigoProduto.Text == "")
+            {
+                MessageBox.Show("Por favor, insira o código do produto no campo ao lado!");
+            }
+        }
+
+        private void txtNomeVendedor_Enter(object sender, EventArgs e)
+        {
+            if (txtCodigoVendedor.Text == "")
+            {
+                MessageBox.Show("Por favor, insira o código do vendedor no campo ao lado!");
+            }
         }
     }
 }

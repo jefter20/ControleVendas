@@ -63,18 +63,20 @@ namespace Controle_Vendas.Visualizacao
             this.codigoVenda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codigoCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CPF = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codigoProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codigoVendedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeVendedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.creditoLoja = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.preco = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtBuscaCliente = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.txtPrecoTotal = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.GridVendas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,7 +99,7 @@ namespace Controle_Vendas.Visualizacao
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(256, 98);
+            this.label2.Location = new System.Drawing.Point(247, 98);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 13);
             this.label2.TabIndex = 9;
@@ -105,15 +107,16 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtNomeVendedor
             // 
-            this.txtNomeVendedor.Location = new System.Drawing.Point(352, 127);
+            this.txtNomeVendedor.Location = new System.Drawing.Point(343, 127);
             this.txtNomeVendedor.Name = "txtNomeVendedor";
             this.txtNomeVendedor.Size = new System.Drawing.Size(319, 20);
             this.txtNomeVendedor.TabIndex = 14;
+            this.txtNomeVendedor.Enter += new System.EventHandler(this.txtNomeVendedor_Enter);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(247, 135);
+            this.label3.Location = new System.Drawing.Point(238, 135);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(99, 13);
             this.label3.TabIndex = 13;
@@ -122,7 +125,7 @@ namespace Controle_Vendas.Visualizacao
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(261, 64);
+            this.label4.Location = new System.Drawing.Point(252, 64);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 13);
             this.label4.TabIndex = 5;
@@ -146,7 +149,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtDataHora
             // 
-            this.txtDataHora.Location = new System.Drawing.Point(352, 162);
+            this.txtDataHora.Location = new System.Drawing.Point(343, 162);
             this.txtDataHora.Name = "txtDataHora";
             this.txtDataHora.Size = new System.Drawing.Size(160, 20);
             this.txtDataHora.TabIndex = 18;
@@ -155,7 +158,7 @@ namespace Controle_Vendas.Visualizacao
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(288, 170);
+            this.label6.Location = new System.Drawing.Point(279, 170);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(58, 13);
             this.label6.TabIndex = 17;
@@ -263,7 +266,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtQuantidade
             // 
-            this.txtQuantidade.Location = new System.Drawing.Point(794, 91);
+            this.txtQuantidade.Location = new System.Drawing.Point(789, 91);
             this.txtQuantidade.Name = "txtQuantidade";
             this.txtQuantidade.Size = new System.Drawing.Size(84, 20);
             this.txtQuantidade.TabIndex = 26;
@@ -271,7 +274,7 @@ namespace Controle_Vendas.Visualizacao
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(719, 99);
+            this.label10.Location = new System.Drawing.Point(714, 99);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(69, 13);
             this.label10.TabIndex = 25;
@@ -279,7 +282,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtPreco
             // 
-            this.txtPreco.Location = new System.Drawing.Point(794, 127);
+            this.txtPreco.Location = new System.Drawing.Point(789, 127);
             this.txtPreco.Name = "txtPreco";
             this.txtPreco.Size = new System.Drawing.Size(84, 20);
             this.txtPreco.TabIndex = 28;
@@ -287,7 +290,7 @@ namespace Controle_Vendas.Visualizacao
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(753, 134);
+            this.label11.Location = new System.Drawing.Point(748, 134);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(35, 13);
             this.label11.TabIndex = 27;
@@ -312,17 +315,19 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtNomeCliente
             // 
-            this.txtNomeCliente.Location = new System.Drawing.Point(352, 55);
+            this.txtNomeCliente.Location = new System.Drawing.Point(343, 55);
             this.txtNomeCliente.Name = "txtNomeCliente";
             this.txtNomeCliente.Size = new System.Drawing.Size(319, 20);
             this.txtNomeCliente.TabIndex = 31;
+            this.txtNomeCliente.Enter += new System.EventHandler(this.txtNomeCliente_Enter);
             // 
             // txtNomeProduto
             // 
-            this.txtNomeProduto.Location = new System.Drawing.Point(352, 91);
+            this.txtNomeProduto.Location = new System.Drawing.Point(343, 91);
             this.txtNomeProduto.Name = "txtNomeProduto";
             this.txtNomeProduto.Size = new System.Drawing.Size(319, 20);
             this.txtNomeProduto.TabIndex = 32;
+            this.txtNomeProduto.Enter += new System.EventHandler(this.txtNomeProduto_Enter);
             // 
             // GridVendas
             // 
@@ -341,15 +346,15 @@ namespace Controle_Vendas.Visualizacao
             this.codigoVenda,
             this.codigoCliente,
             this.nomeCliente,
-            this.CPF,
             this.codigoProduto,
             this.nomeProduto,
             this.codigoVendedor,
             this.nomeVendedor,
             this.creditoLoja,
+            this.dataHora,
             this.quantidade,
             this.preco,
-            this.dataHora});
+            this.precoTotal});
             this.GridVendas.Location = new System.Drawing.Point(138, 242);
             this.GridVendas.Name = "GridVendas";
             this.GridVendas.ReadOnly = true;
@@ -379,13 +384,6 @@ namespace Controle_Vendas.Visualizacao
             this.nomeCliente.Name = "nomeCliente";
             this.nomeCliente.ReadOnly = true;
             this.nomeCliente.Width = 200;
-            // 
-            // CPF
-            // 
-            this.CPF.DataPropertyName = "Cpf";
-            this.CPF.HeaderText = "CPF";
-            this.CPF.Name = "CPF";
-            this.CPF.ReadOnly = true;
             // 
             // codigoProduto
             // 
@@ -425,6 +423,14 @@ namespace Controle_Vendas.Visualizacao
             this.creditoLoja.ReadOnly = true;
             this.creditoLoja.Width = 50;
             // 
+            // dataHora
+            // 
+            this.dataHora.DataPropertyName = "DataHora";
+            this.dataHora.HeaderText = "Data/Hora";
+            this.dataHora.Name = "dataHora";
+            this.dataHora.ReadOnly = true;
+            this.dataHora.Width = 200;
+            // 
             // quantidade
             // 
             this.quantidade.DataPropertyName = "Quantidade";
@@ -439,26 +445,25 @@ namespace Controle_Vendas.Visualizacao
             this.preco.Name = "preco";
             this.preco.ReadOnly = true;
             // 
-            // dataHora
+            // precoTotal
             // 
-            this.dataHora.DataPropertyName = "DataHora";
-            this.dataHora.HeaderText = "Data/Hora";
-            this.dataHora.Name = "dataHora";
-            this.dataHora.ReadOnly = true;
-            this.dataHora.Width = 200;
+            this.precoTotal.DataPropertyName = "PrecoTotal";
+            this.precoTotal.HeaderText = "Preço Total";
+            this.precoTotal.Name = "precoTotal";
+            this.precoTotal.ReadOnly = true;
             // 
             // txtBuscaCliente
             // 
-            this.txtBuscaCliente.Location = new System.Drawing.Point(794, 55);
+            this.txtBuscaCliente.Location = new System.Drawing.Point(766, 55);
             this.txtBuscaCliente.Name = "txtBuscaCliente";
-            this.txtBuscaCliente.Size = new System.Drawing.Size(84, 20);
+            this.txtBuscaCliente.Size = new System.Drawing.Size(107, 20);
             this.txtBuscaCliente.TabIndex = 34;
             this.txtBuscaCliente.Enter += new System.EventHandler(this.txtBuscaCliente_Enter);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(716, 62);
+            this.label13.Location = new System.Drawing.Point(688, 62);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(72, 13);
             this.label13.TabIndex = 33;
@@ -466,7 +471,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(884, 54);
+            this.button1.Location = new System.Drawing.Point(879, 54);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(31, 23);
             this.button1.TabIndex = 35;
@@ -474,11 +479,29 @@ namespace Controle_Vendas.Visualizacao
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // txtPrecoTotal
+            // 
+            this.txtPrecoTotal.Location = new System.Drawing.Point(789, 162);
+            this.txtPrecoTotal.Name = "txtPrecoTotal";
+            this.txtPrecoTotal.Size = new System.Drawing.Size(84, 20);
+            this.txtPrecoTotal.TabIndex = 37;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(721, 169);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(62, 13);
+            this.label14.TabIndex = 36;
+            this.label14.Text = "Preço Total";
+            // 
             // FormCadVendas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(932, 473);
+            this.Controls.Add(this.txtPrecoTotal);
+            this.Controls.Add(this.label14);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtBuscaCliente);
             this.Controls.Add(this.label13);
@@ -555,18 +578,20 @@ namespace Controle_Vendas.Visualizacao
         private System.Windows.Forms.DataGridView GridVendas;
         private System.Windows.Forms.TextBox txtBuscaCliente;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtPrecoTotal;
+        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoVenda;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeCliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CPF;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoProduto;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeProduto;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoVendedor;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeVendedor;
         private System.Windows.Forms.DataGridViewTextBoxColumn creditoLoja;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataHora;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantidade;
         private System.Windows.Forms.DataGridViewTextBoxColumn preco;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataHora;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn precoTotal;
     }
 }

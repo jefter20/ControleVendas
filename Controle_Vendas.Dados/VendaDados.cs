@@ -22,7 +22,7 @@ namespace Controle_Vendas.Dados
 
                 con.Open();
 
-                comando.CommandText = "SELECT VAS.CODIGO_VENDA, C.CODIGO_CLIENTE, C.NOME, P.CODIGO_PRODUTO, P.NOME_PRODUTO, VES.CODIGO_VENDEDOR, VES.NOME_VENDEDOR, VAS.CREDITO_LOJA, VAS.DATA_HORA, C.CPF, VAS.QUANTIDADE, VAS.PRECO FROM TABELA_VENDAS AS VAS INNER JOIN TABELA_CLIENTES AS C ON VAS.CODIGO_CLIENTE = C.CODIGO_CLIENTE INNER JOIN TABELA_PRODUTOS AS P ON VAS.CODIGO_PRODUTO = P.CODIGO_PRODUTO INNER JOIN TABELA_VENDEDORES AS VES ON VAS.CODIGO_VENDEDOR = VES.CODIGO_VENDEDOR WHERE NOME LIKE @NOME";
+                comando.CommandText = "SELECT VAS.CODIGO_VENDA, C.CODIGO_CLIENTE, C.NOME, P.CODIGO_PRODUTO, P.NOME_PRODUTO, VES.CODIGO_VENDEDOR, VES.NOME_VENDEDOR, VAS.CREDITO_LOJA, VAS.DATA_HORA, VAS.QUANTIDADE, P.PRECO_DE_LISTA, VAS.PRECO_TOTAL FROM TABELA_VENDAS AS VAS INNER JOIN TABELA_CLIENTES AS C ON VAS.CODIGO_CLIENTE = C.CODIGO_CLIENTE INNER JOIN TABELA_PRODUTOS AS P ON VAS.CODIGO_PRODUTO = P.CODIGO_PRODUTO INNER JOIN TABELA_VENDEDORES AS VES ON VAS.CODIGO_VENDEDOR = VES.CODIGO_VENDEDOR WHERE NOME LIKE @NOME";
 
                 comando.Parameters.Add("NOME", SqlDbType.VarChar).Value = objVenda.NomeCliente + "%";
 
@@ -48,9 +48,9 @@ namespace Controle_Vendas.Dados
                         dado.NomeProduto = Convert.ToString(dr["NOME_PRODUTO"]);
                         dado.NomeVendedor = Convert.ToString(dr["NOME_VENDEDOR"]);
                         dado.DataHora = Convert.ToString(dr["DATA_HORA"]);
-                        dado.Cpf = Convert.ToString(dr["CPF"]);
                         dado.Quantidade = Convert.ToInt32(dr["QUANTIDADE"]);
-                        dado.Preco = Convert.ToDouble(dr["PRECO"]);
+                        dado.Preco = Convert.ToDouble(dr["PRECO_DE_LISTA"]);
+                        dado.PrecoTotal = Convert.ToDouble(dr["PRECO_TOTAL"]);
 
                         lista.Add(dado);
                     }
@@ -180,7 +180,7 @@ namespace Controle_Vendas.Dados
 
                 con.Open();
 
-                comando.CommandText = "INSERT INTO TABELA_VENDAS ([CODIGO_CLIENTE], [CODIGO_PRODUTO], [CODIGO_VENDEDOR], [CREDITO_LOJA], [DATA_HORA], [QUANTIDADE], [PRECO]) VALUES (@CODIGO_CLIENTE, @CODIGO_PRODUTO, @CODIGO_VENDEDOR, @CREDITO_LOJA, @DATA_HORA, @QUANTIDADE, @PRECO)";
+                comando.CommandText = "INSERT INTO TABELA_VENDAS ([CODIGO_CLIENTE], [CODIGO_PRODUTO], [CODIGO_VENDEDOR], [CREDITO_LOJA], [DATA_HORA], [QUANTIDADE], [PRECO_TOTAL]) VALUES (@CODIGO_CLIENTE, @CODIGO_PRODUTO, @CODIGO_VENDEDOR, @CREDITO_LOJA, @DATA_HORA, @QUANTIDADE, @PRECO_TOTAL)";
 
                 comando.Parameters.Add("CODIGO_CLIENTE", SqlDbType.Int).Value = objVenda.CodigoCliente;
                 comando.Parameters.Add("CODIGO_PRODUTO", SqlDbType.Int).Value = objVenda.CodigoProduto;
@@ -188,7 +188,7 @@ namespace Controle_Vendas.Dados
                 comando.Parameters.Add("CREDITO_LOJA", SqlDbType.Decimal).Value = objVenda.CreditoLoja;
                 comando.Parameters.Add("DATA_HORA", SqlDbType.DateTime).Value = objVenda.DataHora;
                 comando.Parameters.Add("QUANTIDADE", SqlDbType.Int).Value = objVenda.Quantidade;
-                comando.Parameters.Add("PRECO", SqlDbType.Float).Value = objVenda.Preco;
+                comando.Parameters.Add("PRECO_TOTAL", SqlDbType.Float).Value = objVenda.PrecoTotal;
 
                 comando.Connection = con;
 
@@ -208,16 +208,16 @@ namespace Controle_Vendas.Dados
 
                 con.Open();
 
-                comando.CommandText = "UPDATE TABELA_VENDAS SET CODIGO_CLIENTE = @CODIGO_CLIENTE, CODIGO_PRODUTO = @CODIGO_PRODUTO, CODIGO_VENDEDOR = @CODIGO_VENDEDOR, CREDITO_LOJA = @CREDITO_LOJA, QUANTIDADE = @QUANTIDADE, PRECO = @PRECO, DATA_HORA = @DATA_HORA WHERE CODIGO_VENDA = @CODIGO_VENDA";
+                comando.CommandText = "UPDATE TABELA_VENDAS SET CODIGO_CLIENTE = @CODIGO_CLIENTE, CODIGO_PRODUTO = @CODIGO_PRODUTO, CODIGO_VENDEDOR = @CODIGO_VENDEDOR, CREDITO_LOJA = @CREDITO_LOJA, DATA_HORA = @DATA_HORA, QUANTIDADE = @QUANTIDADE, PRECO_TOTAL = @PRECO_TOTAL WHERE CODIGO_VENDA = @CODIGO_VENDA";
 
                 comando.Parameters.Add("CODIGO_VENDA", SqlDbType.Int).Value = objVenda.CodigoVenda;
                 comando.Parameters.Add("CODIGO_CLIENTE", SqlDbType.VarChar).Value = objVenda.CodigoCliente;
                 comando.Parameters.Add("CODIGO_PRODUTO", SqlDbType.Int).Value = objVenda.CodigoProduto;
                 comando.Parameters.Add("CODIGO_VENDEDOR", SqlDbType.Int).Value = objVenda.CodigoVendedor;
                 comando.Parameters.Add("CREDITO_LOJA", SqlDbType.Float).Value = objVenda.CreditoLoja;
-                comando.Parameters.Add("QUANTIDADE", SqlDbType.Int).Value = objVenda.Quantidade;
-                comando.Parameters.Add("PRECO", SqlDbType.Float).Value = objVenda.Preco;
                 comando.Parameters.Add("DATA_HORA", SqlDbType.VarChar).Value = objVenda.DataHora;
+                comando.Parameters.Add("QUANTIDADE", SqlDbType.Int).Value = objVenda.Quantidade;
+                comando.Parameters.Add("PRECO_TOTAL", SqlDbType.Float).Value = objVenda.PrecoTotal;
 
                 comando.Connection = con;
 
@@ -259,7 +259,7 @@ namespace Controle_Vendas.Dados
 
                 con.Open();
 
-                comando.CommandText = "SELECT VAS.CODIGO_VENDA, C.CODIGO_CLIENTE, C.NOME, C.CPF, P.CODIGO_PRODUTO, P.NOME_PRODUTO, VES.CODIGO_VENDEDOR, VES.NOME_VENDEDOR, VAS.CREDITO_LOJA, VAS.QUANTIDADE, VAS.PRECO, VAS.DATA_HORA FROM TABELA_VENDAS AS VAS INNER JOIN TABELA_CLIENTES AS C ON VAS.CODIGO_CLIENTE = C.CODIGO_CLIENTE INNER JOIN TABELA_PRODUTOS AS P ON VAS.CODIGO_PRODUTO = P.CODIGO_PRODUTO INNER JOIN TABELA_VENDEDORES AS VES ON VAS.CODIGO_VENDEDOR = VES.CODIGO_VENDEDOR ORDER BY C.NOME";
+                comando.CommandText = "SELECT VAS.CODIGO_VENDA, C.CODIGO_CLIENTE, C.NOME, P.CODIGO_PRODUTO, P.NOME_PRODUTO, VES.CODIGO_VENDEDOR, VES.NOME_VENDEDOR, VAS.CREDITO_LOJA, VAS.DATA_HORA, VAS.QUANTIDADE, P.PRECO_DE_LISTA, VAS.PRECO_TOTAL FROM TABELA_VENDAS AS VAS INNER JOIN TABELA_CLIENTES AS C ON VAS.CODIGO_CLIENTE = C.CODIGO_CLIENTE INNER JOIN TABELA_PRODUTOS AS P ON VAS.CODIGO_PRODUTO = P.CODIGO_PRODUTO INNER JOIN TABELA_VENDEDORES AS VES ON VAS.CODIGO_VENDEDOR = VES.CODIGO_VENDEDOR ORDER BY C.NOME";
 
                 comando.Connection = con;
 
@@ -276,16 +276,16 @@ namespace Controle_Vendas.Dados
 
                         dado.CodigoVenda = Convert.ToInt32(dr["CODIGO_VENDA"]);
                         dado.CodigoCliente = Convert.ToInt32(dr["CODIGO_CLIENTE"]);
-                        dado.Cpf = Convert.ToString(dr["CPF"]);
                         dado.CodigoProduto = Convert.ToInt32(dr["CODIGO_PRODUTO"]);
                         dado.CodigoVendedor = Convert.ToInt32(dr["CODIGO_VENDEDOR"]);
                         dado.CreditoLoja = Convert.ToDouble(dr["CREDITO_LOJA"]);
                         dado.NomeCliente = Convert.ToString(dr["NOME"]);
                         dado.NomeProduto = Convert.ToString(dr["NOME_PRODUTO"]);
                         dado.NomeVendedor = Convert.ToString(dr["NOME_VENDEDOR"]);
-                        dado.Quantidade = Convert.ToInt32(dr["QUANTIDADE"]);
-                        dado.Preco = Convert.ToDouble(dr["PRECO"]);
                         dado.DataHora = Convert.ToString(dr["DATA_HORA"]);
+                        dado.Quantidade = Convert.ToInt32(dr["QUANTIDADE"]);
+                        dado.Preco = Convert.ToDouble(dr["PRECO_DE_LISTA"]);
+                        dado.PrecoTotal = Convert.ToDouble(dr["PRECO_TOTAL"]);
 
                         lista.Add(dado);
                     }

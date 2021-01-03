@@ -58,6 +58,36 @@ namespace Controle_Vendas.Dados
                 return lista;
             }
         }
+
+        public int AddClienteCompra(ClienteCompraDominio objCompra)
+        {
+            using (SqlConnection con = new SqlConnection())
+            {
+                con.ConnectionString = Properties.Settings.Default.banco;
+                SqlCommand comando = new SqlCommand();
+                comando.CommandType = CommandType.Text;
+
+                con.Open();
+
+                comando.CommandText = "INSERT INTO TABELA_CLIENTE_COMPRAS ([CODIGO_CLIENTE], [CODIGO_PRODUTO], [NOME_PRODUTO], [QUANTIDADE], [CREDITO_LOJA], [PRECO], [PRECO_TOTAL], [DATA_HORA]) VALUES (@CODIGO_CLIENTE, @CODIGO_PRODUTO, @NOME_PRODUTO, @QUANTIDADE, @CREDITO_LOJA, @PRECO, @PRECO_TOTAL, @DATA_HORA)";
+
+                comando.Parameters.Add("CODIGO_CLIENTE", SqlDbType.Int).Value = objCompra.CodigoCliente;
+                comando.Parameters.Add("CODIGO_PRODUTO", SqlDbType.Int).Value = objCompra.CodigoProduto;
+                comando.Parameters.Add("NOME_PRODUTO", SqlDbType.VarChar).Value = objCompra.NomeProduto;
+                comando.Parameters.Add("QUANTIDADE", SqlDbType.Int).Value = objCompra.Quantidade;
+                comando.Parameters.Add("CREDITO_LOJA", SqlDbType.Decimal).Value = objCompra.CreditoLoja;
+                comando.Parameters.Add("PRECO", SqlDbType.Decimal).Value = objCompra.Preco;
+                comando.Parameters.Add("PRECO_TOTAL", SqlDbType.Decimal).Value = objCompra.PrecoTotal;
+                comando.Parameters.Add("DATA_HORA", SqlDbType.DateTime).Value = objCompra.DataHora;
+
+                comando.Connection = con;
+
+                int qtd = comando.ExecuteNonQuery();
+                Console.Write(qtd);
+                return qtd;
+            }
+        }
+
         public List<ClienteDominio> BuscaCliente(ClienteDominio objCliente)
         {
             using (SqlConnection con = new SqlConnection())

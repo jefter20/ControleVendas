@@ -18,7 +18,7 @@ namespace Controle_Vendas.Visualizacao
         ClienteDominio objCliente = new ClienteDominio();
         ProdutoDominio objProduto = new ProdutoDominio();
         VendedorDominio objVendedor = new VendedorDominio();
-        
+        ClienteCompraDominio objCompra = new ClienteCompraDominio();
 
         public FormCadVendas()
         {
@@ -140,9 +140,9 @@ namespace Controle_Vendas.Visualizacao
                         if (x > 0)
                         {
                             MessageBox.Show(string.Format("Venda de {0} efetuada com sucesso!", txtNomeProduto.Text));
-                            LimparCampos();
-                            DesabilitarCampos();
-                            ListarGrid();
+
+                            opcoes = "AddClienteCompra";
+                            IniciarOpcoes();
                         }
                         else
                         {
@@ -189,6 +189,39 @@ namespace Controle_Vendas.Visualizacao
                     catch (Exception ex)
                     {
                         MessageBox.Show("Ocorreu um erro ao alterar " + ex.Message);
+
+                    }
+                    break;
+
+                case "AddClienteCompra":
+                    try
+                    {
+                        objCompra.CodigoCliente = Convert.ToInt32(txtCodigoCliente.Text);
+                        objCompra.CodigoProduto = Convert.ToInt32(txtCodigoProduto.Text);
+                        objCompra.NomeProduto = Convert.ToString(txtNomeProduto.Text);
+                        objCompra.Quantidade = Convert.ToInt32(txtQuantidade.Text);
+                        objCompra.CreditoLoja = Convert.ToDouble(txtCreditoLoja.Text);
+                        objCompra.Preco = Convert.ToDouble(txtPreco.Text);
+                        objCompra.PrecoTotal = Convert.ToDouble(objVenda.PrecoTotal);
+                        objCompra.DataHora = Convert.ToString(txtDataHora.Text);
+
+                        int x = VendaNegocios.AddClienteCompra(objCompra);
+
+                        if (x > 0)
+                        {
+                            MessageBox.Show(string.Format("Compra de {0} efetuada com sucesso!", txtNomeProduto.Text));
+                            LimparCampos();
+                            DesabilitarCampos();
+                            ListarGrid();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Compra não finalizada");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ocorreu um erro ao realizar compra " + ex);
 
                     }
                     break;

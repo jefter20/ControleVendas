@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Controle_Vendas.Dominio;
-using Controle_Vendas.Dados;
 
 namespace Controle_Vendas.Negocios
 {

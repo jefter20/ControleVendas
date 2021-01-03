@@ -50,5 +50,11 @@ namespace Controle_Vendas.Negocios
         {
             return new VendaDados().Lista();
         }
+
+        public static int AddClienteCompra(ClienteCompraDominio objCompra)
+        {
+            return new VendaDados().AddClienteCompra(objCompra);
+
+        }
     }
 }

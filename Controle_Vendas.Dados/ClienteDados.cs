@@ -52,7 +52,6 @@ namespace Controle_Vendas.Dados
                         dado.Sexo = Convert.ToString(dr["SEXO"]);
                         dado.LimiteCredito = Convert.ToString(dr["LIMITE_CREDITO"]);
                         dado.VolumeCompra = Convert.ToString(dr["VOLUME_COMPRA"]);
-                        dado.PrimeiraCompra = Convert.ToString(dr["PRIMEIRA_COMPRA"]);
 
                         lista.Add(dado);
                     }
@@ -71,7 +70,7 @@ namespace Controle_Vendas.Dados
 
                 con.Open();
 
-                comando.CommandText = "INSERT INTO TABELA_CLIENTES ([NOME], [CPF], [ENDERECO_1], [ENDERECO_2], [BAIRRO], [CIDADE], [UF], [CEP], [DATA_NASCIMENTO], [SEXO], [LIMITE_CREDITO], [VOLUME_COMPRA], [PRIMEIRA_COMPRA]) VALUES (@NOME, @CPF, @ENDERECO_1, @ENDERECO_2, @BAIRRO, @CIDADE, @UF, @CEP, @DATA_NASCIMENTO, @SEXO, @LIMITE_CREDITO, @VOLUME_COMPRA, @PRIMEIRA_COMPRA)";
+                comando.CommandText = "INSERT INTO TABELA_CLIENTES ([NOME], [CPF], [ENDERECO_1], [ENDERECO_2], [BAIRRO], [CIDADE], [UF], [CEP], [DATA_NASCIMENTO], [SEXO], [LIMITE_CREDITO], [VOLUME_COMPRA]) VALUES (@NOME, @CPF, @ENDERECO_1, @ENDERECO_2, @BAIRRO, @CIDADE, @UF, @CEP, @DATA_NASCIMENTO, @SEXO, @LIMITE_CREDITO, @VOLUME_COMPRA)";
 
                 comando.Parameters.Add("NOME", SqlDbType.VarChar).Value = objCliente.Nome;
                 comando.Parameters.Add("CPF", SqlDbType.VarChar).Value = objCliente.Cpf;
@@ -85,7 +84,6 @@ namespace Controle_Vendas.Dados
                 comando.Parameters.Add("SEXO", SqlDbType.VarChar).Value = objCliente.Sexo;
                 comando.Parameters.Add("LIMITE_CREDITO", SqlDbType.VarChar).Value = objCliente.LimiteCredito;
                 comando.Parameters.Add("VOLUME_COMPRA", SqlDbType.VarChar).Value = objCliente.VolumeCompra;
-                comando.Parameters.Add("PRIMEIRA_COMPRA", SqlDbType.VarChar).Value = objCliente.PrimeiraCompra;
 
                 comando.Connection = con;
 
@@ -133,12 +131,10 @@ namespace Controle_Vendas.Dados
                         dado.Sexo = Convert.ToString(dr["SEXO"]);
                         dado.LimiteCredito = Convert.ToString(dr["LIMITE_CREDITO"]);
                         dado.VolumeCompra = Convert.ToString(dr["VOLUME_COMPRA"]);
-                        dado.PrimeiraCompra = Convert.ToString(dr["PRIMEIRA_COMPRA"]);
 
                         lista.Add(dado);
                     }
                 }
-
                 return lista;
             }
         }

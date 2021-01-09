@@ -26,7 +26,9 @@ namespace Controle_Vendas.Visualizacao
         }
        
         private string opcoes = "";
-
+        private double clienteLimiteCredito = 0;
+        private double compraLimiteCredito = 0;
+        private int compraCodigoCliente = 0;
         private void IniciarOpcoes()
         {
             switch (opcoes)
@@ -50,8 +52,6 @@ namespace Controle_Vendas.Visualizacao
                 case "BuscaCliente":
                     try
                     {
-                        
-
                         objCliente.Cpf = Convert.ToString(txtBuscaCliente.Text);
 
                         List<ClienteDominio> lista = new List<ClienteDominio>();
@@ -61,6 +61,9 @@ namespace Controle_Vendas.Visualizacao
                         {
                             txtNomeCliente.Text = Convert.ToString(item.Nome);
                             txtCodigoCliente.Text = Convert.ToString(item.CodigoCliente);
+                            clienteLimiteCredito = Convert.ToDouble(item.LimiteCredito);
+
+                            MessageBox.Show(Convert.ToString("Cliente credito é " + clienteLimiteCredito));
                         }
                     }
                     catch (Exception ex)
@@ -108,6 +111,35 @@ namespace Controle_Vendas.Visualizacao
                     }
                     break;
 
+                case "BuscaClienteCompra":
+                    try
+                    {
+                        List<ClienteCompraDominio> lista2 = new List<ClienteCompraDominio>();
+                        lista2 = new VendaNegocios().BuscaClienteCompra(objCompra);
+
+                        foreach (var item2 in lista2)
+                        {
+                            compraLimiteCredito = Convert.ToDouble(item2.LimiteCredito);
+                            compraCodigoCliente = Convert.ToInt32(item2.CodigoCliente);
+
+                            if (txtCodigoCliente.Text != Convert.ToString(compraCodigoCliente) | Convert.ToString(compraCodigoCliente) == null)
+                            {
+                                txtPrimeiraCompra.Text = Convert.ToString(1);
+                            }
+                            else
+                            {
+                                txtPrimeiraCompra.Text = Convert.ToString(0);
+                            }
+
+                            MessageBox.Show(Convert.ToString("Compra limite BUSCACOMPRA" + compraLimiteCredito));
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao buscar compra" + ex.Message);
+                    }
+                    break;
+
                 case "Novo":
                     HabilitarCampos();
                     LimparCampos();
@@ -116,13 +148,6 @@ namespace Controle_Vendas.Visualizacao
                 case "Salvar":
                     try
                     {
-                        if (txtCodigoCliente.Text == "" | txtCodigoProduto.Text == "" | txtCodigoVendedor.Text == "" | txtCreditoLoja.Text == "" | txtQuantidade.Text == "" | txtPreco.Text == "")
-                        {
-                            MessageBox.Show("Preencha os campos marcados com (*), e verifique se os códigos informados estão corretos!");
-                            txtCodigoCliente.Focus();
-                            return;
-                        }
-
                         objVenda.CodigoCliente = Convert.ToInt32(txtCodigoCliente.Text);
                         objVenda.CodigoProduto = Convert.ToInt32(txtCodigoProduto.Text);
                         objVenda.CodigoVendedor = Convert.ToInt32(txtCodigoVendedor.Text);
@@ -134,7 +159,8 @@ namespace Controle_Vendas.Visualizacao
                         objVenda.Quantidade = Convert.ToInt32(txtQuantidade.Text);
                         objVenda.Preco = Convert.ToDouble(txtPreco.Text);
                         objVenda.PrecoTotal = Convert.ToDouble(txtQuantidade.Text) * Convert.ToDouble(txtPreco.Text);
-                     
+                        objVenda.PrimeiraCompra = Convert.ToDouble(txtPrimeiraCompra.Text);
+
                         int x = VendaNegocios.Inserir(objVenda);
 
                         if (x > 0)
@@ -201,23 +227,50 @@ namespace Controle_Vendas.Visualizacao
                         objCompra.NomeProduto = Convert.ToString(txtNomeProduto.Text);
                         objCompra.Quantidade = Convert.ToInt32(txtQuantidade.Text);
                         objCompra.CreditoLoja = Convert.ToDouble(txtCreditoLoja.Text);
+
+                        if (objVenda.CreditoLoja == 1)
+                        {
+                            if (objVenda.PrimeiraCompra == 1)
+                            {
+                                objCompra.LimiteCredito = Convert.ToDouble(clienteLimiteCredito) - Convert.ToDouble(objVenda.PrecoTotal);
+                            }
+                            else
+                            {
+                                objCompra.LimiteCredito = Convert.ToDouble(compraLimiteCredito) - Convert.ToDouble(objVenda.PrecoTotal);
+                            }
+                        }
+
+                        if (objVenda.CreditoLoja == 0)
+                        {
+                            if (objVenda.PrimeiraCompra == 1)
+                            {
+                                objCompra.LimiteCredito = Convert.ToDouble(clienteLimiteCredito);
+                            }
+                            else
+                            {
+                                objCompra.LimiteCredito = Convert.ToDouble(compraLimiteCredito);
+                            }
+                        }
+
                         objCompra.Preco = Convert.ToDouble(txtPreco.Text);
                         objCompra.PrecoTotal = Convert.ToDouble(objVenda.PrecoTotal);
                         objCompra.DataHora = Convert.ToString(txtDataHora.Text);
+                        objCompra.PrimeiraCompra = Convert.ToDouble(txtPrimeiraCompra.Text);
 
                         int x = VendaNegocios.AddClienteCompra(objCompra);
 
-                        if (x > 0)
-                        {
-                            MessageBox.Show(string.Format("Compra de {0} efetuada com sucesso!", txtNomeProduto.Text));
-                            LimparCampos();
-                            DesabilitarCampos();
-                            ListarGrid();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Compra não finalizada");
-                        }
+                            if (x > 0)
+                            {
+                                MessageBox.Show(string.Format("Compra de {0} efetuada com sucesso!", txtNomeProduto.Text));
+                                LimparCampos();
+                                DesabilitarCampos();
+                                ListarGrid();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Compra não finalizada");
+                            }
+                        
                     }
                     catch (Exception ex)
                     {
@@ -282,15 +335,40 @@ namespace Controle_Vendas.Visualizacao
 
         private void btnVendaSalvar_Click(object sender, EventArgs e)
         {
-            
-            opcoes = "Salvar";
-            IniciarOpcoes();
+            if (objVenda.PrimeiraCompra == 1)
+            {
+                if (Convert.ToDouble(objVenda.PrecoTotal) > Convert.ToDouble(clienteLimiteCredito))
+                {
+                    MessageBox.Show(string.Format("Valor da compra acima do Limite de Crédito. O Limite de Crédito restante é {0}", clienteLimiteCredito));
+                    return;
+
+                }
+                else
+                {
+                    opcoes = "Salvar";
+                    IniciarOpcoes();
+                }
+            }
+
+            if (objVenda.PrimeiraCompra == 0)
+            {
+                if (Convert.ToDouble(objVenda.PrecoTotal) > Convert.ToDouble(compraLimiteCredito))
+                {
+                    MessageBox.Show(string.Format("Valor da compra acima do Limite de Crédito. O Limite de Crédito restante é {0}", compraLimiteCredito));
+                    return;
+
+                }
+                else
+                {
+                    opcoes = "Salvar";
+                    IniciarOpcoes();
+                }
+            }
 
             btnNovo.Enabled = true;
             btnSalvar.Enabled = false;
             btnEditar.Enabled = true;
             btnExcluir.Enabled = false;
-
         }
 
         private void btnVendaEditar_Click(object sender, EventArgs e)
@@ -366,56 +444,7 @@ namespace Controle_Vendas.Visualizacao
             opcoes = "Pesquisar";
             IniciarOpcoes();
         }
-
-        private void HabilitarCampos()
-        {
-            txtCodigoCliente.Enabled = true;
-            txtCodigoProduto.Enabled = true;
-            txtCodigoVendedor.Enabled = true;
-            txtCreditoLoja.Enabled = true;
-            txtNomeCliente.Enabled = true;
-            txtNomeProduto.Enabled = true;
-            txtNomeVendedor.Enabled = true;
-            txtDataHora.Enabled = true;
-            txtBuscaCliente.Enabled = true;
-            txtQuantidade.Enabled = true;
-            txtPreco.Enabled = true;
-            txtPrecoTotal.Enabled = true;
-        }
-
-        private void DesabilitarCampos()
-        {
-            txtCodigoCliente.Enabled = false;
-            txtCodigoProduto.Enabled = false;
-            txtCodigoVendedor.Enabled = false;
-            txtCreditoLoja.Enabled = false;
-            txtNomeCliente.Enabled = false;
-            txtNomeProduto.Enabled = false;
-            txtNomeVendedor.Enabled = false;
-            txtDataHora.Enabled = false;
-            txtBuscaCliente.Enabled = false;
-            txtQuantidade.Enabled = false;
-            txtPreco.Enabled = false;
-            txtPrecoTotal.Enabled = false;
-        }
-
-        private void LimparCampos()
-        {
-            txtCodigoVenda.Text = "";
-            txtCodigoCliente.Text = "";
-            txtCodigoProduto.Text = "";
-            txtCodigoVendedor.Text = "";
-            txtCreditoLoja.Text = "";
-            txtNomeCliente.Text = "";
-            txtNomeProduto.Text = "";
-            txtNomeVendedor.Text = "";
-            txtDataHora.Text = "";
-            txtBuscaCliente.Text = "";
-            txtQuantidade.Text = "";
-            txtPreco.Text = "";
-            txtPrecoTotal.Text = "";
-        }
-
+                
         private void txtCodigoProduto_Leave(object sender, EventArgs e)
         {
             opcoes = "BuscaProduto";
@@ -432,6 +461,14 @@ namespace Controle_Vendas.Visualizacao
         {
             opcoes = "BuscaCliente";
             IniciarOpcoes();
+
+            opcoes = "BuscaClienteCompra";
+            IniciarOpcoes();
+        }
+
+        private void txtDataHora_Enter(object sender, EventArgs e)
+        {
+            txtDataHora.Text = DateTime.Now.ToString("yyyy/MM/dd " + "HH:mm:ss");
         }
 
         private void txtBuscaCliente_Enter(object sender, EventArgs e)
@@ -441,12 +478,7 @@ namespace Controle_Vendas.Visualizacao
                 MessageBox.Show("Para buscar o nome do cliente, insira o CPF do mesmo!");
             }
         }
-
-        private void txtDataHora_Enter(object sender, EventArgs e)
-        {
-            txtDataHora.Text = DateTime.Now.ToString("yyyy/MM/dd " + "HH:mm:ss");
-        }
-
+               
         private void txtNomeCliente_Enter(object sender, EventArgs e)
         {
             if (txtNomeCliente.Text == "")
@@ -469,6 +501,65 @@ namespace Controle_Vendas.Visualizacao
             {
                 MessageBox.Show("Por favor, insira o código do vendedor no campo ao lado!");
             }
+        }
+
+        private void HabilitarCampos()
+        {
+            txtCodigoCliente.Enabled = true;
+            txtCodigoProduto.Enabled = true;
+            txtCodigoVendedor.Enabled = true;
+            txtCreditoLoja.Enabled = true;
+            txtNomeCliente.Enabled = true;
+            txtNomeProduto.Enabled = true;
+            txtNomeVendedor.Enabled = true;
+            txtDataHora.Enabled = true;
+            txtBuscaCliente.Enabled = true;
+            txtQuantidade.Enabled = true;
+            txtPreco.Enabled = true;
+            txtPrecoTotal.Enabled = true;
+            txtPrimeiraCompra.Enabled = true;
+        }
+
+        private void DesabilitarCampos()
+        {
+            txtCodigoCliente.Enabled = false;
+            txtCodigoProduto.Enabled = false;
+            txtCodigoVendedor.Enabled = false;
+            txtCreditoLoja.Enabled = false;
+            txtNomeCliente.Enabled = false;
+            txtNomeProduto.Enabled = false;
+            txtNomeVendedor.Enabled = false;
+            txtDataHora.Enabled = false;
+            txtBuscaCliente.Enabled = false;
+            txtQuantidade.Enabled = false;
+            txtPreco.Enabled = false;
+            txtPrecoTotal.Enabled = false;
+            txtPrimeiraCompra.Enabled = false;
+        }
+
+        private void LimparCampos()
+        {
+            txtCodigoVenda.Text = "";
+            txtCodigoCliente.Text = "";
+            txtCodigoProduto.Text = "";
+            txtCodigoVendedor.Text = "";
+            txtCreditoLoja.Text = "";
+            txtNomeCliente.Text = "";
+            txtNomeProduto.Text = "";
+            txtNomeVendedor.Text = "";
+            txtDataHora.Text = "";
+            txtBuscaCliente.Text = "";
+            txtQuantidade.Text = "";
+            txtPreco.Text = "";
+            txtPrecoTotal.Text = "";
+            txtPrimeiraCompra.Text = "";
+        }
+
+        private void txtPrecoTotal_Enter(object sender, EventArgs e)
+        {
+            var precoTotal = Convert.ToInt32(txtQuantidade.Text) * Convert.ToDouble(txtPreco.Text);
+            txtPrecoTotal.Text = Convert.ToString(precoTotal);
+
         }
     }
 }

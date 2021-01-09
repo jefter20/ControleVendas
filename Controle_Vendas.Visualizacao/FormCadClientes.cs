@@ -69,7 +69,6 @@ namespace Controle_Vendas.Visualizacao
                         objCliente.Sexo = txtSexo.Text;
                         objCliente.LimiteCredito = txtLimiteCredito.Text;
                         objCliente.VolumeCompra = txtVolumeCompra.Text;
-                        objCliente.PrimeiraCompra = txtPrimeiraCompra.Text;                     
 
                         int x = ClienteNegocios.Inserir(objCliente);
 
@@ -179,7 +178,6 @@ namespace Controle_Vendas.Visualizacao
             txtSexo.Text = Grid.CurrentRow.Cells[10].Value.ToString();
             txtLimiteCredito.Text = Grid.CurrentRow.Cells[11].Value.ToString();
             txtVolumeCompra.Text = Grid.CurrentRow.Cells[12].Value.ToString();
-            txtPrimeiraCompra.Text = Grid.CurrentRow.Cells[13].Value.ToString();
 
             HabilitarCampos();
 
@@ -216,7 +214,6 @@ namespace Controle_Vendas.Visualizacao
             txtSexo.Enabled = true;
             txtLimiteCredito.Enabled = true;
             txtVolumeCompra.Enabled = true;
-            txtPrimeiraCompra.Enabled = true;
         }
 
         private void DesabilitarCampos()
@@ -234,7 +231,6 @@ namespace Controle_Vendas.Visualizacao
             txtSexo.Enabled = false;
             txtLimiteCredito.Enabled = false;
             txtVolumeCompra.Enabled = false;
-            txtPrimeiraCompra.Enabled = false;
         }
 
         private void LimparCampos()
@@ -252,7 +248,6 @@ namespace Controle_Vendas.Visualizacao
             txtSexo.Text = "";
             txtLimiteCredito.Text = "";
             txtVolumeCompra.Text = "";
-            txtPrimeiraCompra.Text = "";
         }
     }
 }

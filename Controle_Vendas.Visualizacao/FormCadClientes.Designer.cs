@@ -29,7 +29,7 @@ namespace Controle_Vendas.Visualizacao
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
@@ -73,8 +73,6 @@ namespace Controle_Vendas.Visualizacao
             this.txtDataNascimento = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.txtCEP = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtPrimeiraCompra = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.txtVolumeCompra = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -160,14 +158,14 @@ namespace Controle_Vendas.Visualizacao
             this.LIMITE_CREDITO,
             this.VOLUME_COMPRA,
             this.PRIMEIRA_COMPRA});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Grid.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Grid.DefaultCellStyle = dataGridViewCellStyle1;
             this.Grid.Location = new System.Drawing.Point(143, 292);
             this.Grid.Name = "Grid";
             this.Grid.ReadOnly = true;
@@ -458,22 +456,6 @@ namespace Controle_Vendas.Visualizacao
             this.txtCEP.Size = new System.Drawing.Size(146, 20);
             this.txtCEP.TabIndex = 48;
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(701, 219);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(83, 13);
-            this.label13.TabIndex = 59;
-            this.label13.Text = "Primeira Compra";
-            // 
-            // txtPrimeiraCompra
-            // 
-            this.txtPrimeiraCompra.Location = new System.Drawing.Point(790, 212);
-            this.txtPrimeiraCompra.Name = "txtPrimeiraCompra";
-            this.txtPrimeiraCompra.Size = new System.Drawing.Size(40, 20);
-            this.txtPrimeiraCompra.TabIndex = 58;
-            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -522,8 +504,6 @@ namespace Controle_Vendas.Visualizacao
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(840, 484);
             this.Controls.Add(this.btnCadastroVendas);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.txtPrimeiraCompra);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.txtVolumeCompra);
             this.Controls.Add(this.label15);
@@ -598,8 +578,6 @@ namespace Controle_Vendas.Visualizacao
         private System.Windows.Forms.TextBox txtDataNascimento;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtCEP;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtPrimeiraCompra;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtVolumeCompra;
         private System.Windows.Forms.Label label15;

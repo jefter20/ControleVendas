@@ -56,5 +56,11 @@ namespace Controle_Vendas.Negocios
             return new VendaDados().AddClienteCompra(objCompra);
 
         }
+
+        public List<ClienteCompraDominio> BuscaClienteCompra(ClienteCompraDominio objCompra)
+        {
+            return new VendaDados().BuscaClienteCompra(objCompra);
+
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace Controle_Vendas.Dados
 
                 con.Open();
 
-                comando.CommandText = "SELECT CODIGO_COMPRA, CODIGO_PRODUTO, NOME_PRODUTO, QUANTIDADE, CREDITO_LOJA, PRECO, PRECO_TOTAL, DATA_HORA FROM TABELA_CLIENTE_COMPRAS ORDER BY NOME_PRODUTO";
+                comando.CommandText = "SELECT CODIGO_COMPRA, CODIGO_PRODUTO, NOME_PRODUTO, QUANTIDADE, LIMITE_CREDITO, PRECO, PRECO_TOTAL, DATA_HORA FROM TABELA_CLIENTE_COMPRAS ORDER BY NOME_PRODUTO";
 
                 comando.Connection = con;
 
@@ -40,7 +40,7 @@ namespace Controle_Vendas.Dados
                         dado.CodigoProduto = Convert.ToInt32(dr["CODIGO_PRODUTO"]);
                         dado.NomeProduto = Convert.ToString(dr["NOME_PRODUTO"]);
                         dado.Quantidade = Convert.ToInt32(dr["QUANTIDADE"]);
-                        dado.CreditoLoja = Convert.ToDouble(dr["CREDITO_LOJA"]);
+                        dado.CreditoLoja = Convert.ToDouble(dr["LIMITE_CREDITO"]);
                         dado.Preco = Convert.ToDouble(dr["PRECO"]);
                         dado.PrecoTotal = Convert.ToDouble(dr["PRECO_TOTAL"]);
                         dado.DataHora = Convert.ToString(dr["DATA_HORA"]);

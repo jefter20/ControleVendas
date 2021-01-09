@@ -18,6 +18,7 @@ namespace Controle_Vendas.Dominio
         private string nomeProduto;
         private string nomeVendedor;
         private string dataHora;
+        private double primeiraCompra;
         private int quantidade;
         private double preco;
         private double precoTotal;
@@ -32,6 +33,7 @@ namespace Controle_Vendas.Dominio
         public string NomeProduto { get => nomeProduto; set => nomeProduto = value; }
         public string NomeVendedor { get => nomeVendedor; set => nomeVendedor = value; }
         public string DataHora { get => dataHora; set => dataHora = value; }
+        public double PrimeiraCompra { get => primeiraCompra; set => primeiraCompra = value; }
         public int Quantidade { get => quantidade; set => quantidade = value; }
         public double Preco { get => preco; set => preco = value; }
         public double PrecoTotal { get => precoTotal; set => precoTotal = value; }

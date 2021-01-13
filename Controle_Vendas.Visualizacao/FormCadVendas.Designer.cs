@@ -139,7 +139,6 @@ namespace Controle_Vendas.Visualizacao
             this.txtCreditoLoja.Name = "txtCreditoLoja";
             this.txtCreditoLoja.Size = new System.Drawing.Size(40, 20);
             this.txtCreditoLoja.TabIndex = 23;
-            this.txtCreditoLoja.Leave += new System.EventHandler(this.txtCreditoLoja_Leave);
             // 
             // label5
             // 
@@ -273,6 +272,7 @@ namespace Controle_Vendas.Visualizacao
             this.txtQuantidade.Name = "txtQuantidade";
             this.txtQuantidade.Size = new System.Drawing.Size(84, 20);
             this.txtQuantidade.TabIndex = 15;
+            this.txtQuantidade.Leave += new System.EventHandler(this.txtQuantidade_Leave);
             // 
             // label10
             // 
@@ -491,7 +491,6 @@ namespace Controle_Vendas.Visualizacao
             this.txtPrecoTotal.Name = "txtPrecoTotal";
             this.txtPrecoTotal.Size = new System.Drawing.Size(84, 20);
             this.txtPrecoTotal.TabIndex = 29;
-            this.txtPrecoTotal.Enter += new System.EventHandler(this.txtPrecoTotal_Enter);
             // 
             // label14
             // 

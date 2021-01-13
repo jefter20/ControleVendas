@@ -62,6 +62,7 @@ namespace Controle_Vendas.Visualizacao
                             txtNomeCliente.Text = Convert.ToString(item.Nome);
                             txtCodigoCliente.Text = Convert.ToString(item.CodigoCliente);
                             clienteLimiteCredito = Convert.ToDouble(item.LimiteCredito);
+                            //objCompra.CodigoCliente = Convert.ToInt32(item.CodigoCliente);
 
                             MessageBox.Show(Convert.ToString("Cliente credito é " + clienteLimiteCredito));
                         }
@@ -115,20 +116,24 @@ namespace Controle_Vendas.Visualizacao
                     try
                     {
                         List<ClienteCompraDominio> lista2 = new List<ClienteCompraDominio>();
+
                         lista2 = new VendaNegocios().BuscaClienteCompra(objCompra);
+
+                        compraLimiteCredito = lista2.Select(x => x.LimiteCredito).Last();
 
                         foreach (var item2 in lista2)
                         {
-                            compraLimiteCredito = Convert.ToDouble(item2.LimiteCredito);
+                            //compraLimiteCredito = Convert.ToDouble(item2.LimiteCredito);
                             compraCodigoCliente = Convert.ToInt32(item2.CodigoCliente);
 
-                            if (txtCodigoCliente.Text != Convert.ToString(compraCodigoCliente) | Convert.ToString(compraCodigoCliente) == null)
+                            if (txtCodigoCliente.Text != Convert.ToString(compraCodigoCliente) || Convert.ToString(compraCodigoCliente) == null)
                             {
                                 txtPrimeiraCompra.Text = Convert.ToString(1);
                             }
                             else
                             {
                                 txtPrimeiraCompra.Text = Convert.ToString(0);
+                                
                             }
 
                             MessageBox.Show(Convert.ToString("Compra limite BUSCACOMPRA" + compraLimiteCredito));
@@ -337,7 +342,7 @@ namespace Controle_Vendas.Visualizacao
         {
             if (objVenda.PrimeiraCompra == 1)
             {
-                if (Convert.ToDouble(objVenda.PrecoTotal) > Convert.ToDouble(clienteLimiteCredito))
+                if (Convert.ToDouble(txtPrecoTotal.Text) > Convert.ToDouble(clienteLimiteCredito))
                 {
                     MessageBox.Show(string.Format("Valor da compra acima do Limite de Crédito. O Limite de Crédito restante é {0}", clienteLimiteCredito));
                     return;
@@ -352,7 +357,8 @@ namespace Controle_Vendas.Visualizacao
 
             if (objVenda.PrimeiraCompra == 0)
             {
-                if (Convert.ToDouble(objVenda.PrecoTotal) > Convert.ToDouble(compraLimiteCredito))
+
+                if (Convert.ToDouble(txtPrecoTotal.Text) > Convert.ToDouble(compraLimiteCredito))
                 {
                     MessageBox.Show(string.Format("Valor da compra acima do Limite de Crédito. O Limite de Crédito restante é {0}", compraLimiteCredito));
                     return;
@@ -360,8 +366,7 @@ namespace Controle_Vendas.Visualizacao
                 }
                 else
                 {
-                    opcoes = "Salvar";
-                    IniciarOpcoes();
+
                 }
             }
 
@@ -557,8 +562,18 @@ namespace Controle_Vendas.Visualizacao
 
         private void txtPrecoTotal_Enter(object sender, EventArgs e)
         {
-            var precoTotal = Convert.ToInt32(txtQuantidade.Text) * Convert.ToDouble(txtPreco.Text);
-            txtPrecoTotal.Text = Convert.ToString(precoTotal);
+            if (!string.IsNullOrEmpty(txtPreco.Text) && !string.IsNullOrEmpty(txtQuantidade.Text))
+            {
+                var precoTotal = Convert.ToInt32(txtQuantidade.Text.Replace(",", ".")) * Convert.ToDouble(txtPreco.Text.Replace(",", "."));
+                txtPrecoTotal.Text = Convert.ToString(precoTotal);
+            }else
+            {
+                txtPrecoTotal.Text = "";
+            } 
+        }
+
+        private void txtCreditoLoja_Leave(object sender, EventArgs e)
+        {
 
         }
     }

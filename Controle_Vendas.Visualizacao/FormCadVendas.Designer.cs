@@ -139,6 +139,7 @@ namespace Controle_Vendas.Visualizacao
             this.txtCreditoLoja.Name = "txtCreditoLoja";
             this.txtCreditoLoja.Size = new System.Drawing.Size(40, 20);
             this.txtCreditoLoja.TabIndex = 23;
+            this.txtCreditoLoja.Leave += new System.EventHandler(this.txtCreditoLoja_Leave);
             // 
             // label5
             // 

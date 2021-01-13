@@ -214,7 +214,7 @@ namespace Controle_Vendas.Dados
 
                 con.Open();
 
-                comando.CommandText = "SELECT LIMITE_CREDITO, CODIGO_CLIENTE, CREDITO_LOJA FROM TABELA_CLIENTE_COMPRAS WHERE CODIGO_CLIENTE = @CODIGO_CLIENTE";
+                comando.CommandText = "SELECT PRIMEIRA_COMPRA, LIMITE_CREDITO, CODIGO_CLIENTE, CREDITO_LOJA, [DATA_HORA] FROM TABELA_CLIENTE_COMPRAS WHERE CODIGO_CLIENTE = @CODIGO_CLIENTE";
 
                 comando.Parameters.Add("CODIGO_CLIENTE", SqlDbType.Int).Value = objCompra.CodigoCliente;
 
@@ -234,6 +234,7 @@ namespace Controle_Vendas.Dados
                         dado.LimiteCredito = Convert.ToDouble(dr["LIMITE_CREDITO"]);
                         dado.CodigoCliente = Convert.ToInt32(dr["CODIGO_CLIENTE"]); 
                         dado.CreditoLoja = Convert.ToDouble(dr["CREDITO_LOJA"]);
+                        dado.PrimeiraCompra = Convert.ToDouble(dr["PRIMEIRA_COMPRA"]);
 
                         lista.Add(dado);
                     }

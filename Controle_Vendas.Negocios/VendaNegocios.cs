@@ -62,5 +62,15 @@ namespace Controle_Vendas.Negocios
             return new VendaDados().BuscaClienteCompra(objCompra);
 
         }
+
+        public List<ProdutoEstoqueDominio> BuscaProdutoEstoque(ProdutoEstoqueDominio objEstoque)
+        {
+            return new VendaDados().BuscaProdutoEstoque(objEstoque);
+        }
+
+        public static int AddProdutoEstoque(ProdutoEstoqueDominio objEstoque)
+        {
+            return new VendaDados().AddProdutoEstoque(objEstoque);
+        }
     }
 }

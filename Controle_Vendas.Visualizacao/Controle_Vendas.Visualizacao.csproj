@@ -58,11 +58,23 @@
     <Compile Include="FormCadClientes.Designer.cs">
       <DependentUpon>FormCadClientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormCadProdutoEstoque.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCadProdutoEstoque.Designer.cs">
+      <DependentUpon>FormCadProdutoEstoque.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCadVendas.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormCadVendas.Designer.cs">
       <DependentUpon>FormCadVendas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginCliente.Designer.cs">
+      <DependentUpon>LoginCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginVendedor.cs">
       <SubType>Form</SubType>
@@ -78,8 +90,14 @@
     <EmbeddedResource Include="FormCadClientes.resx">
       <DependentUpon>FormCadClientes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCadProdutoEstoque.resx">
+      <DependentUpon>FormCadProdutoEstoque.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCadVendas.resx">
       <DependentUpon>FormCadVendas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginCliente.resx">
+      <DependentUpon>LoginCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginVendedor.resx">
       <DependentUpon>LoginVendedor.cs</DependentUpon>

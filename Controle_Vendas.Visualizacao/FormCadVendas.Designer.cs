@@ -516,6 +516,7 @@ namespace Controle_Vendas.Visualizacao
             this.txtPrimeiraCompra.Name = "txtPrimeiraCompra";
             this.txtPrimeiraCompra.Size = new System.Drawing.Size(40, 20);
             this.txtPrimeiraCompra.TabIndex = 27;
+            this.txtPrimeiraCompra.Enter += new System.EventHandler(this.txtPrimeiraCompra_Enter);
             // 
             // FormCadVendas
             // 

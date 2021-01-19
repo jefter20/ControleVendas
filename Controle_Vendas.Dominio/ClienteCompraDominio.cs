@@ -20,6 +20,8 @@ namespace Controle_Vendas.Dominio
         private double precoTotal;
         private string dataHora;
         private double primeiraCompra;
+        private string usuario;
+        private string senha;
 
         public int CodigoCompra { get => codigoCompra; set => codigoCompra = value; }
         public int CodigoVenda { get => codigoVenda; set => codigoVenda = value; }
@@ -33,5 +35,7 @@ namespace Controle_Vendas.Dominio
         public double PrecoTotal { get => precoTotal; set => precoTotal = value; }
         public string DataHora { get => dataHora; set => dataHora = value; }
         public double PrimeiraCompra { get => primeiraCompra; set => primeiraCompra = value; }
+        public string Usuario { get => usuario; set => usuario = value; }
+        public string Senha { get => senha; set => senha = value; }
     }
 }

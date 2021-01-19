@@ -22,6 +22,8 @@ namespace Controle_Vendas.Dominio
         private string limiteCredito;
         private string volumeCompra;
         private string primeiraCompra;
+        private string usuario;
+        private string senha;
 
         public int CodigoCliente { get => codigoCliente; set => codigoCliente = value; }
         public string Nome { get => nome; set => nome = value; }
@@ -37,5 +39,7 @@ namespace Controle_Vendas.Dominio
         public string LimiteCredito { get => limiteCredito; set => limiteCredito = value; }
         public string VolumeCompra { get => volumeCompra; set => volumeCompra = value; }
         public string PrimeiraCompra { get => primeiraCompra; set => primeiraCompra = value; }
+        public string Usuario { get => usuario; set => usuario = value; }
+        public string Senha { get => senha; set => senha = value; }
     }
 }

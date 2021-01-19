@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Controle_Vendas.Dados
 {
-    public class ClienteCompraDados
+    public class ProdutoEstoqueDados
     {
-        public List<ClienteCompraDominio> Lista()
+        public List<ProdutoEstoqueDominio> Lista()
         {
             using (SqlConnection con = new SqlConnection())
             {
@@ -21,12 +21,12 @@ namespace Controle_Vendas.Dados
 
                 con.Open();
 
-                comando.CommandText = "SELECT CODIGO_COMPRA, CODIGO_CLIENTE, CODIGO_PRODUTO, NOME_PRODUTO, QUANTIDADE, LIMITE_CREDITO, PRECO, PRECO_TOTAL, DATA_HORA FROM TABELA_CLIENTE_COMPRAS ORDER BY CODIGO_CLIENTE";
+                comando.CommandText = "SELECT CODIGO_ESTOQUE, CODIGO_PRODUTO, NOME_PRODUTO, EMBALAGEM, TAMANHO, SABOR, QUANTIDADE_EM_ESTOQUE FROM TABELA_PRODUTO_ESTOQUE ORDER BY NOME_PRODUTO";
 
                 comando.Connection = con;
 
                 SqlDataReader dr;
-                List<ClienteCompraDominio> lista = new List<ClienteCompraDominio>();
+                List<ProdutoEstoqueDominio> lista = new List<ProdutoEstoqueDominio>();
 
                 dr = comando.ExecuteReader();
 
@@ -34,17 +34,15 @@ namespace Controle_Vendas.Dados
                 {
                     while (dr.Read())
                     {
-                        ClienteCompraDominio dado = new ClienteCompraDominio();
+                        ProdutoEstoqueDominio dado = new ProdutoEstoqueDominio();
 
-                        dado.CodigoCompra = Convert.ToInt32(dr["CODIGO_COMPRA"]);
-                        dado.CodigoCliente = Convert.ToInt32(dr["CODIGO_CLIENTE"]);
+                        dado.CodigoEstoque = Convert.ToInt32(dr["CODIGO_ESTOQUE"]);
                         dado.CodigoProduto = Convert.ToInt32(dr["CODIGO_PRODUTO"]);
                         dado.NomeProduto = Convert.ToString(dr["NOME_PRODUTO"]);
-                        dado.Quantidade = Convert.ToInt32(dr["QUANTIDADE"]);
-                        dado.CreditoLoja = Convert.ToDouble(dr["LIMITE_CREDITO"]);
-                        dado.Preco = Convert.ToDouble(dr["PRECO"]);
-                        dado.PrecoTotal = Convert.ToDouble(dr["PRECO_TOTAL"]);
-                        dado.DataHora = Convert.ToString(dr["DATA_HORA"]);
+                        dado.Embalagem = Convert.ToString(dr["EMBALAGEM"]);
+                        dado.Tamanho = Convert.ToString(dr["TAMANHO"]);
+                        dado.Sabor = Convert.ToString(dr["SABOR"]);
+                        dado.QuantidadeEstoque = Convert.ToDouble(dr["QUANTIDADE_EM_ESTOQUE"]);
 
                         lista.Add(dado);
                     }

@@ -31,6 +31,7 @@ namespace Controle_Vendas.Visualizacao
         {
             this.GridClienteCompras = new System.Windows.Forms.DataGridView();
             this.codigoCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codigoCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codigoProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,6 +53,7 @@ namespace Controle_Vendas.Visualizacao
             this.GridClienteCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridClienteCompras.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigoCompra,
+            this.codigoCliente,
             this.codigoProduto,
             this.nomeProduto,
             this.quantidade,
@@ -59,10 +61,10 @@ namespace Controle_Vendas.Visualizacao
             this.preco,
             this.precoTotal,
             this.dataHora});
-            this.GridClienteCompras.Location = new System.Drawing.Point(13, 57);
+            this.GridClienteCompras.Location = new System.Drawing.Point(13, 12);
             this.GridClienteCompras.Name = "GridClienteCompras";
             this.GridClienteCompras.ReadOnly = true;
-            this.GridClienteCompras.Size = new System.Drawing.Size(956, 197);
+            this.GridClienteCompras.Size = new System.Drawing.Size(956, 242);
             this.GridClienteCompras.TabIndex = 0;
             // 
             // codigoCompra
@@ -71,6 +73,13 @@ namespace Controle_Vendas.Visualizacao
             this.codigoCompra.HeaderText = "Código da Compra";
             this.codigoCompra.Name = "codigoCompra";
             this.codigoCompra.ReadOnly = true;
+            // 
+            // codigoCliente
+            // 
+            this.codigoCliente.DataPropertyName = "CodigoCliente";
+            this.codigoCliente.HeaderText = "Código do Cliente";
+            this.codigoCliente.Name = "codigoCliente";
+            this.codigoCliente.ReadOnly = true;
             // 
             // codigoProduto
             // 
@@ -128,6 +137,7 @@ namespace Controle_Vendas.Visualizacao
             this.ClientSize = new System.Drawing.Size(981, 266);
             this.Controls.Add(this.GridClienteCompras);
             this.Name = "FormCadClienteCompras";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Lista de Compras";
             this.Load += new System.EventHandler(this.FormCadClienteCompras_Load);
             ((System.ComponentModel.ISupportInitialize)(this.GridClienteCompras)).EndInit();
@@ -136,8 +146,9 @@ namespace Controle_Vendas.Visualizacao
         }
 
         #endregion
-
+        private System.Windows.Forms.DataGridView GridClienteCompras;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoCompra;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codigoCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoProduto;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeProduto;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantidade;
@@ -145,6 +156,5 @@ namespace Controle_Vendas.Visualizacao
         private System.Windows.Forms.DataGridViewTextBoxColumn preco;
         private System.Windows.Forms.DataGridViewTextBoxColumn precoTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataHora;
-        private System.Windows.Forms.DataGridView GridClienteCompras;
     }
 }

@@ -59,6 +59,42 @@ namespace Controle_Vendas.Dados
             }
         }
 
+        public List<ProdutoEstoqueDominio> BuscaProdutoEstoque(ProdutoEstoqueDominio objEstoque)
+        {
+            using (SqlConnection con = new SqlConnection())
+            {
+                con.ConnectionString = Properties.Settings.Default.banco;
+                SqlCommand comando = new SqlCommand();
+                comando.CommandType = CommandType.Text;
+
+                con.Open();
+
+                comando.CommandText = "SELECT QUANTIDADE_EM_ESTOQUE FROM TABELA_PRODUTO_ESTOQUE WHERE CODIGO_PRODUTO = @CODIGO_PRODUTO";
+
+                comando.Parameters.Add("CODIGO_PRODUTO", SqlDbType.Int).Value = objEstoque.CodigoProduto;
+
+                comando.Connection = con;
+
+                SqlDataReader dr;
+                List<ProdutoEstoqueDominio> lista = new List<ProdutoEstoqueDominio>();
+
+                dr = comando.ExecuteReader();
+
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        ProdutoEstoqueDominio dado = new ProdutoEstoqueDominio();
+
+                        dado.QuantidadeEstoque = Convert.ToDouble(dr["QUANTIDADE_EM_ESTOQUE"]);
+
+                        lista.Add(dado);
+                    }
+                }
+                return lista;
+            }
+        }
+
         public int AddClienteCompra(ClienteCompraDominio objCompra)
         {
             using (SqlConnection con = new SqlConnection())
@@ -82,6 +118,32 @@ namespace Controle_Vendas.Dados
                 comando.Parameters.Add("DATA_HORA", SqlDbType.DateTime).Value = objCompra.DataHora;
                 comando.Parameters.Add("PRIMEIRA_COMPRA", SqlDbType.Decimal).Value = objCompra.PrimeiraCompra;
 
+                comando.Connection = con;
+
+                int qtd = comando.ExecuteNonQuery();
+                Console.Write(qtd);
+                return qtd;
+            }
+        }
+
+        public int AddProdutoEstoque(ProdutoEstoqueDominio objEstoque)
+        {
+            using (SqlConnection con = new SqlConnection())
+            {
+                con.ConnectionString = Properties.Settings.Default.banco;
+                SqlCommand comando = new SqlCommand();
+                comando.CommandType = CommandType.Text;
+
+                con.Open();
+
+                comando.CommandText = "INSERT INTO TABELA_PRODUTO_ESTOQUE ([CODIGO_PRODUTO], [NOME_PRODUTO], [EMBALAGEM], [TAMANHO], [SABOR], [QUANTIDADE_EM_ESTOQUE]) VALUES (@CODIGO_PRODUTO, @NOME_PRODUTO, @EMBALAGEM, @TAMANHO, @SABOR, @QUANTIDADE_EM_ESTOQUE)";
+
+                comando.Parameters.Add("CODIGO_PRODUTO", SqlDbType.Int).Value = objEstoque.CodigoProduto;
+                comando.Parameters.Add("NOME_PRODUTO", SqlDbType.VarChar).Value = objEstoque.NomeProduto;
+                comando.Parameters.Add("EMBALAGEM", SqlDbType.VarChar).Value = objEstoque.Embalagem;
+                comando.Parameters.Add("TAMANHO", SqlDbType.VarChar).Value = objEstoque.Tamanho;
+                comando.Parameters.Add("SABOR", SqlDbType.VarChar).Value = objEstoque.Sabor;
+                comando.Parameters.Add("QUANTIDADE_EM_ESTOQUE", SqlDbType.Decimal).Value = objEstoque.QuantidadeEstoque;
 
                 comando.Connection = con;
 
@@ -140,7 +202,7 @@ namespace Controle_Vendas.Dados
 
                 con.Open();
 
-                comando.CommandText = "SELECT NOME_PRODUTO, PRECO_DE_LISTA FROM TABELA_PRODUTOS WHERE CODIGO_PRODUTO = @CODIGO_PRODUTO";
+                comando.CommandText = "SELECT NOME_PRODUTO, PRECO_DE_LISTA, EMBALAGEM, TAMANHO, SABOR, QUANTIDADE_EM_ESTOQUE, CODIGO_PRODUTO FROM TABELA_PRODUTOS WHERE CODIGO_PRODUTO = @CODIGO_PRODUTO";
 
                 comando.Parameters.Add("CODIGO_PRODUTO", SqlDbType.Int).Value = objProduto.CodigoProduto;
 
@@ -160,6 +222,12 @@ namespace Controle_Vendas.Dados
 
                         dado.NomeProduto = Convert.ToString(dr["NOME_PRODUTO"]);
                         dado.PrecoDeLista = Convert.ToDouble(dr["PRECO_DE_LISTA"]);
+                        dado.Embalagem = Convert.ToString(dr["EMBALAGEM"]);
+                        dado.Tamanho = Convert.ToString(dr["TAMANHO"]);
+                        dado.Sabor = Convert.ToString(dr["SABOR"]);
+                        dado.QuantidadeEstoque = Convert.ToDouble(dr["QUANTIDADE_EM_ESTOQUE"]);
+                        dado.CodigoProduto = Convert.ToInt32(dr["CODIGO_PRODUTO"]);
+
                         lista.Add(dado);
                     }
                 }
@@ -214,7 +282,7 @@ namespace Controle_Vendas.Dados
 
                 con.Open();
 
-                comando.CommandText = "SELECT PRIMEIRA_COMPRA, LIMITE_CREDITO, CODIGO_CLIENTE, CREDITO_LOJA, [DATA_HORA] FROM TABELA_CLIENTE_COMPRAS WHERE CODIGO_CLIENTE = @CODIGO_CLIENTE";
+                comando.CommandText = "SELECT PRIMEIRA_COMPRA, LIMITE_CREDITO, CODIGO_CLIENTE, CREDITO_LOJA FROM TABELA_CLIENTE_COMPRAS WHERE CODIGO_CLIENTE = @CODIGO_CLIENTE";
 
                 comando.Parameters.Add("CODIGO_CLIENTE", SqlDbType.Int).Value = objCompra.CodigoCliente;
 
@@ -231,10 +299,10 @@ namespace Controle_Vendas.Dados
                     {
                         ClienteCompraDominio dado = new ClienteCompraDominio();
                         
-                        dado.LimiteCredito = Convert.ToDouble(dr["LIMITE_CREDITO"]);
-                        dado.CodigoCliente = Convert.ToInt32(dr["CODIGO_CLIENTE"]); 
-                        dado.CreditoLoja = Convert.ToDouble(dr["CREDITO_LOJA"]);
                         dado.PrimeiraCompra = Convert.ToDouble(dr["PRIMEIRA_COMPRA"]);
+                        dado.LimiteCredito = Convert.ToDouble(dr["LIMITE_CREDITO"]); 
+                        dado.CodigoCliente = Convert.ToInt32(dr["CODIGO_CLIENTE"]);
+                        dado.CreditoLoja = Convert.ToDouble(dr["CREDITO_LOJA"]);
 
                         lista.Add(dado);
                     }

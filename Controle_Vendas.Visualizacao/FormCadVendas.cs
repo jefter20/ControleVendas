@@ -19,6 +19,7 @@ namespace Controle_Vendas.Visualizacao
         ProdutoDominio objProduto = new ProdutoDominio();
         VendedorDominio objVendedor = new VendedorDominio();
         ClienteCompraDominio objCompra = new ClienteCompraDominio();
+        ProdutoEstoqueDominio objEstoque = new ProdutoEstoqueDominio();
 
         public FormCadVendas()
         {
@@ -26,9 +27,14 @@ namespace Controle_Vendas.Visualizacao
         }
        
         private string opcoes = "";
-        private double clienteLimiteCredito = 0;
-        private double compraLimiteCredito = 0;
-        private int compraCodigoCliente = 0;
+        private double clienteLimiteCredito = 0;// TROCAR POR LimiteCreditoInicial
+        private double compraLimiteCredito = 0;// TROCAR POR LimiteCreditoAtual
+        private int compraCodigoCliente = 0;// TROCAR POR vendaCodigoCliente
+        private int estoqueCodigoProduto = 0; 
+        private double produtosEstoqueAtual = 0;
+        private double produtosEstoqueInicial = 0;
+
+
         private void IniciarOpcoes()
         {
             switch (opcoes)
@@ -57,8 +63,7 @@ namespace Controle_Vendas.Visualizacao
                         List<ClienteDominio> lista = new List<ClienteDominio>();
                         lista = new VendaNegocios().BuscaCliente(objCliente);
 
-                        List<ClienteCompraDominio> lista2 = new List<ClienteCompraDominio>();
-                        lista2 = new VendaNegocios().BuscaClienteCompra(objCompra);
+                        
 
                         foreach (var item in lista)
                         {
@@ -70,21 +75,32 @@ namespace Controle_Vendas.Visualizacao
                             MessageBox.Show(Convert.ToString("Cliente credito é " + clienteLimiteCredito));
                         }
 
+                        objCompra.CodigoCliente = Convert.ToInt32(txtCodigoCliente.Text);
+
+                        List<ClienteCompraDominio> lista2 = new List<ClienteCompraDominio>();
+                        lista2 = new VendaNegocios().BuscaClienteCompra(objCompra);
+
+                        compraLimiteCredito = lista2.Select(x => x.LimiteCredito).LastOrDefault();
+                        compraCodigoCliente = lista2.Select(x => x.CodigoCliente).LastOrDefault();
+
                         foreach (var item2 in lista2)
                         {
                             compraLimiteCredito = Convert.ToDouble(item2.LimiteCredito);
                             compraCodigoCliente = Convert.ToInt32(item2.CodigoCliente);
-
-                            if (txtCodigoCliente.Text != Convert.ToString(compraCodigoCliente) || Convert.ToString(compraCodigoCliente) == null)
-                            {
-                                txtPrimeiraCompra.Text = Convert.ToString(1);
-                            }
-                            else
-                            {
-                                txtPrimeiraCompra.Text = Convert.ToString(0);
-
-                            }
                         }
+                        MessageBox.Show(Convert.ToString("compraCodigoCliente é " + compraCodigoCliente));
+
+
+                        if (txtCodigoCliente.Text != Convert.ToString(compraCodigoCliente))
+                        {
+                            txtPrimeiraCompra.Text = Convert.ToString(1);
+                        }
+                        else
+                        {
+                            txtPrimeiraCompra.Text = Convert.ToString(0);
+                        }
+                        MessageBox.Show(Convert.ToString("txtCodigoCliente.Text é " + txtCodigoCliente.Text));
+
                     }
                     catch (Exception ex)
                     {
@@ -104,6 +120,34 @@ namespace Controle_Vendas.Visualizacao
                         {
                             txtNomeProduto.Text = Convert.ToString(item.NomeProduto);
                             txtPreco.Text = Convert.ToString(item.PrecoDeLista);
+                            objProduto.Embalagem = Convert.ToString(item.Embalagem);
+                            objProduto.Tamanho = Convert.ToString(item.Tamanho);
+                            objProduto.Sabor = Convert.ToString(item.Sabor);
+                            produtosEstoqueInicial = Convert.ToDouble(item.QuantidadeEstoque);
+
+                            MessageBox.Show(Convert.ToString("Estoque inicial produto BUSCAPRODUTO é " + produtosEstoqueInicial));
+
+                            //objEstoque.CodigoProduto = Convert.ToInt32(item.CodigoProduto);
+
+                        }
+
+                        List<ProdutoEstoqueDominio> lista2 = new List<ProdutoEstoqueDominio>();
+                        lista2 = new VendaNegocios().BuscaProdutoEstoque(objEstoque);
+
+                        foreach (var item2 in lista2)
+                        {
+                            produtosEstoqueAtual = Convert.ToDouble(item2.QuantidadeEstoque);
+                            estoqueCodigoProduto = Convert.ToInt32(item2.CodigoProduto);
+
+                            if (txtCodigoProduto.Text != Convert.ToString(estoqueCodigoProduto) || Convert.ToString(estoqueCodigoProduto) == null)
+                            {
+                                objVenda.PrimeiraCompra = Convert.ToDouble(1);
+                            }
+                            else
+                            {
+                                objVenda.PrimeiraCompra = Convert.ToDouble(0);
+
+                            }
                         }
                     }
                     catch (Exception ex)
@@ -130,15 +174,14 @@ namespace Controle_Vendas.Visualizacao
                         MessageBox.Show("Erro ao buscar vendedor" + ex.Message);
                     }
                     break;
-
+                    /*
                 case "BuscaClienteCompra":
                     try
                     {
-                        compraCodigoCliente = Convert.ToInt32(txtCodigoCliente.Text);
+                        objCompra.CodigoCliente = Convert.ToInt32(txtCodigoCliente.Text);
                         MessageBox.Show(Convert.ToString("Codigo cliente BUSCACOMPRA é " + compraCodigoCliente));
 
                         List<ClienteCompraDominio> lista2 = new List<ClienteCompraDominio>();
-
                         lista2 = new VendaNegocios().BuscaClienteCompra(objCompra);
 
                         compraLimiteCredito = lista2.Select(x => x.LimiteCredito).LastOrDefault();
@@ -146,12 +189,37 @@ namespace Controle_Vendas.Visualizacao
                         foreach (var item2 in lista2)
                         {
                             compraLimiteCredito = Convert.ToDouble(item2.LimiteCredito);
+                            compraCodigoCliente = Convert.ToInt32(item2.CodigoCliente);
+
                         }
-                            MessageBox.Show(Convert.ToString("Compra limite BUSCACOMPRA é " + compraLimiteCredito));
+                        MessageBox.Show(Convert.ToString("Compra limite BUSCACOMPRA é " + compraLimiteCredito));
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show("Erro ao buscar compra" + ex.Message);
+                    }
+                    break;
+                    */
+                case "BuscaProdutoEstoque":
+                    try
+                    {
+                        objEstoque.CodigoProduto = Convert.ToInt32(txtCodigoProduto.Text);
+                        MessageBox.Show(Convert.ToString("Codigo produto BUSCAESTOQUE é " + estoqueCodigoProduto));
+
+                        List<ProdutoEstoqueDominio> lista = new List<ProdutoEstoqueDominio>();
+                        lista = new VendaNegocios().BuscaProdutoEstoque(objEstoque);
+
+                        produtosEstoqueAtual = lista.Select(x => x.QuantidadeEstoque).LastOrDefault();
+
+                        foreach (var item in lista)
+                        {
+                            produtosEstoqueAtual = Convert.ToDouble(item.QuantidadeEstoque);
+                        }
+                        MessageBox.Show(Convert.ToString("quantidade estoque BUSCAESTOQUE é " + produtosEstoqueAtual));
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao buscar produto em estoque" + ex.Message);
                     }
                     break;
 
@@ -165,13 +233,16 @@ namespace Controle_Vendas.Visualizacao
                     {
                         objVenda.CodigoCliente = Convert.ToInt32(txtCodigoCliente.Text);
                         objVenda.CodigoProduto = Convert.ToInt32(txtCodigoProduto.Text);
+                        objVenda.Embalagem = objProduto.Embalagem;
                         objVenda.CodigoVendedor = Convert.ToInt32(txtCodigoVendedor.Text);
                         objVenda.CreditoLoja = Convert.ToDouble(txtCreditoLoja.Text);
                         objVenda.NomeCliente = txtNomeCliente.Text;
                         objVenda.NomeProduto = txtNomeProduto.Text;
+                        objVenda.Tamanho = objProduto.Tamanho;
                         objVenda.NomeVendedor = txtNomeVendedor.Text;
                         objVenda.DataHora = txtDataHora.Text;
                         objVenda.Quantidade = Convert.ToInt32(txtQuantidade.Text);
+                        objVenda.Sabor = objProduto.Sabor;
                         objVenda.Preco = Convert.ToDouble(txtPreco.Text);
                         objVenda.PrecoTotal = Convert.ToDouble(txtQuantidade.Text) * Convert.ToDouble(txtPreco.Text);
                         objVenda.PrimeiraCompra = Convert.ToDouble(txtPrimeiraCompra.Text);
@@ -181,6 +252,9 @@ namespace Controle_Vendas.Visualizacao
                         if (x > 0)
                         {
                             MessageBox.Show(string.Format("Venda de {0} efetuada com sucesso!", txtNomeProduto.Text));
+
+                            opcoes = "AddProdutoEstoque";
+                            IniciarOpcoes();
 
                             opcoes = "AddClienteCompra";
                             IniciarOpcoes();
@@ -294,6 +368,44 @@ namespace Controle_Vendas.Visualizacao
                     }
                     break;
 
+                case "AddProdutoEstoque":
+                    try
+                    {
+                        objEstoque.CodigoProduto = Convert.ToInt32(txtCodigoProduto.Text);
+                        objEstoque.NomeProduto = Convert.ToString(txtNomeProduto.Text);
+                        objEstoque.Embalagem = objVenda.Embalagem;
+                        objEstoque.Tamanho = objVenda.Tamanho;
+                        objEstoque.Sabor = objVenda.Sabor;
+
+                        if (objVenda.PrimeiraCompra == 1)
+                        {
+                            objEstoque.QuantidadeEstoque = Convert.ToDouble(produtosEstoqueInicial) - Convert.ToDouble(txtQuantidade.Text);
+                        }
+
+                        if (objVenda.PrimeiraCompra == 0)
+                        {
+                            objEstoque.QuantidadeEstoque = Convert.ToDouble(produtosEstoqueAtual) - Convert.ToDouble(txtQuantidade.Text);
+                        }
+
+                        int x = VendaNegocios.AddProdutoEstoque(objEstoque);
+
+                        if (x > 0)
+                        {
+                            MessageBox.Show(string.Format("O estoque do {0} foi atualizado com sucesso!", txtNomeProduto.Text));
+                        }
+                        else
+                        {
+                            MessageBox.Show("O estoque não foi atualizado");
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ocorreu um erro ao atualizar o estoque " + ex);
+
+                    }
+                    break;
+
                 case "Excluir":
                     try
                     {
@@ -354,6 +466,12 @@ namespace Controle_Vendas.Visualizacao
             {
                 if (txtPrimeiraCompra.Text == Convert.ToString(1))
                 {
+                    if (Convert.ToDouble(txtQuantidade.Text) > Convert.ToDouble(produtosEstoqueInicial))
+                    {
+                        MessageBox.Show(string.Format("Estoque do produto insuficiente. No momento a quantidade em estoque é de {0} ", produtosEstoqueInicial));
+                        return;
+                    }
+
                     if (Convert.ToDouble(txtPrecoTotal.Text) > Convert.ToDouble(clienteLimiteCredito))
                     {
                         MessageBox.Show(string.Format("Valor da compra acima do Limite de Crédito. O Limite de Crédito restante é {0}", clienteLimiteCredito));
@@ -366,19 +484,54 @@ namespace Controle_Vendas.Visualizacao
                     }
                 }
             }
-            else
-            {
-                opcoes = "Salvar";
-                IniciarOpcoes();
-            }
-
+            
             if (txtCreditoLoja.Text == Convert.ToString(1))
             {
                 if (txtPrimeiraCompra.Text == Convert.ToString(0))
                 {
+                    if (Convert.ToDouble(txtQuantidade.Text) > Convert.ToDouble(produtosEstoqueAtual))
+                    {
+                        MessageBox.Show(string.Format("Estoque do produto insuficiente. No momento a quantidade em estoque é de {0} ", produtosEstoqueAtual));
+                        return;
+                    }
+
                     if (Convert.ToDouble(txtPrecoTotal.Text) > Convert.ToDouble(compraLimiteCredito))
                     {
                         MessageBox.Show(string.Format("Valor da compra acima do Limite de Crédito. O Limite de Crédito restante é {0}", compraLimiteCredito));
+                        return;
+                    }
+                    else
+                    {
+                        opcoes = "Salvar";
+                        IniciarOpcoes();
+                    }
+                }
+            }
+
+            if (txtCreditoLoja.Text == Convert.ToString(0))
+            {
+                if (txtPrimeiraCompra.Text == Convert.ToString(1))
+                {
+                    if (Convert.ToDouble(txtQuantidade.Text) > Convert.ToDouble(produtosEstoqueInicial))
+                    {
+                        MessageBox.Show(string.Format("Estoque do produto insuficiente. No momento a quantidade em estoque é de {0} ", produtosEstoqueInicial));
+                        return;
+                    }
+                    else
+                    {
+                        opcoes = "Salvar";
+                        IniciarOpcoes();
+                    }
+                }
+            }
+
+            if (txtCreditoLoja.Text == Convert.ToString(0))
+            {
+                if (txtPrimeiraCompra.Text == Convert.ToString(0))
+                {
+                    if (Convert.ToDouble(txtQuantidade.Text) > Convert.ToDouble(produtosEstoqueAtual))
+                    {
+                        MessageBox.Show(string.Format("Estoque do produto insuficiente. No momento a quantidade em estoque é de {0} ", produtosEstoqueAtual));
                         return;
                     }
                     else
@@ -417,45 +570,6 @@ namespace Controle_Vendas.Visualizacao
             btnExcluir.Enabled = true;
         }
 
-        public void ListarGrid()
-        {
-            try
-            {
-                List<VendaDominio> lista = new List<VendaDominio>();
-                lista = new VendaNegocios().Lista();
-                GridVendas.AutoGenerateColumns = false;
-                GridVendas.DataSource = lista;
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show("Erro ao listar Dados " + ex.Message);
-            }
-        }
-
-        private void GridVendas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            txtCodigoVenda.Text = GridVendas.CurrentRow.Cells[0].Value.ToString();
-            txtCodigoCliente.Text = GridVendas.CurrentRow.Cells[1].Value.ToString();
-            txtNomeCliente.Text = GridVendas.CurrentRow.Cells[2].Value.ToString();
-            txtCodigoProduto.Text = GridVendas.CurrentRow.Cells[3].Value.ToString();
-            txtNomeProduto.Text = GridVendas.CurrentRow.Cells[4].Value.ToString();
-            txtCodigoVendedor.Text = GridVendas.CurrentRow.Cells[5].Value.ToString();
-            txtNomeVendedor.Text = GridVendas.CurrentRow.Cells[6].Value.ToString();
-            txtCreditoLoja.Text = GridVendas.CurrentRow.Cells[7].Value.ToString();
-            txtDataHora.Text = GridVendas.CurrentRow.Cells[8].Value.ToString();
-            txtQuantidade.Text = GridVendas.CurrentRow.Cells[9].Value.ToString();
-            txtPreco.Text = GridVendas.CurrentRow.Cells[10].Value.ToString();
-            txtPrecoTotal.Text = GridVendas.CurrentRow.Cells[11].Value.ToString();
-
-            HabilitarCampos();
-
-            btnNovo.Enabled = true;
-            btnSalvar.Enabled = false;
-            btnEditar.Enabled = true;
-            btnExcluir.Enabled = true;
-        }
-
         private void btnCadastroClientes_Click(object sender, EventArgs e)
         {
             FormCadClientes form =  new FormCadClientes();
@@ -473,6 +587,9 @@ namespace Controle_Vendas.Visualizacao
         {
             opcoes = "BuscaProduto";
             IniciarOpcoes();
+
+            opcoes = "BuscaProdutoEstoque";
+            IniciarOpcoes();
         }
 
         private void txtCodigoVendedor_Leave(object sender, EventArgs e)
@@ -482,11 +599,11 @@ namespace Controle_Vendas.Visualizacao
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            opcoes = "BuscaCliente";
-            IniciarOpcoes();
-
+        {/*
             opcoes = "BuscaClienteCompra";
+            IniciarOpcoes();
+            */
+            opcoes = "BuscaCliente";
             IniciarOpcoes();
         }
 
@@ -524,6 +641,19 @@ namespace Controle_Vendas.Visualizacao
             if (txtCodigoVendedor.Text == "")
             {
                 MessageBox.Show("Por favor, insira o código do vendedor no campo ao lado!");
+            }
+        }
+
+        private void txtQuantidade_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtPreco.Text) && !string.IsNullOrEmpty(txtQuantidade.Text))
+            {
+                var precoTotal = Convert.ToInt32(txtQuantidade.Text) * Convert.ToDouble(txtPreco.Text);
+                txtPrecoTotal.Text = Convert.ToString(precoTotal);
+            }
+            else
+            {
+                txtPrecoTotal.Text = "";
             }
         }
 
@@ -579,17 +709,48 @@ namespace Controle_Vendas.Visualizacao
             txtPrimeiraCompra.Text = "";
         }
 
-        private void txtQuantidade_Leave(object sender, EventArgs e)
+        public void ListarGrid()
         {
-            if (!string.IsNullOrEmpty(txtPreco.Text) && !string.IsNullOrEmpty(txtQuantidade.Text))
+            try
             {
-                var precoTotal = Convert.ToInt32(txtQuantidade.Text) * Convert.ToDouble(txtPreco.Text);
-                txtPrecoTotal.Text = Convert.ToString(precoTotal);
+                List<VendaDominio> lista = new List<VendaDominio>();
+                lista = new VendaNegocios().Lista();
+                GridVendas.AutoGenerateColumns = false;
+                GridVendas.DataSource = lista;
             }
-            else
+            catch (Exception ex)
             {
-                txtPrecoTotal.Text = "";
+
+                MessageBox.Show("Erro ao listar Dados " + ex.Message);
             }
+        }
+
+        private void GridVendas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtCodigoVenda.Text = GridVendas.CurrentRow.Cells[0].Value.ToString();
+            txtCodigoCliente.Text = GridVendas.CurrentRow.Cells[1].Value.ToString();
+            txtNomeCliente.Text = GridVendas.CurrentRow.Cells[2].Value.ToString();
+            txtCodigoProduto.Text = GridVendas.CurrentRow.Cells[3].Value.ToString();
+            txtNomeProduto.Text = GridVendas.CurrentRow.Cells[4].Value.ToString();
+            txtCodigoVendedor.Text = GridVendas.CurrentRow.Cells[5].Value.ToString();
+            txtNomeVendedor.Text = GridVendas.CurrentRow.Cells[6].Value.ToString();
+            txtCreditoLoja.Text = GridVendas.CurrentRow.Cells[7].Value.ToString();
+            txtDataHora.Text = GridVendas.CurrentRow.Cells[8].Value.ToString();
+            txtQuantidade.Text = GridVendas.CurrentRow.Cells[9].Value.ToString();
+            txtPreco.Text = GridVendas.CurrentRow.Cells[10].Value.ToString();
+            txtPrecoTotal.Text = GridVendas.CurrentRow.Cells[11].Value.ToString();
+
+            HabilitarCampos();
+
+            btnNovo.Enabled = true;
+            btnSalvar.Enabled = false;
+            btnEditar.Enabled = true;
+            btnExcluir.Enabled = true;
+        }
+
+        private void txtPrimeiraCompra_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

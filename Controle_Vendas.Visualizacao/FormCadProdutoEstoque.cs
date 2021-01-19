@@ -1,6 +1,4 @@
-﻿using Controle_Vendas.Dominio;
-using Controle_Vendas.Negocios;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,24 +7,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Controle_Vendas.Dominio;
+using Controle_Vendas.Negocios;
+
 
 namespace Controle_Vendas.Visualizacao
 {
-    public partial class FormCadClienteCompras : Form
+    public partial class FormCadProdutoEstoque : Form
     {
-        public FormCadClienteCompras()
+        public FormCadProdutoEstoque()
         {
             InitializeComponent();
         }
-        
+
         public void ListarGrid()
         {
             try
             {
-                List<ClienteCompraDominio> lista = new List<ClienteCompraDominio>();
-                lista = new ClienteCompraNegocios().Lista();
-                GridClienteCompras.AutoGenerateColumns = false;
-                GridClienteCompras.DataSource = lista;
+                List<ProdutoEstoqueDominio> lista = new List<ProdutoEstoqueDominio>();
+                lista = new ProdutoEstoqueNegocios().Lista();
+                GridProdutoEstoque.AutoGenerateColumns = false;
+                GridProdutoEstoque.DataSource = lista;
             }
             catch (Exception ex)
             {
@@ -35,7 +36,7 @@ namespace Controle_Vendas.Visualizacao
             }
         }
 
-        private void FormCadClienteCompras_Load(object sender, EventArgs e)
+        private void FormCadProdutoEstoque_Load(object sender, EventArgs e)
         {
             ListarGrid();
         }

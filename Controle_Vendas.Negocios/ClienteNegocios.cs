@@ -25,6 +25,9 @@ namespace Controle_Vendas.Negocios
             return new ClienteDados().Lista();
         }
 
-        
+        public ClienteDominio Login(ClienteDominio objCliente)
+        {
+            return new ClienteDados().Login(objCliente);
+        }
     }
 }

@@ -1,6 +1,4 @@
-﻿using Controle_Vendas.Dominio;
-using Controle_Vendas.Negocios;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Controle_Vendas.Dominio;
+using Controle_Vendas.Negocios;
 
 namespace Controle_Vendas.Visualizacao
 {
-    public partial class LoginVendedor : Form
+    public partial class LoginCliente : Form
     {
-        public LoginVendedor()
+        public LoginCliente()
         {
             InitializeComponent();
         }
@@ -37,20 +37,20 @@ namespace Controle_Vendas.Visualizacao
                     return;
                 }
 
-                VendedorDominio objVendedor = new VendedorDominio();
-                objVendedor.Usuario = txtUsuario.Text;
-                objVendedor.Senha = txtSenha.Text;
+                ClienteDominio objCliente = new ClienteDominio();
+                objCliente.Usuario = txtUsuario.Text;
+                objCliente.Senha = txtSenha.Text;
 
-                objVendedor = new VendedorNegocios().Login(objVendedor);
+                objCliente = new ClienteNegocios().Login(objCliente);
 
-                if (objVendedor.Usuario == null)
+                if (objCliente.Usuario == null)
                 {
                     lblMensagem.Text = "Usuário ou senha incorretos!";
                     lblMensagem.ForeColor = Color.Red;
                     return;
                 }
 
-                FormCadVendas form = new FormCadVendas();
+                FormCadClienteCompras form = new FormCadClienteCompras();
                 this.Hide();
                 form.Show();
                 form.ListarGrid();

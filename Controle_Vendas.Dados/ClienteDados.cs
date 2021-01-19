@@ -60,6 +60,47 @@ namespace Controle_Vendas.Dados
             }
         }
 
+        public ClienteDominio Login(ClienteDominio objCliente)
+        {
+            using (SqlConnection con = new SqlConnection())
+            {
+                con.ConnectionString = Properties.Settings.Default.banco;
+                SqlCommand comando = new SqlCommand();
+                comando.CommandType = CommandType.Text;
+
+                con.Open();
+
+                comando.CommandText = "SELECT * FROM TABELA_CLIENTES WHERE usuario = @usuario AND senha = @senha";
+
+                comando.Connection = con;
+
+                comando.Parameters.Add("usuario", SqlDbType.VarChar).Value = objCliente.Usuario;
+                comando.Parameters.Add("senha", SqlDbType.VarChar).Value = objCliente.Senha;
+
+                SqlDataReader dr;
+
+                dr = comando.ExecuteReader();
+
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        ClienteDominio dado = new ClienteDominio();
+
+                        dado.Usuario = Convert.ToString(dr["usuario"]);
+                        dado.Senha = Convert.ToString(dr["senha"]);
+                    }
+                }
+                else
+                {
+                    objCliente.Usuario = null;
+                    objCliente.Senha = null;
+                }
+
+                return objCliente;
+            }
+        }
+
         public int Inserir(ClienteDominio objCliente)
         {
             using (SqlConnection con = new SqlConnection())

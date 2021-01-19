@@ -1,7 +1,7 @@
 ﻿
 namespace Controle_Vendas.Visualizacao
 {
-    partial class LoginVendedor
+    partial class LoginCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -40,70 +40,70 @@ namespace Controle_Vendas.Visualizacao
             // 
             // btnSair
             // 
-            this.btnSair.Location = new System.Drawing.Point(229, 119);
+            this.btnSair.Location = new System.Drawing.Point(229, 120);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(90, 23);
-            this.btnSair.TabIndex = 12;
+            this.btnSair.TabIndex = 18;
             this.btnSair.Text = "Sair";
             this.btnSair.UseVisualStyleBackColor = true;
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(116, 119);
+            this.btnLogin.Location = new System.Drawing.Point(116, 120);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(94, 23);
-            this.btnLogin.TabIndex = 11;
+            this.btnLogin.TabIndex = 17;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // txtSenha
             // 
-            this.txtSenha.Location = new System.Drawing.Point(116, 82);
+            this.txtSenha.Location = new System.Drawing.Point(116, 83);
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.PasswordChar = '*';
             this.txtSenha.Size = new System.Drawing.Size(203, 20);
-            this.txtSenha.TabIndex = 10;
+            this.txtSenha.TabIndex = 16;
             // 
             // txtUsuario
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(116, 44);
+            this.txtUsuario.Location = new System.Drawing.Point(116, 45);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(203, 20);
-            this.txtUsuario.TabIndex = 9;
+            this.txtUsuario.TabIndex = 15;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(66, 89);
+            this.label2.Location = new System.Drawing.Point(66, 90);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
-            this.label2.TabIndex = 8;
+            this.label2.TabIndex = 14;
             this.label2.Text = "Senha";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(66, 44);
+            this.label1.Location = new System.Drawing.Point(66, 45);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 13);
-            this.label1.TabIndex = 7;
+            this.label1.TabIndex = 13;
             this.label1.Text = "Usuário";
             // 
             // lblMensagem
             // 
             this.lblMensagem.AutoSize = true;
-            this.lblMensagem.Location = new System.Drawing.Point(113, 164);
+            this.lblMensagem.Location = new System.Drawing.Point(113, 162);
             this.lblMensagem.Name = "lblMensagem";
             this.lblMensagem.Size = new System.Drawing.Size(16, 13);
-            this.lblMensagem.TabIndex = 13;
+            this.lblMensagem.TabIndex = 19;
             this.lblMensagem.Text = "...";
             // 
-            // LoginVendedor
+            // LoginCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(399, 197);
+            this.ClientSize = new System.Drawing.Size(393, 193);
             this.Controls.Add(this.lblMensagem);
             this.Controls.Add(this.btnSair);
             this.Controls.Add(this.btnLogin);
@@ -111,9 +111,9 @@ namespace Controle_Vendas.Visualizacao
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "LoginVendedor";
+            this.Name = "LoginCliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Autencticação do Vendedor";
+            this.Text = "Autenticação do Cliente";
             this.ResumeLayout(false);
             this.PerformLayout();
 

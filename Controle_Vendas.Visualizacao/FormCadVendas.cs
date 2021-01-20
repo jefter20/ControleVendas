@@ -25,15 +25,16 @@ namespace Controle_Vendas.Visualizacao
         {
             InitializeComponent();
         }
-       
+
         private string opcoes = "";
         private double clienteLimiteCredito = 0;// TROCAR POR LimiteCreditoInicial
         private double compraLimiteCredito = 0;// TROCAR POR LimiteCreditoAtual
         private int compraCodigoCliente = 0;// TROCAR POR vendaCodigoCliente
-        private int estoqueCodigoProduto = 0; 
+        private int estoqueCodigoProduto = 0;
         private double produtosEstoqueAtual = 0;
         private double produtosEstoqueInicial = 0;
-
+        private double ClientePrimeiraCompra = 0;
+        private double ProdutoPrimeiraCompra = 0;
 
         private void IniciarOpcoes()
         {
@@ -63,8 +64,6 @@ namespace Controle_Vendas.Visualizacao
                         List<ClienteDominio> lista = new List<ClienteDominio>();
                         lista = new VendaNegocios().BuscaCliente(objCliente);
 
-                        
-
                         foreach (var item in lista)
                         {
                             txtNomeCliente.Text = Convert.ToString(item.Nome);
@@ -90,14 +89,13 @@ namespace Controle_Vendas.Visualizacao
                         }
                         MessageBox.Show(Convert.ToString("compraCodigoCliente é " + compraCodigoCliente));
 
-
                         if (txtCodigoCliente.Text != Convert.ToString(compraCodigoCliente))
                         {
-                            txtPrimeiraCompra.Text = Convert.ToString(1);
+                            ClientePrimeiraCompra = Convert.ToDouble(1);
                         }
                         else
                         {
-                            txtPrimeiraCompra.Text = Convert.ToString(0);
+                            ClientePrimeiraCompra = Convert.ToDouble(0);
                         }
                         MessageBox.Show(Convert.ToString("txtCodigoCliente.Text é " + txtCodigoCliente.Text));
 
@@ -127,27 +125,30 @@ namespace Controle_Vendas.Visualizacao
 
                             MessageBox.Show(Convert.ToString("Estoque inicial produto BUSCAPRODUTO é " + produtosEstoqueInicial));
 
-                            //objEstoque.CodigoProduto = Convert.ToInt32(item.CodigoProduto);
-
+                            objEstoque.CodigoProduto = Convert.ToInt32(item.CodigoProduto);
                         }
+
+                        objEstoque.CodigoProduto = Convert.ToInt32(txtCodigoProduto.Text);
 
                         List<ProdutoEstoqueDominio> lista2 = new List<ProdutoEstoqueDominio>();
                         lista2 = new VendaNegocios().BuscaProdutoEstoque(objEstoque);
+
+                        produtosEstoqueAtual = lista2.Select(x => x.CodigoEstoque).LastOrDefault();
+                        estoqueCodigoProduto = lista2.Select(x => x.CodigoProduto).LastOrDefault();
 
                         foreach (var item2 in lista2)
                         {
                             produtosEstoqueAtual = Convert.ToDouble(item2.QuantidadeEstoque);
                             estoqueCodigoProduto = Convert.ToInt32(item2.CodigoProduto);
+                        }
 
-                            if (txtCodigoProduto.Text != Convert.ToString(estoqueCodigoProduto) || Convert.ToString(estoqueCodigoProduto) == null)
-                            {
-                                objVenda.PrimeiraCompra = Convert.ToDouble(1);
-                            }
-                            else
-                            {
-                                objVenda.PrimeiraCompra = Convert.ToDouble(0);
-
-                            }
+                        if (txtCodigoProduto.Text != Convert.ToString(estoqueCodigoProduto))
+                        {
+                            ProdutoPrimeiraCompra = Convert.ToDouble(1);
+                        }
+                        else
+                        {
+                            ProdutoPrimeiraCompra = Convert.ToDouble(0);
                         }
                     }
                     catch (Exception ex)
@@ -174,55 +175,56 @@ namespace Controle_Vendas.Visualizacao
                         MessageBox.Show("Erro ao buscar vendedor" + ex.Message);
                     }
                     break;
-                    /*
-                case "BuscaClienteCompra":
-                    try
+                /*
+            case "BuscaClienteCompra":
+                try
+                {
+                    objCompra.CodigoCliente = Convert.ToInt32(txtCodigoCliente.Text);
+                    MessageBox.Show(Convert.ToString("Codigo cliente BUSCACOMPRA é " + compraCodigoCliente));
+
+                    List<ClienteCompraDominio> lista2 = new List<ClienteCompraDominio>();
+                    lista2 = new VendaNegocios().BuscaClienteCompra(objCompra);
+
+                    compraLimiteCredito = lista2.Select(x => x.LimiteCredito).LastOrDefault();
+
+                    foreach (var item2 in lista2)
                     {
-                        objCompra.CodigoCliente = Convert.ToInt32(txtCodigoCliente.Text);
-                        MessageBox.Show(Convert.ToString("Codigo cliente BUSCACOMPRA é " + compraCodigoCliente));
+                        compraLimiteCredito = Convert.ToDouble(item2.LimiteCredito);
+                        compraCodigoCliente = Convert.ToInt32(item2.CodigoCliente);
 
-                        List<ClienteCompraDominio> lista2 = new List<ClienteCompraDominio>();
-                        lista2 = new VendaNegocios().BuscaClienteCompra(objCompra);
-
-                        compraLimiteCredito = lista2.Select(x => x.LimiteCredito).LastOrDefault();
-
-                        foreach (var item2 in lista2)
-                        {
-                            compraLimiteCredito = Convert.ToDouble(item2.LimiteCredito);
-                            compraCodigoCliente = Convert.ToInt32(item2.CodigoCliente);
-
-                        }
-                        MessageBox.Show(Convert.ToString("Compra limite BUSCACOMPRA é " + compraLimiteCredito));
                     }
-                    catch (Exception ex)
+                    MessageBox.Show(Convert.ToString("Compra limite BUSCACOMPRA é " + compraLimiteCredito));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao buscar compra" + ex.Message);
+                }
+                break;
+                */
+                /*
+            case "BuscaProdutoEstoque":
+                try
+                {
+                    objEstoque.CodigoProduto = Convert.ToInt32(txtCodigoProduto.Text);
+                    MessageBox.Show(Convert.ToString("Codigo produto BUSCAESTOQUE é " + estoqueCodigoProduto));
+
+                    List<ProdutoEstoqueDominio> lista = new List<ProdutoEstoqueDominio>();
+                    lista = new VendaNegocios().BuscaProdutoEstoque(objEstoque);
+
+                    produtosEstoqueAtual = lista.Select(x => x.QuantidadeEstoque).LastOrDefault();
+
+                    foreach (var item in lista)
                     {
-                        MessageBox.Show("Erro ao buscar compra" + ex.Message);
+                        produtosEstoqueAtual = Convert.ToDouble(item.QuantidadeEstoque);
                     }
-                    break;
-                    */
-                case "BuscaProdutoEstoque":
-                    try
-                    {
-                        objEstoque.CodigoProduto = Convert.ToInt32(txtCodigoProduto.Text);
-                        MessageBox.Show(Convert.ToString("Codigo produto BUSCAESTOQUE é " + estoqueCodigoProduto));
-
-                        List<ProdutoEstoqueDominio> lista = new List<ProdutoEstoqueDominio>();
-                        lista = new VendaNegocios().BuscaProdutoEstoque(objEstoque);
-
-                        produtosEstoqueAtual = lista.Select(x => x.QuantidadeEstoque).LastOrDefault();
-
-                        foreach (var item in lista)
-                        {
-                            produtosEstoqueAtual = Convert.ToDouble(item.QuantidadeEstoque);
-                        }
-                        MessageBox.Show(Convert.ToString("quantidade estoque BUSCAESTOQUE é " + produtosEstoqueAtual));
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Erro ao buscar produto em estoque" + ex.Message);
-                    }
-                    break;
-
+                    MessageBox.Show(Convert.ToString("quantidade estoque BUSCAESTOQUE é " + produtosEstoqueAtual));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao buscar produto em estoque" + ex.Message);
+                }
+                break;
+                */
                 case "Novo":
                     HabilitarCampos();
                     LimparCampos();
@@ -245,7 +247,9 @@ namespace Controle_Vendas.Visualizacao
                         objVenda.Sabor = objProduto.Sabor;
                         objVenda.Preco = Convert.ToDouble(txtPreco.Text);
                         objVenda.PrecoTotal = Convert.ToDouble(txtQuantidade.Text) * Convert.ToDouble(txtPreco.Text);
-                        objVenda.PrimeiraCompra = Convert.ToDouble(txtPrimeiraCompra.Text);
+                        objVenda.ClientePrimeiraCompra = Convert.ToDouble(ClientePrimeiraCompra);
+                        objVenda.ProdutoPrimeiraCompra = Convert.ToDouble(ProdutoPrimeiraCompra);
+
 
                         int x = VendaNegocios.Inserir(objVenda);
 
@@ -267,7 +271,7 @@ namespace Controle_Vendas.Visualizacao
                     catch (Exception ex)
                     {
                         MessageBox.Show("Ocorreu um erro ao salvar " + ex);
-                        
+
                     }
                     break;
 
@@ -319,7 +323,7 @@ namespace Controle_Vendas.Visualizacao
 
                         if (objVenda.CreditoLoja == 1)
                         {
-                            if (objVenda.PrimeiraCompra == 1)
+                            if (objVenda.ClientePrimeiraCompra == 1)
                             {
                                 objCompra.LimiteCredito = Convert.ToDouble(clienteLimiteCredito) - Convert.ToDouble(objVenda.PrecoTotal);
                             }
@@ -331,7 +335,7 @@ namespace Controle_Vendas.Visualizacao
 
                         if (objVenda.CreditoLoja == 0)
                         {
-                            if (objVenda.PrimeiraCompra == 1)
+                            if (objVenda.ClientePrimeiraCompra == 1)
                             {
                                 objCompra.LimiteCredito = Convert.ToDouble(clienteLimiteCredito);
                             }
@@ -344,22 +348,22 @@ namespace Controle_Vendas.Visualizacao
                         objCompra.Preco = Convert.ToDouble(txtPreco.Text);
                         objCompra.PrecoTotal = Convert.ToDouble(objVenda.PrecoTotal);
                         objCompra.DataHora = Convert.ToString(txtDataHora.Text);
-                        objCompra.PrimeiraCompra = Convert.ToDouble(txtPrimeiraCompra.Text);
+                        objCompra.ClientePrimeiraCompra = Convert.ToDouble(ClientePrimeiraCompra);
 
                         int x = VendaNegocios.AddClienteCompra(objCompra);
 
-                            if (x > 0)
-                            {
-                                MessageBox.Show(string.Format("Compra de {0} efetuada com sucesso!", txtNomeProduto.Text));
-                                LimparCampos();
-                                DesabilitarCampos();
-                                ListarGrid();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Compra não finalizada");
-                            }
-                        
+                        if (x > 0)
+                        {
+                            MessageBox.Show(string.Format("Compra de {0} efetuada com sucesso!", txtNomeProduto.Text));
+                            LimparCampos();
+                            DesabilitarCampos();
+                            ListarGrid();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Compra não finalizada");
+                        }
+
                     }
                     catch (Exception ex)
                     {
@@ -377,15 +381,17 @@ namespace Controle_Vendas.Visualizacao
                         objEstoque.Tamanho = objVenda.Tamanho;
                         objEstoque.Sabor = objVenda.Sabor;
 
-                        if (objVenda.PrimeiraCompra == 1)
+                        if (objVenda.ProdutoPrimeiraCompra == 1)
                         {
                             objEstoque.QuantidadeEstoque = Convert.ToDouble(produtosEstoqueInicial) - Convert.ToDouble(txtQuantidade.Text);
                         }
 
-                        if (objVenda.PrimeiraCompra == 0)
+                        if (objVenda.ProdutoPrimeiraCompra == 0)
                         {
                             objEstoque.QuantidadeEstoque = Convert.ToDouble(produtosEstoqueAtual) - Convert.ToDouble(txtQuantidade.Text);
                         }
+
+                        objEstoque.ProdutoPrimeiraCompra = ProdutoPrimeiraCompra;
 
                         int x = VendaNegocios.AddProdutoEstoque(objEstoque);
 
@@ -464,83 +470,124 @@ namespace Controle_Vendas.Visualizacao
         {
             if (txtCreditoLoja.Text == Convert.ToString(1))
             {
-                if (txtPrimeiraCompra.Text == Convert.ToString(1))
+                if (ClientePrimeiraCompra == Convert.ToDouble(1))
                 {
-                    if (Convert.ToDouble(txtQuantidade.Text) > Convert.ToDouble(produtosEstoqueInicial))
-                    {
-                        MessageBox.Show(string.Format("Estoque do produto insuficiente. No momento a quantidade em estoque é de {0} ", produtosEstoqueInicial));
-                        return;
-                    }
-
                     if (Convert.ToDouble(txtPrecoTotal.Text) > Convert.ToDouble(clienteLimiteCredito))
                     {
                         MessageBox.Show(string.Format("Valor da compra acima do Limite de Crédito. O Limite de Crédito restante é {0}", clienteLimiteCredito));
                         return;
                     }
-                    else
-                    {
-                        opcoes = "Salvar";
-                        IniciarOpcoes();
-                    }
                 }
-            }
-            
-            if (txtCreditoLoja.Text == Convert.ToString(1))
-            {
-                if (txtPrimeiraCompra.Text == Convert.ToString(0))
+                if (ClientePrimeiraCompra == Convert.ToDouble(0))
                 {
-                    if (Convert.ToDouble(txtQuantidade.Text) > Convert.ToDouble(produtosEstoqueAtual))
-                    {
-                        MessageBox.Show(string.Format("Estoque do produto insuficiente. No momento a quantidade em estoque é de {0} ", produtosEstoqueAtual));
-                        return;
-                    }
-
                     if (Convert.ToDouble(txtPrecoTotal.Text) > Convert.ToDouble(compraLimiteCredito))
                     {
                         MessageBox.Show(string.Format("Valor da compra acima do Limite de Crédito. O Limite de Crédito restante é {0}", compraLimiteCredito));
                         return;
                     }
-                    else
-                    {
-                        opcoes = "Salvar";
-                        IniciarOpcoes();
-                    }
                 }
-            }
 
-            if (txtCreditoLoja.Text == Convert.ToString(0))
-            {
-                if (txtPrimeiraCompra.Text == Convert.ToString(1))
+                if (ProdutoPrimeiraCompra == Convert.ToDouble(1))
                 {
                     if (Convert.ToDouble(txtQuantidade.Text) > Convert.ToDouble(produtosEstoqueInicial))
                     {
                         MessageBox.Show(string.Format("Estoque do produto insuficiente. No momento a quantidade em estoque é de {0} ", produtosEstoqueInicial));
                         return;
                     }
-                    else
-                    {
-                        opcoes = "Salvar";
-                        IniciarOpcoes();
-                    }
                 }
-            }
 
-            if (txtCreditoLoja.Text == Convert.ToString(0))
-            {
-                if (txtPrimeiraCompra.Text == Convert.ToString(0))
+                if (ProdutoPrimeiraCompra == Convert.ToDouble(0))
                 {
                     if (Convert.ToDouble(txtQuantidade.Text) > Convert.ToDouble(produtosEstoqueAtual))
                     {
                         MessageBox.Show(string.Format("Estoque do produto insuficiente. No momento a quantidade em estoque é de {0} ", produtosEstoqueAtual));
                         return;
                     }
-                    else
+                }
+
+                opcoes = "Salvar";
+                IniciarOpcoes();
+            }
+
+            if (txtCreditoLoja.Text == Convert.ToString(0))
+            {
+                if (ProdutoPrimeiraCompra == Convert.ToDouble(1))
+                {
+                    if (Convert.ToDouble(txtQuantidade.Text) > Convert.ToDouble(produtosEstoqueInicial))
                     {
-                        opcoes = "Salvar";
-                        IniciarOpcoes();
+                        MessageBox.Show(string.Format("Estoque do produto insuficiente. No momento a quantidade em estoque é de {0} ", produtosEstoqueInicial));
+                        return;
                     }
                 }
+
+                if (ProdutoPrimeiraCompra == Convert.ToDouble(0))
+                {
+                    if (Convert.ToDouble(txtQuantidade.Text) > Convert.ToDouble(produtosEstoqueAtual))
+                    {
+                        MessageBox.Show(string.Format("Estoque do produto insuficiente. No momento a quantidade em estoque é de {0} ", produtosEstoqueAtual));
+                        return;
+                    }
+                }
+
+                opcoes = "Salvar";
+                IniciarOpcoes();
             }
+            //if (txtCreditoLoja.Text == Convert.ToString(1))
+            //{
+            //    if (ClientePrimeiraCompra == Convert.ToDouble(0))
+            //    {
+            //        if (Convert.ToDouble(txtQuantidade.Text) > Convert.ToDouble(produtosEstoqueAtual))
+            //        {
+            //            MessageBox.Show(string.Format("Estoque do produto insuficiente. No momento a quantidade em estoque é de {0} ", produtosEstoqueAtual));
+            //            return;
+            //        }
+
+            //        if (Convert.ToDouble(txtPrecoTotal.Text) > Convert.ToDouble(compraLimiteCredito))
+            //        {
+            //            MessageBox.Show(string.Format("Valor da compra acima do Limite de Crédito. O Limite de Crédito restante é {0}", compraLimiteCredito));
+            //            return;
+            //        }
+            //        else
+            //        {
+            //            opcoes = "Salvar";
+            //            IniciarOpcoes();
+            //        }
+            //    }
+            //}
+
+            //if (txtCreditoLoja.Text == Convert.ToString(0))
+            //{
+            //    if (ClientePrimeiraCompra == Convert.ToDouble(1))
+            //    {
+            //        if (Convert.ToDouble(txtQuantidade.Text) > Convert.ToDouble(produtosEstoqueInicial))
+            //        {
+            //            MessageBox.Show(string.Format("Estoque do produto insuficiente. No momento a quantidade em estoque é de {0} ", produtosEstoqueInicial));
+            //            return;
+            //        }
+            //        else
+            //        {
+            //            opcoes = "Salvar";
+            //            IniciarOpcoes();
+            //        }
+            //    }
+            //}
+
+            //if (txtCreditoLoja.Text == Convert.ToString(0))
+            //{
+            //    if (ClientePrimeiraCompra == Convert.ToDouble(0))
+            //    {
+            //        if (Convert.ToDouble(txtQuantidade.Text) > Convert.ToDouble(produtosEstoqueAtual))
+            //        {
+            //            MessageBox.Show(string.Format("Estoque do produto insuficiente. No momento a quantidade em estoque é de {0} ", produtosEstoqueAtual));
+            //            return;
+            //        }
+            //        else
+            //        {
+            //            opcoes = "Salvar";
+            //            IniciarOpcoes();
+            //        }
+            //    }
+            //}
 
             btnNovo.Enabled = true;
             btnSalvar.Enabled = false;
@@ -572,7 +619,7 @@ namespace Controle_Vendas.Visualizacao
 
         private void btnCadastroClientes_Click(object sender, EventArgs e)
         {
-            FormCadClientes form =  new FormCadClientes();
+            FormCadClientes form = new FormCadClientes();
             this.Hide();
             form.Show();
         }
@@ -582,14 +629,15 @@ namespace Controle_Vendas.Visualizacao
             opcoes = "Pesquisar";
             IniciarOpcoes();
         }
-                
+
         private void txtCodigoProduto_Leave(object sender, EventArgs e)
         {
             opcoes = "BuscaProduto";
             IniciarOpcoes();
-
+            /*
             opcoes = "BuscaProdutoEstoque";
             IniciarOpcoes();
+            */
         }
 
         private void txtCodigoVendedor_Leave(object sender, EventArgs e)
@@ -619,7 +667,7 @@ namespace Controle_Vendas.Visualizacao
                 MessageBox.Show("Para buscar o nome do cliente, insira o CPF do mesmo!");
             }
         }
-               
+
         private void txtNomeCliente_Enter(object sender, EventArgs e)
         {
             if (txtNomeCliente.Text == "")
@@ -671,7 +719,6 @@ namespace Controle_Vendas.Visualizacao
             txtQuantidade.Enabled = true;
             txtPreco.Enabled = true;
             txtPrecoTotal.Enabled = true;
-            txtPrimeiraCompra.Enabled = true;
         }
 
         private void DesabilitarCampos()
@@ -688,7 +735,6 @@ namespace Controle_Vendas.Visualizacao
             txtQuantidade.Enabled = false;
             txtPreco.Enabled = false;
             txtPrecoTotal.Enabled = false;
-            txtPrimeiraCompra.Enabled = false;
         }
 
         private void LimparCampos()
@@ -706,7 +752,6 @@ namespace Controle_Vendas.Visualizacao
             txtQuantidade.Text = "";
             txtPreco.Text = "";
             txtPrecoTotal.Text = "";
-            txtPrimeiraCompra.Text = "";
         }
 
         public void ListarGrid()
@@ -746,11 +791,6 @@ namespace Controle_Vendas.Visualizacao
             btnSalvar.Enabled = false;
             btnEditar.Enabled = true;
             btnExcluir.Enabled = true;
-        }
-
-        private void txtPrimeiraCompra_Enter(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -77,8 +77,6 @@ namespace Controle_Vendas.Visualizacao
             this.button1 = new System.Windows.Forms.Button();
             this.txtPrecoTotal = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txtPrimeiraCompra = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.GridVendas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -501,30 +499,11 @@ namespace Controle_Vendas.Visualizacao
             this.label14.TabIndex = 28;
             this.label14.Text = "Preço Total";
             // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(533, 169);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(83, 13);
-            this.label15.TabIndex = 26;
-            this.label15.Text = "Primeira Compra";
-            // 
-            // txtPrimeiraCompra
-            // 
-            this.txtPrimeiraCompra.Location = new System.Drawing.Point(622, 163);
-            this.txtPrimeiraCompra.Name = "txtPrimeiraCompra";
-            this.txtPrimeiraCompra.Size = new System.Drawing.Size(40, 20);
-            this.txtPrimeiraCompra.TabIndex = 27;
-            this.txtPrimeiraCompra.Enter += new System.EventHandler(this.txtPrimeiraCompra_Enter);
-            // 
             // FormCadVendas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(932, 473);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.txtPrimeiraCompra);
             this.Controls.Add(this.txtPrecoTotal);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.button1);
@@ -618,7 +597,5 @@ namespace Controle_Vendas.Visualizacao
         private System.Windows.Forms.DataGridViewTextBoxColumn quantidade;
         private System.Windows.Forms.DataGridViewTextBoxColumn preco;
         private System.Windows.Forms.DataGridViewTextBoxColumn precoTotal;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox txtPrimeiraCompra;
     }
 }

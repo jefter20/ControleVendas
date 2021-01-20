@@ -69,7 +69,7 @@ namespace Controle_Vendas.Dados
 
                 con.Open();
 
-                comando.CommandText = "SELECT QUANTIDADE_EM_ESTOQUE FROM TABELA_PRODUTO_ESTOQUE WHERE CODIGO_PRODUTO = @CODIGO_PRODUTO";
+                comando.CommandText = "SELECT CODIGO_PRODUTO, PRODUTO_PRIMEIRA_COMPRA, QUANTIDADE_EM_ESTOQUE FROM TABELA_PRODUTO_ESTOQUE WHERE CODIGO_PRODUTO = @CODIGO_PRODUTO";
 
                 comando.Parameters.Add("CODIGO_PRODUTO", SqlDbType.Int).Value = objEstoque.CodigoProduto;
 
@@ -86,6 +86,8 @@ namespace Controle_Vendas.Dados
                     {
                         ProdutoEstoqueDominio dado = new ProdutoEstoqueDominio();
 
+                        dado.CodigoProduto = Convert.ToInt32(dr["CODIGO_PRODUTO"]);
+                        dado.ProdutoPrimeiraCompra = Convert.ToDouble(dr["PRODUTO_PRIMEIRA_COMPRA"]);
                         dado.QuantidadeEstoque = Convert.ToDouble(dr["QUANTIDADE_EM_ESTOQUE"]);
 
                         lista.Add(dado);
@@ -105,7 +107,7 @@ namespace Controle_Vendas.Dados
 
                 con.Open();
 
-                comando.CommandText = "INSERT INTO TABELA_CLIENTE_COMPRAS ([CODIGO_CLIENTE], [CODIGO_PRODUTO], [NOME_PRODUTO], [QUANTIDADE], [CREDITO_LOJA], [LIMITE_CREDITO], [PRECO], [PRECO_TOTAL], [DATA_HORA], [PRIMEIRA_COMPRA]) VALUES (@CODIGO_CLIENTE, @CODIGO_PRODUTO, @NOME_PRODUTO, @QUANTIDADE, @CREDITO_LOJA, @LIMITE_CREDITO, @PRECO, @PRECO_TOTAL, @DATA_HORA, @PRIMEIRA_COMPRA)";
+                comando.CommandText = "INSERT INTO TABELA_CLIENTE_COMPRAS ([CODIGO_CLIENTE], [CODIGO_PRODUTO], [NOME_PRODUTO], [QUANTIDADE], [CREDITO_LOJA], [LIMITE_CREDITO], [PRECO], [PRECO_TOTAL], [DATA_HORA], [CLIENTE_PRIMEIRA_COMPRA]) VALUES (@CODIGO_CLIENTE, @CODIGO_PRODUTO, @NOME_PRODUTO, @QUANTIDADE, @CREDITO_LOJA, @LIMITE_CREDITO, @PRECO, @PRECO_TOTAL, @DATA_HORA, @CLIENTE_PRIMEIRA_COMPRA)";
 
                 comando.Parameters.Add("CODIGO_CLIENTE", SqlDbType.Int).Value = objCompra.CodigoCliente;
                 comando.Parameters.Add("CODIGO_PRODUTO", SqlDbType.Int).Value = objCompra.CodigoProduto;
@@ -116,7 +118,7 @@ namespace Controle_Vendas.Dados
                 comando.Parameters.Add("PRECO", SqlDbType.Decimal).Value = objCompra.Preco;
                 comando.Parameters.Add("PRECO_TOTAL", SqlDbType.Decimal).Value = objCompra.PrecoTotal;
                 comando.Parameters.Add("DATA_HORA", SqlDbType.DateTime).Value = objCompra.DataHora;
-                comando.Parameters.Add("PRIMEIRA_COMPRA", SqlDbType.Decimal).Value = objCompra.PrimeiraCompra;
+                comando.Parameters.Add("CLIENTE_PRIMEIRA_COMPRA", SqlDbType.Decimal).Value = objCompra.ClientePrimeiraCompra;
 
                 comando.Connection = con;
 
@@ -136,7 +138,7 @@ namespace Controle_Vendas.Dados
 
                 con.Open();
 
-                comando.CommandText = "INSERT INTO TABELA_PRODUTO_ESTOQUE ([CODIGO_PRODUTO], [NOME_PRODUTO], [EMBALAGEM], [TAMANHO], [SABOR], [QUANTIDADE_EM_ESTOQUE]) VALUES (@CODIGO_PRODUTO, @NOME_PRODUTO, @EMBALAGEM, @TAMANHO, @SABOR, @QUANTIDADE_EM_ESTOQUE)";
+                comando.CommandText = "INSERT INTO TABELA_PRODUTO_ESTOQUE ([CODIGO_PRODUTO], [NOME_PRODUTO], [EMBALAGEM], [TAMANHO], [SABOR], [QUANTIDADE_EM_ESTOQUE], [PRODUTO_PRIMEIRA_COMPRA]) VALUES (@CODIGO_PRODUTO, @NOME_PRODUTO, @EMBALAGEM, @TAMANHO, @SABOR, @QUANTIDADE_EM_ESTOQUE, @PRODUTO_PRIMEIRA_COMPRA)";
 
                 comando.Parameters.Add("CODIGO_PRODUTO", SqlDbType.Int).Value = objEstoque.CodigoProduto;
                 comando.Parameters.Add("NOME_PRODUTO", SqlDbType.VarChar).Value = objEstoque.NomeProduto;
@@ -144,6 +146,7 @@ namespace Controle_Vendas.Dados
                 comando.Parameters.Add("TAMANHO", SqlDbType.VarChar).Value = objEstoque.Tamanho;
                 comando.Parameters.Add("SABOR", SqlDbType.VarChar).Value = objEstoque.Sabor;
                 comando.Parameters.Add("QUANTIDADE_EM_ESTOQUE", SqlDbType.Decimal).Value = objEstoque.QuantidadeEstoque;
+                comando.Parameters.Add("PRODUTO_PRIMEIRA_COMPRA", SqlDbType.Decimal).Value = objEstoque.ProdutoPrimeiraCompra;
 
                 comando.Connection = con;
 
@@ -282,7 +285,7 @@ namespace Controle_Vendas.Dados
 
                 con.Open();
 
-                comando.CommandText = "SELECT PRIMEIRA_COMPRA, LIMITE_CREDITO, CODIGO_CLIENTE, CREDITO_LOJA FROM TABELA_CLIENTE_COMPRAS WHERE CODIGO_CLIENTE = @CODIGO_CLIENTE";
+                comando.CommandText = "SELECT CLIENTE_PRIMEIRA_COMPRA, LIMITE_CREDITO, CODIGO_CLIENTE, CREDITO_LOJA FROM TABELA_CLIENTE_COMPRAS WHERE CODIGO_CLIENTE = @CODIGO_CLIENTE";
 
                 comando.Parameters.Add("CODIGO_CLIENTE", SqlDbType.Int).Value = objCompra.CodigoCliente;
 
@@ -299,7 +302,7 @@ namespace Controle_Vendas.Dados
                     {
                         ClienteCompraDominio dado = new ClienteCompraDominio();
                         
-                        dado.PrimeiraCompra = Convert.ToDouble(dr["PRIMEIRA_COMPRA"]);
+                        dado.ClientePrimeiraCompra = Convert.ToDouble(dr["CLIENTE_PRIMEIRA_COMPRA"]);
                         dado.LimiteCredito = Convert.ToDouble(dr["LIMITE_CREDITO"]); 
                         dado.CodigoCliente = Convert.ToInt32(dr["CODIGO_CLIENTE"]);
                         dado.CreditoLoja = Convert.ToDouble(dr["CREDITO_LOJA"]);
@@ -321,14 +324,15 @@ namespace Controle_Vendas.Dados
 
                 con.Open();
 
-                comando.CommandText = "INSERT INTO TABELA_VENDAS ([CODIGO_CLIENTE], [CODIGO_PRODUTO], [CODIGO_VENDEDOR], [CREDITO_LOJA], [DATA_HORA], [PRIMEIRA_COMPRA], [QUANTIDADE], [PRECO_TOTAL]) VALUES (@CODIGO_CLIENTE, @CODIGO_PRODUTO, @CODIGO_VENDEDOR, @CREDITO_LOJA, @DATA_HORA, @PRIMEIRA_COMPRA, @QUANTIDADE, @PRECO_TOTAL)";
+                comando.CommandText = "INSERT INTO TABELA_VENDAS ([CODIGO_CLIENTE], [CODIGO_PRODUTO], [CODIGO_VENDEDOR], [CREDITO_LOJA], [DATA_HORA], [CLIENTE_PRIMEIRA_COMPRA], [PRODUTO_PRIMEIRA_COMPRA], [QUANTIDADE], [PRECO_TOTAL]) VALUES (@CODIGO_CLIENTE, @CODIGO_PRODUTO, @CODIGO_VENDEDOR, @CREDITO_LOJA, @DATA_HORA, @CLIENTE_PRIMEIRA_COMPRA, @PRODUTO_PRIMEIRA_COMPRA, @QUANTIDADE, @PRECO_TOTAL)";
 
                 comando.Parameters.Add("CODIGO_CLIENTE", SqlDbType.Int).Value = objVenda.CodigoCliente;
                 comando.Parameters.Add("CODIGO_PRODUTO", SqlDbType.Int).Value = objVenda.CodigoProduto;
                 comando.Parameters.Add("CODIGO_VENDEDOR", SqlDbType.Int).Value = objVenda.CodigoVendedor;
                 comando.Parameters.Add("CREDITO_LOJA", SqlDbType.Decimal).Value = objVenda.CreditoLoja;
                 comando.Parameters.Add("DATA_HORA", SqlDbType.DateTime).Value = objVenda.DataHora;
-                comando.Parameters.Add("PRIMEIRA_COMPRA", SqlDbType.Decimal).Value = objVenda.PrimeiraCompra;
+                comando.Parameters.Add("CLIENTE_PRIMEIRA_COMPRA", SqlDbType.Decimal).Value = objVenda.ClientePrimeiraCompra;
+                comando.Parameters.Add("PRODUTO_PRIMEIRA_COMPRA", SqlDbType.Decimal).Value = objVenda.ProdutoPrimeiraCompra;
                 comando.Parameters.Add("QUANTIDADE", SqlDbType.Int).Value = objVenda.Quantidade;
                 comando.Parameters.Add("PRECO_TOTAL", SqlDbType.Float).Value = objVenda.PrecoTotal;
 

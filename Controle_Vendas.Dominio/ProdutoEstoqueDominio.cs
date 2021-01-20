@@ -15,6 +15,7 @@ namespace Controle_Vendas.Dominio
         private string tamanho;
         private string sabor;
         private double quantidadeEstoque;
+        private double produtoPrimeiraCompra;
 
         public int CodigoEstoque { get => codigoEstoque; set => codigoEstoque = value; }
         public int CodigoProduto { get => codigoProduto; set => codigoProduto = value; }
@@ -23,5 +24,6 @@ namespace Controle_Vendas.Dominio
         public string Tamanho { get => tamanho; set => tamanho = value; }
         public string Sabor { get => sabor; set => sabor = value; }
         public double QuantidadeEstoque { get => quantidadeEstoque; set => quantidadeEstoque = value; }
+        public double ProdutoPrimeiraCompra { get => produtoPrimeiraCompra; set => produtoPrimeiraCompra = value; }
     }
 }

@@ -74,7 +74,7 @@ namespace Controle_Vendas.Visualizacao
             this.precoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtBuscaCliente = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnBuscaCliente = new System.Windows.Forms.Button();
             this.txtPrecoTotal = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.GridVendas)).BeginInit();
@@ -111,7 +111,6 @@ namespace Controle_Vendas.Visualizacao
             this.txtNomeVendedor.Name = "txtNomeVendedor";
             this.txtNomeVendedor.Size = new System.Drawing.Size(319, 20);
             this.txtNomeVendedor.TabIndex = 19;
-            this.txtNomeVendedor.Enter += new System.EventHandler(this.txtNomeVendedor_Enter);
             // 
             // label3
             // 
@@ -233,9 +232,9 @@ namespace Controle_Vendas.Visualizacao
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(35, 62);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(97, 13);
+            this.label8.Size = new System.Drawing.Size(90, 13);
             this.label8.TabIndex = 3;
-            this.label8.Text = "Código do Cliente *";
+            this.label8.Text = "Código do Cliente";
             // 
             // txtCodigoVendedor
             // 
@@ -287,6 +286,7 @@ namespace Controle_Vendas.Visualizacao
             this.txtPreco.Name = "txtPreco";
             this.txtPreco.Size = new System.Drawing.Size(84, 20);
             this.txtPreco.TabIndex = 21;
+            this.txtPreco.TextChanged += new System.EventHandler(this.txtPreco_TextChanged);
             // 
             // label11
             // 
@@ -320,7 +320,6 @@ namespace Controle_Vendas.Visualizacao
             this.txtNomeCliente.Name = "txtNomeCliente";
             this.txtNomeCliente.Size = new System.Drawing.Size(319, 20);
             this.txtNomeCliente.TabIndex = 6;
-            this.txtNomeCliente.Enter += new System.EventHandler(this.txtNomeCliente_Enter);
             // 
             // txtNomeProduto
             // 
@@ -328,7 +327,6 @@ namespace Controle_Vendas.Visualizacao
             this.txtNomeProduto.Name = "txtNomeProduto";
             this.txtNomeProduto.Size = new System.Drawing.Size(319, 20);
             this.txtNomeProduto.TabIndex = 13;
-            this.txtNomeProduto.Enter += new System.EventHandler(this.txtNomeProduto_Enter);
             // 
             // GridVendas
             // 
@@ -467,21 +465,21 @@ namespace Controle_Vendas.Visualizacao
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(688, 62);
+            this.label13.Location = new System.Drawing.Point(681, 62);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(72, 13);
+            this.label13.Size = new System.Drawing.Size(79, 13);
             this.label13.TabIndex = 7;
-            this.label13.Text = "Busca Cliente";
+            this.label13.Text = "Busca Cliente *";
             // 
-            // button1
+            // btnBuscaCliente
             // 
-            this.button1.Location = new System.Drawing.Point(879, 54);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(31, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "??";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnBuscaCliente.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBuscaCliente.Location = new System.Drawing.Point(879, 54);
+            this.btnBuscaCliente.Name = "btnBuscaCliente";
+            this.btnBuscaCliente.Size = new System.Drawing.Size(31, 23);
+            this.btnBuscaCliente.TabIndex = 9;
+            this.btnBuscaCliente.UseVisualStyleBackColor = true;
+            this.btnBuscaCliente.Click += new System.EventHandler(this.btnBuscaCliente_Click);
             // 
             // txtPrecoTotal
             // 
@@ -506,7 +504,7 @@ namespace Controle_Vendas.Visualizacao
             this.ClientSize = new System.Drawing.Size(932, 473);
             this.Controls.Add(this.txtPrecoTotal);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnBuscaCliente);
             this.Controls.Add(this.txtBuscaCliente);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.txtNomeProduto);
@@ -582,7 +580,7 @@ namespace Controle_Vendas.Visualizacao
         private System.Windows.Forms.DataGridView GridVendas;
         private System.Windows.Forms.TextBox txtBuscaCliente;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnBuscaCliente;
         private System.Windows.Forms.TextBox txtPrecoTotal;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoVenda;

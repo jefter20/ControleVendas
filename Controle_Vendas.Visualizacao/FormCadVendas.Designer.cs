@@ -38,8 +38,6 @@ namespace Controle_Vendas.Visualizacao
             this.label4 = new System.Windows.Forms.Label();
             this.txtCreditoLoja = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtDataHora = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.btnNovo = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
@@ -145,23 +143,6 @@ namespace Controle_Vendas.Visualizacao
             this.label5.Size = new System.Drawing.Size(81, 13);
             this.label5.TabIndex = 22;
             this.label5.Text = "Crédito da loja *";
-            // 
-            // txtDataHora
-            // 
-            this.txtDataHora.Location = new System.Drawing.Point(343, 162);
-            this.txtDataHora.Name = "txtDataHora";
-            this.txtDataHora.Size = new System.Drawing.Size(160, 20);
-            this.txtDataHora.TabIndex = 25;
-            this.txtDataHora.Enter += new System.EventHandler(this.txtDataHora_Enter);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(279, 170);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(58, 13);
-            this.label6.TabIndex = 24;
-            this.label6.Text = "Data/Hora";
             // 
             // btnNovo
             // 
@@ -528,8 +509,6 @@ namespace Controle_Vendas.Visualizacao
             this.Controls.Add(this.btnNovo);
             this.Controls.Add(this.txtCreditoLoja);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtDataHora);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.txtNomeVendedor);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
@@ -556,8 +535,6 @@ namespace Controle_Vendas.Visualizacao
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtCreditoLoja;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtDataHora;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnNovo;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnExcluir;

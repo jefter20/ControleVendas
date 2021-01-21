@@ -47,7 +47,7 @@ namespace Controle_Vendas.Dados
                         dado.NomeCliente = Convert.ToString(dr["NOME"]);
                         dado.NomeProduto = Convert.ToString(dr["NOME_PRODUTO"]);
                         dado.NomeVendedor = Convert.ToString(dr["NOME_VENDEDOR"]);
-                        dado.DataHora = Convert.ToString(dr["DATA_HORA"]);
+                        dado.DataHora = Convert.ToDateTime(dr["DATA_HORA"]);
                         dado.Quantidade = Convert.ToInt32(dr["QUANTIDADE"]);
                         dado.Preco = Convert.ToDouble(dr["PRECO_DE_LISTA"]);
                         dado.PrecoTotal = Convert.ToDouble(dr["PRECO_TOTAL"]);
@@ -361,7 +361,7 @@ namespace Controle_Vendas.Dados
                 comando.Parameters.Add("CODIGO_PRODUTO", SqlDbType.Int).Value = objVenda.CodigoProduto;
                 comando.Parameters.Add("CODIGO_VENDEDOR", SqlDbType.Int).Value = objVenda.CodigoVendedor;
                 comando.Parameters.Add("CREDITO_LOJA", SqlDbType.Float).Value = objVenda.CreditoLoja;
-                comando.Parameters.Add("DATA_HORA", SqlDbType.VarChar).Value = objVenda.DataHora;
+                comando.Parameters.Add("DATA_HORA", SqlDbType.DateTime).Value = objVenda.DataHora;
                 comando.Parameters.Add("QUANTIDADE", SqlDbType.Int).Value = objVenda.Quantidade;
                 comando.Parameters.Add("PRECO_TOTAL", SqlDbType.Float).Value = objVenda.PrecoTotal;
 
@@ -428,7 +428,7 @@ namespace Controle_Vendas.Dados
                         dado.NomeCliente = Convert.ToString(dr["NOME"]);
                         dado.NomeProduto = Convert.ToString(dr["NOME_PRODUTO"]);
                         dado.NomeVendedor = Convert.ToString(dr["NOME_VENDEDOR"]);
-                        dado.DataHora = Convert.ToString(dr["DATA_HORA"]);
+                        dado.DataHora = Convert.ToDateTime(dr["DATA_HORA"]);
                         dado.Quantidade = Convert.ToInt32(dr["QUANTIDADE"]);
                         dado.Preco = Convert.ToDouble(dr["PRECO_DE_LISTA"]);
                         dado.PrecoTotal = Convert.ToDouble(dr["PRECO_TOTAL"]);

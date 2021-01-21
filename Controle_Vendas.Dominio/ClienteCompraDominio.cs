@@ -18,7 +18,7 @@ namespace Controle_Vendas.Dominio
         private double limiteCredito;
         private double preco;
         private double precoTotal;
-        private string dataHora;
+        private DateTime dataHora;
         private double clientePrimeiraCompra;
         private string usuario;
         private string senha;
@@ -33,7 +33,7 @@ namespace Controle_Vendas.Dominio
         public double LimiteCredito { get => limiteCredito; set => limiteCredito = value; }
         public double Preco { get => preco; set => preco = value; }
         public double PrecoTotal { get => precoTotal; set => precoTotal = value; }
-        public string DataHora { get => dataHora; set => dataHora = value; }
+        public DateTime DataHora { get => dataHora; set => dataHora = value; }
         public double ClientePrimeiraCompra { get => clientePrimeiraCompra; set => clientePrimeiraCompra = value; }
         public string Usuario { get => usuario; set => usuario = value; }
         public string Senha { get => senha; set => senha = value; }

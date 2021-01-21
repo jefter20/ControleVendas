@@ -44,7 +44,7 @@ namespace Controle_Vendas.Dados
                         dado.CreditoLoja = Convert.ToDouble(dr["LIMITE_CREDITO"]);
                         dado.Preco = Convert.ToDouble(dr["PRECO"]);
                         dado.PrecoTotal = Convert.ToDouble(dr["PRECO_TOTAL"]);
-                        dado.DataHora = Convert.ToString(dr["DATA_HORA"]);
+                        dado.DataHora = Convert.ToDateTime(dr["DATA_HORA"]);
 
                         lista.Add(dado);
                     }

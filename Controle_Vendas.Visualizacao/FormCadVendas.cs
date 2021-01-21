@@ -275,12 +275,17 @@ namespace Controle_Vendas.Visualizacao
             }
         }
 
+        private DateTime DataHoraAtual()
+        {
+            DateTime data = DateTime.Now.ToString("yyyy/MM/dd" + " - " + "HH:mm:ss");
+            return data;
+        }
+
         private void HabilitarCampos()
         {
             txtCodigoProduto.Enabled = true;
             txtCodigoVendedor.Enabled = true;
             txtCreditoLoja.Enabled = true;
-            txtDataHora.Enabled = true;
             txtBuscaCliente.Enabled = true;
             txtQuantidade.Enabled = true;
         }
@@ -290,7 +295,6 @@ namespace Controle_Vendas.Visualizacao
             txtCodigoProduto.Enabled = false;
             txtCodigoVendedor.Enabled = false;
             txtCreditoLoja.Enabled = false;
-            txtDataHora.Enabled = false;
             txtBuscaCliente.Enabled = false;
             txtQuantidade.Enabled = false;
         }
@@ -305,7 +309,6 @@ namespace Controle_Vendas.Visualizacao
             txtNomeCliente.Text = "";
             txtNomeProduto.Text = "";
             txtNomeVendedor.Text = "";
-            txtDataHora.Text = "";
             txtBuscaCliente.Text = "";
             txtQuantidade.Text = "";
             txtPreco.Text = "";
@@ -406,7 +409,7 @@ namespace Controle_Vendas.Visualizacao
                         objVenda.NomeProduto = txtNomeProduto.Text;
                         objVenda.Tamanho = objProduto.Tamanho;
                         objVenda.NomeVendedor = txtNomeVendedor.Text;
-                        objVenda.DataHora = txtDataHora.Text;
+                        objVenda.DataHora = DataHoraAtual();
                         objVenda.Quantidade = Convert.ToInt32(txtQuantidade.Text);
                         objVenda.Sabor = objProduto.Sabor;
                         objVenda.Preco = Convert.ToDouble(txtPreco.Text);
@@ -450,7 +453,7 @@ namespace Controle_Vendas.Visualizacao
                         objVenda.NomeCliente = txtNomeCliente.Text.ToString();
                         objVenda.NomeProduto = txtNomeProduto.Text.ToString();
                         objVenda.NomeVendedor = txtNomeVendedor.Text.ToString();
-                        objVenda.DataHora = txtDataHora.Text.ToString();
+                        objVenda.DataHora = DataHoraAtual();
                         objVenda.Quantidade = Convert.ToInt32(txtQuantidade.Text);
                         objVenda.Preco = Convert.ToDouble(txtPreco.Text);
                         objVenda.PrecoTotal = Convert.ToDouble(txtQuantidade.Text) * Convert.ToDouble(txtPreco.Text);
@@ -489,7 +492,7 @@ namespace Controle_Vendas.Visualizacao
 
                         objCompra.Preco = Convert.ToDouble(txtPreco.Text);
                         objCompra.PrecoTotal = Convert.ToDouble(objVenda.PrecoTotal);
-                        objCompra.DataHora = Convert.ToString(txtDataHora.Text);
+                        objCompra.DataHora = DataHoraAtual();
                         objCompra.ClientePrimeiraCompra = Convert.ToDouble(ClientePrimeiraCompra);
 
                         int x = VendaNegocios.AddClienteCompra(objCompra);
@@ -610,6 +613,8 @@ namespace Controle_Vendas.Visualizacao
         {
             ValidaVenda();
 
+            DataHoraAtual();
+
             btnNovo.Enabled = true;
             btnSalvar.Enabled = false;
             btnEditar.Enabled = true;
@@ -679,11 +684,6 @@ namespace Controle_Vendas.Visualizacao
             }
         }
 
-        private void txtDataHora_Enter(object sender, EventArgs e)
-        {
-            txtDataHora.Text = DateTime.Now.ToString("yyyy/MM/dd" + " - " + "HH:mm:ss");
-        }
-
         private void txtBuscaCliente_Enter(object sender, EventArgs e)
         {
             MessageBox.Show("Por favor, insira o CPF do Cliente!");
@@ -709,7 +709,6 @@ namespace Controle_Vendas.Visualizacao
             txtCodigoVendedor.Text = GridVendas.CurrentRow.Cells[5].Value.ToString();
             txtNomeVendedor.Text = GridVendas.CurrentRow.Cells[6].Value.ToString();
             txtCreditoLoja.Text = GridVendas.CurrentRow.Cells[7].Value.ToString();
-            txtDataHora.Text = GridVendas.CurrentRow.Cells[8].Value.ToString();
             txtQuantidade.Text = GridVendas.CurrentRow.Cells[9].Value.ToString();
             txtPreco.Text = GridVendas.CurrentRow.Cells[10].Value.ToString();
             txtPrecoTotal.Text = GridVendas.CurrentRow.Cells[11].Value.ToString();

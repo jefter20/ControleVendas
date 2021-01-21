@@ -20,7 +20,9 @@ CREATE TABLE [dbo].[TABELA_CLIENTES](
 	[DATA_NASCIMENTO] date NOT NULL,
 	[SEXO] varchar(1) NOT NULL,
 	[LIMITE_CREDITO] money NULL,
-	[VOLUME_COMPRA] float NULL
+	[VOLUME_COMPRA] float NULL,
+	[USUARIO] varchar(50) NULL,
+	[SENHA] varchar(50) NULL
 	)
 
 

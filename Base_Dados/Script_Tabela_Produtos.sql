@@ -6,7 +6,9 @@ CREATE TABLE [TABELA_PRODUTOS](
 	[EMBALAGEM] varchar(20) NOT NULL,
 	[TAMANHO] varchar(10) NOT NULL,
 	[SABOR] varchar(20) NOT NULL,
-	[PRECO_DE_LISTA] smallmoney NOT NULL)
+	[QUANTIDADE_EM_ESTOQUE] decimal(18,2) NOT NULL,
+	[PRECO_DE_LISTA] smallmoney NOT NULL
+	)
 
 
 

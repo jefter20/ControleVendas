@@ -274,12 +274,13 @@ namespace Controle_Vendas.Visualizacao
                 txtPrecoTotal.Text = "";
             }
         }
-
+        /*
         private DateTime DataHoraAtual()
         {
-            DateTime data = DateTime.Now.ToString("yyyy/MM/dd" + " - " + "HH:mm:ss");
-            return data;
-        }
+            //DateTime data = DateTime.Now.ToString("yyyy/MM/dd" + " - " + "HH:mm:ss");
+
+            
+        }*/
 
         private void HabilitarCampos()
         {
@@ -400,6 +401,10 @@ namespace Controle_Vendas.Visualizacao
                 case "SalvarVenda":
                     try
                     {
+                        DateTime dataHora = DateTime.Now;
+                        string dataHoraFormato = dataHora.ToString("yyyy/MM/dd " + "HH:mm:ss");
+                        DateTime dataHoraAtual = Convert.ToDateTime(dataHoraFormato);
+
                         objVenda.CodigoCliente = Convert.ToInt32(txtCodigoCliente.Text);
                         objVenda.CodigoProduto = Convert.ToInt32(txtCodigoProduto.Text);
                         objVenda.Embalagem = objProduto.Embalagem;
@@ -409,7 +414,7 @@ namespace Controle_Vendas.Visualizacao
                         objVenda.NomeProduto = txtNomeProduto.Text;
                         objVenda.Tamanho = objProduto.Tamanho;
                         objVenda.NomeVendedor = txtNomeVendedor.Text;
-                        objVenda.DataHora = DataHoraAtual();
+                        objVenda.DataHora = dataHoraAtual;
                         objVenda.Quantidade = Convert.ToInt32(txtQuantidade.Text);
                         objVenda.Sabor = objProduto.Sabor;
                         objVenda.Preco = Convert.ToDouble(txtPreco.Text);
@@ -453,7 +458,7 @@ namespace Controle_Vendas.Visualizacao
                         objVenda.NomeCliente = txtNomeCliente.Text.ToString();
                         objVenda.NomeProduto = txtNomeProduto.Text.ToString();
                         objVenda.NomeVendedor = txtNomeVendedor.Text.ToString();
-                        objVenda.DataHora = DataHoraAtual();
+                        //objVenda.DataHora = dataHoraAtual;
                         objVenda.Quantidade = Convert.ToInt32(txtQuantidade.Text);
                         objVenda.Preco = Convert.ToDouble(txtPreco.Text);
                         objVenda.PrecoTotal = Convert.ToDouble(txtQuantidade.Text) * Convert.ToDouble(txtPreco.Text);
@@ -492,7 +497,7 @@ namespace Controle_Vendas.Visualizacao
 
                         objCompra.Preco = Convert.ToDouble(txtPreco.Text);
                         objCompra.PrecoTotal = Convert.ToDouble(objVenda.PrecoTotal);
-                        objCompra.DataHora = DataHoraAtual();
+                        objCompra.DataHora = objVenda.DataHora;
                         objCompra.ClientePrimeiraCompra = Convert.ToDouble(ClientePrimeiraCompra);
 
                         int x = VendaNegocios.AddClienteCompra(objCompra);
@@ -612,8 +617,6 @@ namespace Controle_Vendas.Visualizacao
         private void btnVendaSalvar_Click(object sender, EventArgs e)
         {
             ValidaVenda();
-
-            DataHoraAtual();
 
             btnNovo.Enabled = true;
             btnSalvar.Enabled = false;

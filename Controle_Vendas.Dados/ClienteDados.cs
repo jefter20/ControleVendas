@@ -144,7 +144,7 @@ namespace Controle_Vendas.Dados
 
                 con.Open();
 
-                comando.CommandText = "SELECT * FROM TABELA_CLIENTES ORDER BY NOME";
+                comando.CommandText = "SELECT * FROM TABELA_CLIENTES ORDER BY CODIGO_CLIENTE";
 
                 comando.Connection = con;
 

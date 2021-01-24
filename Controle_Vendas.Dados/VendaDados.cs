@@ -405,7 +405,7 @@ namespace Controle_Vendas.Dados
 
                 con.Open();
 
-                comando.CommandText = "SELECT VAS.CODIGO_VENDA, C.CODIGO_CLIENTE, C.NOME, P.CODIGO_PRODUTO, P.NOME_PRODUTO, VES.CODIGO_VENDEDOR, VES.NOME_VENDEDOR, VAS.CREDITO_LOJA, VAS.DATA_HORA, VAS.QUANTIDADE, P.PRECO_DE_LISTA, VAS.PRECO_TOTAL FROM TABELA_VENDAS AS VAS INNER JOIN TABELA_CLIENTES AS C ON VAS.CODIGO_CLIENTE = C.CODIGO_CLIENTE INNER JOIN TABELA_PRODUTOS AS P ON VAS.CODIGO_PRODUTO = P.CODIGO_PRODUTO INNER JOIN TABELA_VENDEDORES AS VES ON VAS.CODIGO_VENDEDOR = VES.CODIGO_VENDEDOR ORDER BY VAS.CODIGO_VENDA";
+                comando.CommandText = "SELECT VAS.CODIGO_VENDA, C.CODIGO_CLIENTE, C.NOME, P.CODIGO_PRODUTO, P.EMBALAGEM, P.NOME_PRODUTO, P.TAMANHO, VES.CODIGO_VENDEDOR, VES.NOME_VENDEDOR, VAS.CREDITO_LOJA, VAS.DATA_HORA, VAS.QUANTIDADE, P.SABOR, P.PRECO_DE_LISTA, VAS.PRECO_TOTAL FROM TABELA_VENDAS AS VAS INNER JOIN TABELA_CLIENTES AS C ON VAS.CODIGO_CLIENTE = C.CODIGO_CLIENTE INNER JOIN TABELA_PRODUTOS AS P ON VAS.CODIGO_PRODUTO = P.CODIGO_PRODUTO INNER JOIN TABELA_VENDEDORES AS VES ON VAS.CODIGO_VENDEDOR = VES.CODIGO_VENDEDOR ORDER BY VAS.CODIGO_VENDA";
 
                 comando.Connection = con;
 
@@ -423,13 +423,16 @@ namespace Controle_Vendas.Dados
                         dado.CodigoVenda = Convert.ToInt32(dr["CODIGO_VENDA"]);
                         dado.CodigoCliente = Convert.ToInt32(dr["CODIGO_CLIENTE"]);
                         dado.CodigoProduto = Convert.ToInt32(dr["CODIGO_PRODUTO"]);
+                        dado.Embalagem = Convert.ToString(dr["EMBALAGEM"]);
                         dado.CodigoVendedor = Convert.ToInt32(dr["CODIGO_VENDEDOR"]);
                         dado.CreditoLoja = Convert.ToDouble(dr["CREDITO_LOJA"]);
                         dado.NomeCliente = Convert.ToString(dr["NOME"]);
                         dado.NomeProduto = Convert.ToString(dr["NOME_PRODUTO"]);
+                        dado.Tamanho = Convert.ToString(dr["TAMANHO"]);
                         dado.NomeVendedor = Convert.ToString(dr["NOME_VENDEDOR"]);
                         dado.DataHora = Convert.ToDateTime(dr["DATA_HORA"]);
                         dado.Quantidade = Convert.ToInt32(dr["QUANTIDADE"]);
+                        dado.Sabor = Convert.ToString(dr["SABOR"]);
                         dado.Preco = Convert.ToDouble(dr["PRECO_DE_LISTA"]);
                         dado.PrecoTotal = Convert.ToDouble(dr["PRECO_TOTAL"]);
 

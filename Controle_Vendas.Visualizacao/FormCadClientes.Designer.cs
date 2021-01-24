@@ -83,7 +83,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(34, 449);
+            this.btnExcluir.Location = new System.Drawing.Point(35, 432);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 23);
             this.btnExcluir.TabIndex = 47;
@@ -93,7 +93,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(34, 411);
+            this.btnEditar.Location = new System.Drawing.Point(35, 394);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
             this.btnEditar.TabIndex = 46;
@@ -103,7 +103,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(34, 373);
+            this.btnSalvar.Location = new System.Drawing.Point(35, 356);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(75, 23);
             this.btnSalvar.TabIndex = 45;
@@ -113,7 +113,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // btnNovo
             // 
-            this.btnNovo.Location = new System.Drawing.Point(34, 335);
+            this.btnNovo.Location = new System.Drawing.Point(35, 318);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(75, 23);
             this.btnNovo.TabIndex = 44;
@@ -490,9 +490,9 @@ namespace Controle_Vendas.Visualizacao
             // 
             // btnCadastroVendas
             // 
-            this.btnCadastroVendas.Location = new System.Drawing.Point(11, 292);
+            this.btnCadastroVendas.Location = new System.Drawing.Point(143, 258);
             this.btnCadastroVendas.Name = "btnCadastroVendas";
-            this.btnCadastroVendas.Size = new System.Drawing.Size(124, 23);
+            this.btnCadastroVendas.Size = new System.Drawing.Size(124, 28);
             this.btnCadastroVendas.TabIndex = 60;
             this.btnCadastroVendas.Text = "Cadastro de Vendas";
             this.btnCadastroVendas.UseVisualStyleBackColor = true;

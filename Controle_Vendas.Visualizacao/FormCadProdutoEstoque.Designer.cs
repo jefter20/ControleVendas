@@ -30,13 +30,14 @@ namespace Controle_Vendas.Visualizacao
         private void InitializeComponent()
         {
             this.GridProdutoEstoque = new System.Windows.Forms.DataGridView();
+            this.btnCadastroVendas = new System.Windows.Forms.Button();
             this.codigoEstoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codigoProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.embalagem = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tamanho = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sabor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantidadeEmEstoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantidadeEstoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.GridProdutoEstoque)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,12 +57,22 @@ namespace Controle_Vendas.Visualizacao
             this.embalagem,
             this.tamanho,
             this.sabor,
-            this.quantidadeEmEstoque});
-            this.GridProdutoEstoque.Location = new System.Drawing.Point(14, 12);
+            this.quantidadeEstoque});
+            this.GridProdutoEstoque.Location = new System.Drawing.Point(14, 63);
             this.GridProdutoEstoque.Name = "GridProdutoEstoque";
             this.GridProdutoEstoque.ReadOnly = true;
-            this.GridProdutoEstoque.Size = new System.Drawing.Size(956, 241);
+            this.GridProdutoEstoque.Size = new System.Drawing.Size(1071, 240);
             this.GridProdutoEstoque.TabIndex = 1;
+            // 
+            // btnCadastroVendas
+            // 
+            this.btnCadastroVendas.Location = new System.Drawing.Point(14, 29);
+            this.btnCadastroVendas.Name = "btnCadastroVendas";
+            this.btnCadastroVendas.Size = new System.Drawing.Size(124, 28);
+            this.btnCadastroVendas.TabIndex = 61;
+            this.btnCadastroVendas.Text = "Cadastro de Vendas";
+            this.btnCadastroVendas.UseVisualStyleBackColor = true;
+            this.btnCadastroVendas.Click += new System.EventHandler(this.btnCadastroVendas_Click);
             // 
             // codigoEstoque
             // 
@@ -74,7 +85,7 @@ namespace Controle_Vendas.Visualizacao
             // codigoProduto
             // 
             this.codigoProduto.DataPropertyName = "CodigoProduto";
-            this.codigoProduto.HeaderText = "Código do Produto";
+            this.codigoProduto.HeaderText = "ID do Produto";
             this.codigoProduto.Name = "codigoProduto";
             this.codigoProduto.ReadOnly = true;
             // 
@@ -106,19 +117,19 @@ namespace Controle_Vendas.Visualizacao
             this.sabor.Name = "sabor";
             this.sabor.ReadOnly = true;
             // 
-            // quantidadeEmEstoque
+            // quantidadeEstoque
             // 
-            this.quantidadeEmEstoque.DataPropertyName = "QuantidadeEmEstoque";
-            this.quantidadeEmEstoque.FillWeight = 110F;
-            this.quantidadeEmEstoque.HeaderText = "Quantidade Em Estoque";
-            this.quantidadeEmEstoque.Name = "quantidadeEmEstoque";
-            this.quantidadeEmEstoque.ReadOnly = true;
+            this.quantidadeEstoque.DataPropertyName = "QuantidadeEstoque";
+            this.quantidadeEstoque.HeaderText = "Quantidade em Estoque";
+            this.quantidadeEstoque.Name = "quantidadeEstoque";
+            this.quantidadeEstoque.ReadOnly = true;
             // 
             // FormCadProdutoEstoque
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(982, 265);
+            this.ClientSize = new System.Drawing.Size(1097, 315);
+            this.Controls.Add(this.btnCadastroVendas);
             this.Controls.Add(this.GridProdutoEstoque);
             this.Name = "FormCadProdutoEstoque";
             this.Text = "Controle de Estoque";
@@ -131,12 +142,13 @@ namespace Controle_Vendas.Visualizacao
         #endregion
 
         private System.Windows.Forms.DataGridView GridProdutoEstoque;
+        private System.Windows.Forms.Button btnCadastroVendas;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoEstoque;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoProduto;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeProduto;
         private System.Windows.Forms.DataGridViewTextBoxColumn embalagem;
         private System.Windows.Forms.DataGridViewTextBoxColumn tamanho;
         private System.Windows.Forms.DataGridViewTextBoxColumn sabor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantidadeEmEstoque;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantidadeEstoque;
     }
 }

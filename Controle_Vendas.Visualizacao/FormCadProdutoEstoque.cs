@@ -40,5 +40,12 @@ namespace Controle_Vendas.Visualizacao
         {
             ListarGrid();
         }
+
+        private void btnCadastroVendas_Click(object sender, EventArgs e)
+        {
+            FormCadVendas form = new FormCadVendas();
+            this.Hide();
+            form.Show();
+        }
     }
 }

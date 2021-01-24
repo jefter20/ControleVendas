@@ -33,11 +33,8 @@ namespace Controle_Vendas.Visualizacao
             this.label1 = new System.Windows.Forms.Label();
             this.txtCodigoVenda = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtNomeVendedor = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtCreditoLoja = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.btnNovo = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
@@ -63,233 +60,224 @@ namespace Controle_Vendas.Visualizacao
             this.nomeCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codigoProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.codigoVendedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomeVendedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.creditoLoja = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.embalagem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tamanho = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sabor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.preco = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.creditoLoja = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codigoVendedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomeVendedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtBuscaCliente = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.btnBuscaCliente = new System.Windows.Forms.Button();
             this.txtPrecoTotal = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.txtSabor = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtEmbalagem = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtCreditoLoja = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtNomeVendedor = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtTamanho = new System.Windows.Forms.TextBox();
+            this.btnControleEstoque = new System.Windows.Forms.Button();
+            this.btnCadastroProdutos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.GridVendas)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(42, 18);
+            this.label1.Location = new System.Drawing.Point(32, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 13);
+            this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Código da Venda";
+            this.label1.Text = "ID Venda";
             // 
             // txtCodigoVenda
             // 
-            this.txtCodigoVenda.Location = new System.Drawing.Point(138, 10);
+            this.txtCodigoVenda.Location = new System.Drawing.Point(35, 25);
             this.txtCodigoVenda.Name = "txtCodigoVenda";
-            this.txtCodigoVenda.Size = new System.Drawing.Size(61, 20);
+            this.txtCodigoVenda.Size = new System.Drawing.Size(71, 20);
             this.txtCodigoVenda.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(247, 98);
+            this.label2.Location = new System.Drawing.Point(32, 118);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 13);
-            this.label2.TabIndex = 12;
+            this.label2.TabIndex = 19;
             this.label2.Text = "Nome do Produto";
-            // 
-            // txtNomeVendedor
-            // 
-            this.txtNomeVendedor.Location = new System.Drawing.Point(343, 127);
-            this.txtNomeVendedor.Name = "txtNomeVendedor";
-            this.txtNomeVendedor.Size = new System.Drawing.Size(319, 20);
-            this.txtNomeVendedor.TabIndex = 19;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(238, 135);
+            this.label3.Location = new System.Drawing.Point(770, 118);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(99, 13);
-            this.label3.TabIndex = 18;
-            this.label3.Text = "Nome do Vendedor";
+            this.label3.Size = new System.Drawing.Size(107, 13);
+            this.label3.TabIndex = 25;
+            this.label3.Text = "Tamanho do Produto";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(252, 64);
+            this.label4.Location = new System.Drawing.Point(163, 71);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 13);
-            this.label4.TabIndex = 5;
+            this.label4.TabIndex = 15;
             this.label4.Text = "Nome do Cliente";
-            // 
-            // txtCreditoLoja
-            // 
-            this.txtCreditoLoja.Location = new System.Drawing.Point(138, 162);
-            this.txtCreditoLoja.Name = "txtCreditoLoja";
-            this.txtCreditoLoja.Size = new System.Drawing.Size(40, 20);
-            this.txtCreditoLoja.TabIndex = 23;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(51, 169);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(81, 13);
-            this.label5.TabIndex = 22;
-            this.label5.Text = "Crédito da loja *";
             // 
             // btnNovo
             // 
-            this.btnNovo.Location = new System.Drawing.Point(34, 289);
+            this.btnNovo.Location = new System.Drawing.Point(35, 319);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(75, 23);
-            this.btnNovo.TabIndex = 33;
+            this.btnNovo.TabIndex = 35;
             this.btnNovo.Text = "Novo";
             this.btnNovo.UseVisualStyleBackColor = true;
             this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(35, 328);
+            this.btnSalvar.Location = new System.Drawing.Point(36, 358);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(75, 23);
-            this.btnSalvar.TabIndex = 34;
+            this.btnSalvar.TabIndex = 36;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnVendaSalvar_Click);
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(35, 406);
+            this.btnExcluir.Location = new System.Drawing.Point(36, 436);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 23);
-            this.btnExcluir.TabIndex = 36;
+            this.btnExcluir.TabIndex = 38;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
             this.btnExcluir.Click += new System.EventHandler(this.btnVendaExcluir_Click);
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(35, 367);
+            this.btnEditar.Location = new System.Drawing.Point(36, 397);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
-            this.btnEditar.TabIndex = 35;
+            this.btnEditar.TabIndex = 37;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnVendaEditar_Click);
             // 
             // txtCodigoProduto
             // 
-            this.txtCodigoProduto.Location = new System.Drawing.Point(138, 91);
+            this.txtCodigoProduto.Location = new System.Drawing.Point(374, 25);
             this.txtCodigoProduto.Name = "txtCodigoProduto";
-            this.txtCodigoProduto.Size = new System.Drawing.Size(84, 20);
-            this.txtCodigoProduto.TabIndex = 11;
+            this.txtCodigoProduto.Size = new System.Drawing.Size(71, 20);
+            this.txtCodigoProduto.TabIndex = 6;
             this.txtCodigoProduto.Leave += new System.EventHandler(this.txtCodigoProduto_Leave);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(31, 98);
+            this.label7.Location = new System.Drawing.Point(371, 9);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(102, 13);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "Código do Produto *";
+            this.label7.Size = new System.Drawing.Size(65, 13);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "ID Produto *";
             // 
             // txtCodigoCliente
             // 
-            this.txtCodigoCliente.Location = new System.Drawing.Point(138, 55);
+            this.txtCodigoCliente.Location = new System.Drawing.Point(35, 86);
             this.txtCodigoCliente.Name = "txtCodigoCliente";
-            this.txtCodigoCliente.Size = new System.Drawing.Size(84, 20);
-            this.txtCodigoCliente.TabIndex = 4;
+            this.txtCodigoCliente.Size = new System.Drawing.Size(71, 20);
+            this.txtCodigoCliente.TabIndex = 14;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(35, 62);
+            this.label8.Location = new System.Drawing.Point(32, 70);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(90, 13);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Código do Cliente";
+            this.label8.Size = new System.Drawing.Size(53, 13);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "ID Cliente";
             // 
             // txtCodigoVendedor
             // 
-            this.txtCodigoVendedor.Location = new System.Drawing.Point(138, 127);
+            this.txtCodigoVendedor.Location = new System.Drawing.Point(509, 25);
             this.txtCodigoVendedor.Name = "txtCodigoVendedor";
-            this.txtCodigoVendedor.Size = new System.Drawing.Size(84, 20);
-            this.txtCodigoVendedor.TabIndex = 17;
+            this.txtCodigoVendedor.Size = new System.Drawing.Size(71, 20);
+            this.txtCodigoVendedor.TabIndex = 8;
             this.txtCodigoVendedor.Leave += new System.EventHandler(this.txtCodigoVendedor_Leave);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(21, 130);
+            this.label9.Location = new System.Drawing.Point(601, 118);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(111, 13);
-            this.label9.TabIndex = 16;
-            this.label9.Text = "Código do Vendedor *";
+            this.label9.Size = new System.Drawing.Size(117, 13);
+            this.label9.TabIndex = 23;
+            this.label9.Text = "Embalagem do Produto";
             // 
             // btnCadastroClientes
             // 
-            this.btnCadastroClientes.Location = new System.Drawing.Point(7, 242);
+            this.btnCadastroClientes.Location = new System.Drawing.Point(138, 244);
             this.btnCadastroClientes.Name = "btnCadastroClientes";
             this.btnCadastroClientes.Size = new System.Drawing.Size(125, 27);
-            this.btnCadastroClientes.TabIndex = 32;
+            this.btnCadastroClientes.TabIndex = 31;
             this.btnCadastroClientes.Text = "Cadastro de Clientes";
             this.btnCadastroClientes.UseVisualStyleBackColor = true;
             this.btnCadastroClientes.Click += new System.EventHandler(this.btnCadastroClientes_Click);
             // 
             // txtQuantidade
             // 
-            this.txtQuantidade.Location = new System.Drawing.Point(789, 91);
+            this.txtQuantidade.Location = new System.Drawing.Point(772, 26);
             this.txtQuantidade.Name = "txtQuantidade";
-            this.txtQuantidade.Size = new System.Drawing.Size(84, 20);
-            this.txtQuantidade.TabIndex = 15;
+            this.txtQuantidade.Size = new System.Drawing.Size(124, 20);
+            this.txtQuantidade.TabIndex = 12;
             this.txtQuantidade.Leave += new System.EventHandler(this.txtQuantidade_Leave);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(714, 99);
+            this.label10.Location = new System.Drawing.Point(769, 10);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(69, 13);
-            this.label10.TabIndex = 14;
+            this.label10.TabIndex = 11;
             this.label10.Text = "Quantidade *";
             // 
             // txtPreco
             // 
-            this.txtPreco.Location = new System.Drawing.Point(789, 127);
+            this.txtPreco.Location = new System.Drawing.Point(35, 185);
             this.txtPreco.Name = "txtPreco";
-            this.txtPreco.Size = new System.Drawing.Size(84, 20);
-            this.txtPreco.TabIndex = 21;
+            this.txtPreco.Size = new System.Drawing.Size(119, 20);
+            this.txtPreco.TabIndex = 28;
             this.txtPreco.TextChanged += new System.EventHandler(this.txtPreco_TextChanged);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(748, 134);
+            this.label11.Location = new System.Drawing.Point(32, 169);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(35, 13);
-            this.label11.TabIndex = 20;
+            this.label11.TabIndex = 27;
             this.label11.Text = "Preço";
             // 
             // txtPesquisar
             // 
-            this.txtPesquisar.Location = new System.Drawing.Point(822, 216);
+            this.txtPesquisar.Location = new System.Drawing.Point(792, 251);
             this.txtPesquisar.Name = "txtPesquisar";
             this.txtPesquisar.Size = new System.Drawing.Size(104, 20);
-            this.txtPesquisar.TabIndex = 31;
+            this.txtPesquisar.TabIndex = 34;
             this.txtPesquisar.TextChanged += new System.EventHandler(this.txtPesquisar_TextChanged);
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(763, 222);
+            this.label12.Location = new System.Drawing.Point(789, 235);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(53, 13);
             this.label12.TabIndex = 30;
@@ -297,17 +285,17 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtNomeCliente
             // 
-            this.txtNomeCliente.Location = new System.Drawing.Point(343, 55);
+            this.txtNomeCliente.Location = new System.Drawing.Point(166, 87);
             this.txtNomeCliente.Name = "txtNomeCliente";
             this.txtNomeCliente.Size = new System.Drawing.Size(319, 20);
-            this.txtNomeCliente.TabIndex = 6;
+            this.txtNomeCliente.TabIndex = 16;
             // 
             // txtNomeProduto
             // 
-            this.txtNomeProduto.Location = new System.Drawing.Point(343, 91);
+            this.txtNomeProduto.Location = new System.Drawing.Point(35, 134);
             this.txtNomeProduto.Name = "txtNomeProduto";
             this.txtNomeProduto.Size = new System.Drawing.Size(319, 20);
-            this.txtNomeProduto.TabIndex = 13;
+            this.txtNomeProduto.TabIndex = 20;
             // 
             // GridVendas
             // 
@@ -331,24 +319,27 @@ namespace Controle_Vendas.Visualizacao
             this.nomeCliente,
             this.codigoProduto,
             this.nomeProduto,
-            this.codigoVendedor,
-            this.nomeVendedor,
-            this.creditoLoja,
-            this.dataHora,
+            this.embalagem,
+            this.tamanho,
+            this.sabor,
             this.quantidade,
             this.preco,
-            this.precoTotal});
-            this.GridVendas.Location = new System.Drawing.Point(138, 242);
+            this.precoTotal,
+            this.creditoLoja,
+            this.codigoVendedor,
+            this.nomeVendedor,
+            this.dataHora});
+            this.GridVendas.Location = new System.Drawing.Point(138, 277);
             this.GridVendas.Name = "GridVendas";
             this.GridVendas.ReadOnly = true;
-            this.GridVendas.Size = new System.Drawing.Size(788, 225);
-            this.GridVendas.TabIndex = 37;
+            this.GridVendas.Size = new System.Drawing.Size(758, 227);
+            this.GridVendas.TabIndex = 39;
             this.GridVendas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridVendas_CellDoubleClick);
             // 
             // codigoVenda
             // 
             this.codigoVenda.DataPropertyName = "CodigoVenda";
-            this.codigoVenda.HeaderText = "Código da Venda";
+            this.codigoVenda.HeaderText = "ID da Venda";
             this.codigoVenda.Name = "codigoVenda";
             this.codigoVenda.ReadOnly = true;
             this.codigoVenda.Width = 50;
@@ -356,7 +347,7 @@ namespace Controle_Vendas.Visualizacao
             // codigoCliente
             // 
             this.codigoCliente.DataPropertyName = "CodigoCliente";
-            this.codigoCliente.HeaderText = "Código do Cliente";
+            this.codigoCliente.HeaderText = "ID do Cliente";
             this.codigoCliente.Name = "codigoCliente";
             this.codigoCliente.ReadOnly = true;
             // 
@@ -371,7 +362,7 @@ namespace Controle_Vendas.Visualizacao
             // codigoProduto
             // 
             this.codigoProduto.DataPropertyName = "CodigoProduto";
-            this.codigoProduto.HeaderText = "Código do Produto";
+            this.codigoProduto.HeaderText = "ID do Produto";
             this.codigoProduto.Name = "codigoProduto";
             this.codigoProduto.ReadOnly = true;
             this.codigoProduto.Width = 50;
@@ -383,36 +374,26 @@ namespace Controle_Vendas.Visualizacao
             this.nomeProduto.Name = "nomeProduto";
             this.nomeProduto.ReadOnly = true;
             // 
-            // codigoVendedor
+            // embalagem
             // 
-            this.codigoVendedor.DataPropertyName = "CodigoVendedor";
-            this.codigoVendedor.HeaderText = "Código do Vendedor";
-            this.codigoVendedor.Name = "codigoVendedor";
-            this.codigoVendedor.ReadOnly = true;
-            this.codigoVendedor.Width = 50;
+            this.embalagem.DataPropertyName = "Embalagem";
+            this.embalagem.HeaderText = "Embalagem";
+            this.embalagem.Name = "embalagem";
+            this.embalagem.ReadOnly = true;
             // 
-            // nomeVendedor
+            // tamanho
             // 
-            this.nomeVendedor.DataPropertyName = "NomeVendedor";
-            this.nomeVendedor.HeaderText = "Nome do Vendedor";
-            this.nomeVendedor.Name = "nomeVendedor";
-            this.nomeVendedor.ReadOnly = true;
+            this.tamanho.DataPropertyName = "Tamanho";
+            this.tamanho.HeaderText = "Tamanho";
+            this.tamanho.Name = "tamanho";
+            this.tamanho.ReadOnly = true;
             // 
-            // creditoLoja
+            // sabor
             // 
-            this.creditoLoja.DataPropertyName = "CreditoLoja";
-            this.creditoLoja.HeaderText = "Crédito da Loja";
-            this.creditoLoja.Name = "creditoLoja";
-            this.creditoLoja.ReadOnly = true;
-            this.creditoLoja.Width = 50;
-            // 
-            // dataHora
-            // 
-            this.dataHora.DataPropertyName = "DataHora";
-            this.dataHora.HeaderText = "Data/Hora";
-            this.dataHora.Name = "dataHora";
-            this.dataHora.ReadOnly = true;
-            this.dataHora.Width = 200;
+            this.sabor.DataPropertyName = "Sabor";
+            this.sabor.HeaderText = "Sabor";
+            this.sabor.Name = "sabor";
+            this.sabor.ReadOnly = true;
             // 
             // quantidade
             // 
@@ -435,54 +416,187 @@ namespace Controle_Vendas.Visualizacao
             this.precoTotal.Name = "precoTotal";
             this.precoTotal.ReadOnly = true;
             // 
+            // creditoLoja
+            // 
+            this.creditoLoja.DataPropertyName = "CreditoLoja";
+            this.creditoLoja.HeaderText = "Crédito da Loja";
+            this.creditoLoja.Name = "creditoLoja";
+            this.creditoLoja.ReadOnly = true;
+            this.creditoLoja.Width = 50;
+            // 
+            // codigoVendedor
+            // 
+            this.codigoVendedor.DataPropertyName = "CodigoVendedor";
+            this.codigoVendedor.HeaderText = "ID do Vendedor";
+            this.codigoVendedor.Name = "codigoVendedor";
+            this.codigoVendedor.ReadOnly = true;
+            this.codigoVendedor.Width = 50;
+            // 
+            // nomeVendedor
+            // 
+            this.nomeVendedor.DataPropertyName = "NomeVendedor";
+            this.nomeVendedor.HeaderText = "Nome do Vendedor";
+            this.nomeVendedor.Name = "nomeVendedor";
+            this.nomeVendedor.ReadOnly = true;
+            // 
+            // dataHora
+            // 
+            this.dataHora.DataPropertyName = "DataHora";
+            this.dataHora.HeaderText = "Data/Hora";
+            this.dataHora.Name = "dataHora";
+            this.dataHora.ReadOnly = true;
+            this.dataHora.Width = 200;
+            // 
             // txtBuscaCliente
             // 
-            this.txtBuscaCliente.Location = new System.Drawing.Point(766, 55);
+            this.txtBuscaCliente.Location = new System.Drawing.Point(166, 25);
             this.txtBuscaCliente.Name = "txtBuscaCliente";
             this.txtBuscaCliente.Size = new System.Drawing.Size(107, 20);
-            this.txtBuscaCliente.TabIndex = 8;
+            this.txtBuscaCliente.TabIndex = 3;
             this.txtBuscaCliente.Enter += new System.EventHandler(this.txtBuscaCliente_Enter);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(681, 62);
+            this.label13.Location = new System.Drawing.Point(163, 9);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(79, 13);
-            this.label13.TabIndex = 7;
+            this.label13.TabIndex = 2;
             this.label13.Text = "Busca Cliente *";
             // 
             // btnBuscaCliente
             // 
             this.btnBuscaCliente.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBuscaCliente.Location = new System.Drawing.Point(879, 54);
+            this.btnBuscaCliente.Image = global::Controle_Vendas.Visualizacao.Properties.Resources.IconePesquisa;
+            this.btnBuscaCliente.Location = new System.Drawing.Point(279, 24);
             this.btnBuscaCliente.Name = "btnBuscaCliente";
             this.btnBuscaCliente.Size = new System.Drawing.Size(31, 23);
-            this.btnBuscaCliente.TabIndex = 9;
+            this.btnBuscaCliente.TabIndex = 4;
             this.btnBuscaCliente.UseVisualStyleBackColor = true;
             this.btnBuscaCliente.Click += new System.EventHandler(this.btnBuscaCliente_Click);
             // 
             // txtPrecoTotal
             // 
-            this.txtPrecoTotal.Location = new System.Drawing.Point(789, 162);
+            this.txtPrecoTotal.Location = new System.Drawing.Point(235, 185);
             this.txtPrecoTotal.Name = "txtPrecoTotal";
-            this.txtPrecoTotal.Size = new System.Drawing.Size(84, 20);
-            this.txtPrecoTotal.TabIndex = 29;
+            this.txtPrecoTotal.Size = new System.Drawing.Size(119, 20);
+            this.txtPrecoTotal.TabIndex = 30;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(721, 169);
+            this.label14.Location = new System.Drawing.Point(396, 118);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(62, 13);
-            this.label14.TabIndex = 28;
-            this.label14.Text = "Preço Total";
+            this.label14.Size = new System.Drawing.Size(90, 13);
+            this.label14.TabIndex = 21;
+            this.label14.Text = "Sabor do Produto";
+            // 
+            // txtSabor
+            // 
+            this.txtSabor.Location = new System.Drawing.Point(399, 134);
+            this.txtSabor.Name = "txtSabor";
+            this.txtSabor.Size = new System.Drawing.Size(160, 20);
+            this.txtSabor.TabIndex = 22;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(232, 169);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(62, 13);
+            this.label6.TabIndex = 29;
+            this.label6.Text = "Preço Total";
+            // 
+            // txtEmbalagem
+            // 
+            this.txtEmbalagem.Location = new System.Drawing.Point(604, 134);
+            this.txtEmbalagem.Name = "txtEmbalagem";
+            this.txtEmbalagem.Size = new System.Drawing.Size(123, 20);
+            this.txtEmbalagem.TabIndex = 24;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(506, 9);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(74, 13);
+            this.label15.TabIndex = 7;
+            this.label15.Text = "ID Vendedor *";
+            // 
+            // txtCreditoLoja
+            // 
+            this.txtCreditoLoja.Location = new System.Drawing.Point(645, 25);
+            this.txtCreditoLoja.Name = "txtCreditoLoja";
+            this.txtCreditoLoja.Size = new System.Drawing.Size(63, 20);
+            this.txtCreditoLoja.TabIndex = 10;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(642, 9);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(66, 13);
+            this.label16.TabIndex = 9;
+            this.label16.Text = "Crédito loja *";
+            // 
+            // txtNomeVendedor
+            // 
+            this.txtNomeVendedor.Location = new System.Drawing.Point(578, 86);
+            this.txtNomeVendedor.Name = "txtNomeVendedor";
+            this.txtNomeVendedor.Size = new System.Drawing.Size(256, 20);
+            this.txtNomeVendedor.TabIndex = 18;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(575, 70);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(99, 13);
+            this.label17.TabIndex = 17;
+            this.label17.Text = "Nome do Vendedor";
+            // 
+            // txtTamanho
+            // 
+            this.txtTamanho.Location = new System.Drawing.Point(773, 134);
+            this.txtTamanho.Name = "txtTamanho";
+            this.txtTamanho.Size = new System.Drawing.Size(123, 20);
+            this.txtTamanho.TabIndex = 26;
+            // 
+            // btnControleEstoque
+            // 
+            this.btnControleEstoque.Location = new System.Drawing.Point(279, 244);
+            this.btnControleEstoque.Name = "btnControleEstoque";
+            this.btnControleEstoque.Size = new System.Drawing.Size(125, 27);
+            this.btnControleEstoque.TabIndex = 32;
+            this.btnControleEstoque.Text = "Controle de Estoque";
+            this.btnControleEstoque.UseVisualStyleBackColor = true;
+            this.btnControleEstoque.Click += new System.EventHandler(this.btnControleEstoque_Click);
+            // 
+            // btnCadastroProdutos
+            // 
+            this.btnCadastroProdutos.Location = new System.Drawing.Point(421, 244);
+            this.btnCadastroProdutos.Name = "btnCadastroProdutos";
+            this.btnCadastroProdutos.Size = new System.Drawing.Size(125, 27);
+            this.btnCadastroProdutos.TabIndex = 33;
+            this.btnCadastroProdutos.Text = "Cadastro de Produtos";
+            this.btnCadastroProdutos.UseVisualStyleBackColor = true;
             // 
             // FormCadVendas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(932, 473);
+            this.ClientSize = new System.Drawing.Size(902, 510);
+            this.Controls.Add(this.btnCadastroProdutos);
+            this.Controls.Add(this.btnControleEstoque);
+            this.Controls.Add(this.txtTamanho);
+            this.Controls.Add(this.txtSabor);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtEmbalagem);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.txtCreditoLoja);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.txtNomeVendedor);
+            this.Controls.Add(this.label17);
             this.Controls.Add(this.txtPrecoTotal);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.btnBuscaCliente);
@@ -507,9 +621,6 @@ namespace Controle_Vendas.Visualizacao
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.btnNovo);
-            this.Controls.Add(this.txtCreditoLoja);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtNomeVendedor);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
@@ -530,11 +641,8 @@ namespace Controle_Vendas.Visualizacao
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtCodigoVenda;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtNomeVendedor;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtCreditoLoja;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnNovo;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnExcluir;
@@ -560,17 +668,31 @@ namespace Controle_Vendas.Visualizacao
         private System.Windows.Forms.Button btnBuscaCliente;
         private System.Windows.Forms.TextBox txtPrecoTotal;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtSabor;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtEmbalagem;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtCreditoLoja;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox txtNomeVendedor;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox txtTamanho;
+        private System.Windows.Forms.Button btnControleEstoque;
+        private System.Windows.Forms.Button btnCadastroProdutos;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoVenda;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoProduto;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeProduto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codigoVendedor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomeVendedor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn creditoLoja;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataHora;
+        private System.Windows.Forms.DataGridViewTextBoxColumn embalagem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tamanho;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sabor;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantidade;
         private System.Windows.Forms.DataGridViewTextBoxColumn preco;
         private System.Windows.Forms.DataGridViewTextBoxColumn precoTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn creditoLoja;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codigoVendedor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nomeVendedor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataHora;
     }
 }

@@ -9,8 +9,8 @@ namespace Controle_Vendas.Dominio
     public class ClienteCompraDominio
     {
         private int codigoCompra;
-        private int codigoVenda;
         private int codigoCliente;
+        private string nomeCliente;
         private int codigoProduto;
         private string nomeProduto;
         private int quantidade;
@@ -24,8 +24,8 @@ namespace Controle_Vendas.Dominio
         private string senha;
 
         public int CodigoCompra { get => codigoCompra; set => codigoCompra = value; }
-        public int CodigoVenda { get => codigoVenda; set => codigoVenda = value; }
         public int CodigoCliente { get => codigoCliente; set => codigoCliente = value; }
+        public string NomeCliente { get => nomeCliente; set => nomeCliente = value; }
         public int CodigoProduto { get => codigoProduto; set => codigoProduto = value; }
         public string NomeProduto { get => nomeProduto; set => nomeProduto = value; }
         public int Quantidade { get => quantidade; set => quantidade = value; }

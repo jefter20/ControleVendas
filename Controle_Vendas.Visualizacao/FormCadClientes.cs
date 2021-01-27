@@ -33,8 +33,8 @@ namespace Controle_Vendas.Visualizacao
 
                         List<ClienteDominio> lista = new List<ClienteDominio>();
                         lista = new ClienteNegocios().Buscar(objCliente);
-                        Grid.AutoGenerateColumns = false;
-                        Grid.DataSource = lista;
+                        GridClientes.AutoGenerateColumns = false;
+                        GridClientes.DataSource = lista;
                     }
                     catch (Exception ex)
                     {
@@ -153,8 +153,8 @@ namespace Controle_Vendas.Visualizacao
             {
                 List<ClienteDominio> lista = new List<ClienteDominio>();
                 lista = new ClienteNegocios().Lista();
-                Grid.AutoGenerateColumns = false;
-                Grid.DataSource = lista;
+                GridClientes.AutoGenerateColumns = false;
+                GridClientes.DataSource = lista;
             }
             catch (Exception ex)
             {
@@ -165,19 +165,19 @@ namespace Controle_Vendas.Visualizacao
 
         private void Grid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtCodigoCliente.Text = Grid.CurrentRow.Cells[0].Value.ToString();
-            txtNomeCliente.Text = Grid.CurrentRow.Cells[1].Value.ToString();
-            txtCPF.Text = Grid.CurrentRow.Cells[2].Value.ToString();
-            txtEndereco1.Text = Grid.CurrentRow.Cells[3].Value.ToString();
-            txtEndereco2.Text = Grid.CurrentRow.Cells[4].Value.ToString();
-            txtBairro.Text = Grid.CurrentRow.Cells[5].Value.ToString();
-            txtCidade.Text = Grid.CurrentRow.Cells[6].Value.ToString();
-            txtUF.Text = Grid.CurrentRow.Cells[7].Value.ToString();
-            txtCEP.Text = Grid.CurrentRow.Cells[8].Value.ToString();
-            txtDataNascimento.Text = Grid.CurrentRow.Cells[9].Value.ToString();
-            txtSexo.Text = Grid.CurrentRow.Cells[10].Value.ToString();
-            txtLimiteCredito.Text = Grid.CurrentRow.Cells[11].Value.ToString();
-            txtVolumeCompra.Text = Grid.CurrentRow.Cells[12].Value.ToString();
+            txtCodigoCliente.Text = GridClientes.CurrentRow.Cells[0].Value.ToString();
+            txtNomeCliente.Text = GridClientes.CurrentRow.Cells[1].Value.ToString();
+            txtCPF.Text = GridClientes.CurrentRow.Cells[2].Value.ToString();
+            txtEndereco1.Text = GridClientes.CurrentRow.Cells[3].Value.ToString();
+            txtEndereco2.Text = GridClientes.CurrentRow.Cells[4].Value.ToString();
+            txtBairro.Text = GridClientes.CurrentRow.Cells[5].Value.ToString();
+            txtCidade.Text = GridClientes.CurrentRow.Cells[6].Value.ToString();
+            txtUF.Text = GridClientes.CurrentRow.Cells[7].Value.ToString();
+            txtCEP.Text = GridClientes.CurrentRow.Cells[8].Value.ToString();
+            txtDataNascimento.Text = GridClientes.CurrentRow.Cells[9].Value.ToString();
+            txtSexo.Text = GridClientes.CurrentRow.Cells[10].Value.ToString();
+            txtLimiteCredito.Text = GridClientes.CurrentRow.Cells[11].Value.ToString();
+            txtVolumeCompra.Text = GridClientes.CurrentRow.Cells[12].Value.ToString();
 
             HabilitarCampos();
 

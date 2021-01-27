@@ -14,5 +14,10 @@ namespace Controle_Vendas.Negocios
         {
             return new ProdutoEstoqueDados().Lista();
         }
+
+        public List<ProdutoEstoqueDominio> Buscar(ProdutoEstoqueDominio objEstoque)
+        {
+            return new ProdutoEstoqueDados().Buscar(objEstoque);
+        }
     }
 }

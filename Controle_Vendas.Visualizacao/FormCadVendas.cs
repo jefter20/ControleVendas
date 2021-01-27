@@ -191,6 +191,14 @@ namespace Controle_Vendas.Visualizacao
                 return;
             }
 
+            /*
+            if (Convert.ToBoolean(txtBuscaCliente.MaxLength) == Convert.ToBoolean(11))
+            {
+                MessageBox.Show("isso é um teste!");
+                return;
+            }
+            */
+
             if (txtCreditoLoja.Text == Convert.ToString(1))
             {
                 if (ClientePrimeiraCompra == Convert.ToDouble(1))
@@ -486,6 +494,7 @@ namespace Controle_Vendas.Visualizacao
                     try
                     {
                         objCompra.CodigoCliente = Convert.ToInt32(txtCodigoCliente.Text);
+                        objCompra.NomeCliente = Convert.ToString(txtNomeCliente.Text);
                         objCompra.CodigoProduto = Convert.ToInt32(txtCodigoProduto.Text);
                         objCompra.NomeProduto = Convert.ToString(txtNomeProduto.Text);
                         objCompra.Quantidade = Convert.ToInt32(txtQuantidade.Text);
@@ -586,21 +595,22 @@ namespace Controle_Vendas.Visualizacao
             ListarGrid();
             LimparCampos();
 
+            txtPesquisar.Focus();
             btnNovo.Enabled = true;
             btnSalvar.Enabled = false;
             btnEditar.Enabled = true;
             btnExcluir.Enabled = true;
-            txtCodigoVenda.Enabled = false;
+            /*txtCodigoVenda.Enabled = false;
             txtEmbalagem.Enabled = false;
             txtCodigoCliente.Enabled = false;
             txtNomeCliente.Enabled = false;
             txtNomeProduto.Enabled = false;
             txtTamanho.Enabled = false;
-            txtNomeVendedor.Enabled = false;
+            /txtNomeVendedor.Enabled = false;
             txtSabor.Enabled = false;
             txtPreco.Enabled = false;
-            txtPrecoTotal.Enabled = false;
-            txtPesquisar.Focus();
+            txtPrecoTotal.Enabled = false;*/
+            
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
@@ -620,7 +630,7 @@ namespace Controle_Vendas.Visualizacao
             ValidaVenda();
 
             btnNovo.Enabled = true;
-            btnSalvar.Enabled = false;
+            btnSalvar.Enabled = true;
             btnEditar.Enabled = true;
             btnExcluir.Enabled = false;
             txtPesquisar.Focus();
@@ -686,11 +696,6 @@ namespace Controle_Vendas.Visualizacao
             MessageBox.Show("Por favor, para buscar os dados do Cliente, insira o CPF!");
         }
 
-        private void txtQuantidade_Leave(object sender, EventArgs e)
-        {
-            CaulculaPrecoTotal();
-        }
-
         private void txtPreco_TextChanged(object sender, EventArgs e)
         {
             CaulculaPrecoTotal();
@@ -739,6 +744,65 @@ namespace Controle_Vendas.Visualizacao
             FormCadClientes form = new FormCadClientes();
             this.Hide();
             form.Show();
+        }
+
+        private void txtCreditoLoja_Leave(object sender, EventArgs e)
+        {
+            if (Convert.ToDouble(txtCreditoLoja.Text) != Convert.ToDouble(0) & Convert.ToDouble(txtCreditoLoja.Text) != Convert.ToDouble(1))
+            {
+                MessageBox.Show("Por favor, insira ( 1 ) para SIM e ( 0 ) para NÃO!");
+            }
+        }
+
+        private void txtCreditoLoja_Enter(object sender, EventArgs e)
+        {
+            MessageBox.Show("Por favor, insira ( 1 ) para SIM, 'compra no Crédito da Loja' ou ( 0 ) para NÃO!");
+
+        }
+
+        private void txtBuscaCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtCodigoProduto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtCodigoVendedor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtCreditoLoja_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtQuantidade_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtQuantidade_TextChanged(object sender, EventArgs e)
+        {
+            CaulculaPrecoTotal();
         }
     }
 }

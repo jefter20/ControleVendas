@@ -13,15 +13,15 @@ namespace Controle_Vendas.Dominio
         private string embalagem;
         private string tamanho;
         private string sabor;
-        private double quantidadeEstoque;
-        private double precoDeLista;
+        private int quantidadeEstoque;
+        private decimal precoDeLista;
 
         public int CodigoProduto { get => codigoProduto; set => codigoProduto = value; }
         public string NomeProduto { get => nomeProduto; set => nomeProduto = value; }
         public string Embalagem { get => embalagem; set => embalagem = value; }
         public string Tamanho { get => tamanho; set => tamanho = value; }
         public string Sabor { get => sabor; set => sabor = value; }
-        public double QuantidadeEstoque { get => quantidadeEstoque; set => quantidadeEstoque = value; }
-        public double PrecoDeLista { get => precoDeLista; set => precoDeLista = value; }
+        public int QuantidadeEstoque { get => quantidadeEstoque; set => quantidadeEstoque = value; }
+        public decimal PrecoDeLista { get => precoDeLista; set => precoDeLista = value; }
     }
 }

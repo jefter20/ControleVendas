@@ -16,7 +16,7 @@ namespace Controle_Vendas.Visualizacao
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormCadVendas());
+            Application.Run(new FormCadProdutoEstoque());
         }
     }
 }

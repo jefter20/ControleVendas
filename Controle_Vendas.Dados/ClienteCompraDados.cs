@@ -21,7 +21,7 @@ namespace Controle_Vendas.Dados
 
                 con.Open();
 
-                comando.CommandText = "SELECT CODIGO_COMPRA, CODIGO_CLIENTE, CODIGO_PRODUTO, NOME_PRODUTO, QUANTIDADE, LIMITE_CREDITO, PRECO, PRECO_TOTAL, DATA_HORA FROM TABELA_CLIENTE_COMPRAS ORDER BY CODIGO_COMPRA";
+                comando.CommandText = "SELECT CODIGO_COMPRA, CODIGO_CLIENTE, NOME_CLIENTE, CODIGO_PRODUTO, NOME_PRODUTO, QUANTIDADE, LIMITE_CREDITO, PRECO, PRECO_TOTAL, DATA_HORA FROM TABELA_CLIENTE_COMPRAS ORDER BY CODIGO_COMPRA";
 
                 comando.Connection = con;
 
@@ -38,6 +38,7 @@ namespace Controle_Vendas.Dados
 
                         dado.CodigoCompra = Convert.ToInt32(dr["CODIGO_COMPRA"]);
                         dado.CodigoCliente = Convert.ToInt32(dr["CODIGO_CLIENTE"]);
+                        dado.NomeCliente = Convert.ToString(dr["NOME_CLIENTE"]);
                         dado.CodigoProduto = Convert.ToInt32(dr["CODIGO_PRODUTO"]);
                         dado.NomeProduto = Convert.ToString(dr["NOME_PRODUTO"]);
                         dado.Quantidade = Convert.ToInt32(dr["QUANTIDADE"]);
@@ -46,6 +47,51 @@ namespace Controle_Vendas.Dados
                         dado.PrecoTotal = Convert.ToDouble(dr["PRECO_TOTAL"]);
                         dado.DataHora = Convert.ToDateTime(dr["DATA_HORA"]);
 
+                        lista.Add(dado);
+                    }
+                }
+                return lista;
+            }
+        }
+
+        public List<ClienteCompraDominio> Buscar(ClienteCompraDominio objCompra)
+        {
+            using (SqlConnection con = new SqlConnection())
+            {
+                con.ConnectionString = Properties.Settings.Default.banco;
+                SqlCommand comando = new SqlCommand();
+                comando.CommandType = CommandType.Text;
+
+                con.Open();
+
+                comando.CommandText = "SELECT [CODIGO_COMPRA], [CODIGO_CLIENTE], [NOME_CLIENTE], [CODIGO_PRODUTO], [NOME_PRODUTO], [QUANTIDADE], [CREDITO_LOJA], [PRECO], [PRECO_TOTAL], [DATA_HORA] FROM TABELA_CLIENTE_COMPRAS WHERE NOME_CLIENTE LIKE @NOME_CLIENTE";
+
+                comando.Parameters.Add("NOME_CLIENTE", SqlDbType.VarChar).Value = objCompra.NomeCliente + "%";
+
+                comando.Connection = con;
+
+                SqlDataReader dr;
+                List<ClienteCompraDominio> lista = new List<ClienteCompraDominio>();
+
+                dr = comando.ExecuteReader();
+
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        ClienteCompraDominio dado = new ClienteCompraDominio();
+
+                        dado.CodigoCompra = Convert.ToInt32(dr["CODIGO_COMPRA"]);
+                        dado.CodigoCliente = Convert.ToInt32(dr["CODIGO_CLIENTE"]);
+                        dado.NomeCliente = Convert.ToString(dr["NOME_CLIENTE"]);
+                        dado.CodigoProduto = Convert.ToInt32(dr["CODIGO_PRODUTO"]);
+                        dado.NomeProduto = Convert.ToString(dr["NOME_PRODUTO"]);
+                        dado.Quantidade = Convert.ToInt32(dr["QUANTIDADE"]);
+                        dado.CreditoLoja = Convert.ToDouble(dr["CREDITO_LOJA"]);
+                        dado.Preco = Convert.ToDouble(dr["PRECO"]);
+                        dado.PrecoTotal = Convert.ToDouble(dr["PRECO_TOTAL"]);
+                        dado.DataHora = Convert.ToDateTime(dr["DATA_HORA"]);
+                        
                         lista.Add(dado);
                     }
                 }

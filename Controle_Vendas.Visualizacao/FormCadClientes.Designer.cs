@@ -30,27 +30,15 @@ namespace Controle_Vendas.Visualizacao
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnNovo = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.txtPesquisar = new System.Windows.Forms.TextBox();
-            this.Grid = new System.Windows.Forms.DataGridView();
-            this.CODIGO_CLIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CPF = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ENDERECO_1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ENDERECO_2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BAIRRO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CIDADE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UF = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CEP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DATA_NASCIMENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SEXO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LIMITE_CREDITO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VOLUME_COMPRA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PRIMEIRA_COMPRA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GridClientes = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
             this.txtUF = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -78,7 +66,20 @@ namespace Controle_Vendas.Visualizacao
             this.label15 = new System.Windows.Forms.Label();
             this.txtLimiteCredito = new System.Windows.Forms.TextBox();
             this.btnCadastroVendas = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
+            this.CODIGO_CLIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CPF = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ENDERECO_1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ENDERECO_2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BAIRRO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CIDADE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UF = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CEP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DATA_NASCIMENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SEXO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LIMITE_CREDITO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VOLUME_COMPRA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.GridClientes)).BeginInit();
             this.SuspendLayout();
             // 
             // btnExcluir
@@ -138,12 +139,20 @@ namespace Controle_Vendas.Visualizacao
             this.txtPesquisar.TabIndex = 41;
             this.txtPesquisar.TextChanged += new System.EventHandler(this.txtPesquisar_TextChanged);
             // 
-            // Grid
+            // GridClientes
             // 
-            this.Grid.AllowUserToAddRows = false;
-            this.Grid.AllowUserToDeleteRows = false;
-            this.Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.GridClientes.AllowUserToAddRows = false;
+            this.GridClientes.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.GridClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CODIGO_CLIENTE,
             this.Nome,
             this.CPF,
@@ -156,129 +165,31 @@ namespace Controle_Vendas.Visualizacao
             this.DATA_NASCIMENTO,
             this.SEXO,
             this.LIMITE_CREDITO,
-            this.VOLUME_COMPRA,
-            this.PRIMEIRA_COMPRA});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Grid.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Grid.Location = new System.Drawing.Point(143, 292);
-            this.Grid.Name = "Grid";
-            this.Grid.ReadOnly = true;
-            this.Grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Grid.Size = new System.Drawing.Size(687, 188);
-            this.Grid.TabIndex = 40;
-            this.Grid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grid_CellDoubleClick);
-            // 
-            // CODIGO_CLIENTE
-            // 
-            this.CODIGO_CLIENTE.DataPropertyName = "CodigoCliente";
-            this.CODIGO_CLIENTE.HeaderText = "Código";
-            this.CODIGO_CLIENTE.Name = "CODIGO_CLIENTE";
-            this.CODIGO_CLIENTE.ReadOnly = true;
-            this.CODIGO_CLIENTE.Width = 70;
-            // 
-            // Nome
-            // 
-            this.Nome.DataPropertyName = "Nome";
-            this.Nome.HeaderText = "Nome";
-            this.Nome.Name = "Nome";
-            this.Nome.ReadOnly = true;
-            this.Nome.Width = 200;
-            // 
-            // CPF
-            // 
-            this.CPF.DataPropertyName = "Cpf";
-            this.CPF.HeaderText = "CPF";
-            this.CPF.Name = "CPF";
-            this.CPF.ReadOnly = true;
-            // 
-            // ENDERECO_1
-            // 
-            this.ENDERECO_1.DataPropertyName = "Endereco1";
-            this.ENDERECO_1.HeaderText = "Endereço 1";
-            this.ENDERECO_1.Name = "ENDERECO_1";
-            this.ENDERECO_1.ReadOnly = true;
-            this.ENDERECO_1.Width = 200;
-            // 
-            // ENDERECO_2
-            // 
-            this.ENDERECO_2.DataPropertyName = "Endereco2";
-            this.ENDERECO_2.HeaderText = "Endereço 2";
-            this.ENDERECO_2.Name = "ENDERECO_2";
-            this.ENDERECO_2.ReadOnly = true;
-            // 
-            // BAIRRO
-            // 
-            this.BAIRRO.DataPropertyName = "Bairro";
-            this.BAIRRO.HeaderText = "Bairro";
-            this.BAIRRO.Name = "BAIRRO";
-            this.BAIRRO.ReadOnly = true;
-            // 
-            // CIDADE
-            // 
-            this.CIDADE.DataPropertyName = "Cidade";
-            this.CIDADE.HeaderText = "Cidade";
-            this.CIDADE.Name = "CIDADE";
-            this.CIDADE.ReadOnly = true;
-            // 
-            // UF
-            // 
-            this.UF.DataPropertyName = "Uf";
-            this.UF.HeaderText = "UF";
-            this.UF.Name = "UF";
-            this.UF.ReadOnly = true;
-            this.UF.Width = 30;
-            // 
-            // CEP
-            // 
-            this.CEP.DataPropertyName = "Cep";
-            this.CEP.HeaderText = "CEP";
-            this.CEP.Name = "CEP";
-            this.CEP.ReadOnly = true;
-            // 
-            // DATA_NASCIMENTO
-            // 
-            this.DATA_NASCIMENTO.DataPropertyName = "DataNascimento";
-            this.DATA_NASCIMENTO.HeaderText = "Nascimento";
-            this.DATA_NASCIMENTO.Name = "DATA_NASCIMENTO";
-            this.DATA_NASCIMENTO.ReadOnly = true;
-            // 
-            // SEXO
-            // 
-            this.SEXO.DataPropertyName = "Sexo";
-            this.SEXO.HeaderText = "Sexo";
-            this.SEXO.Name = "SEXO";
-            this.SEXO.ReadOnly = true;
-            this.SEXO.Width = 40;
-            // 
-            // LIMITE_CREDITO
-            // 
-            this.LIMITE_CREDITO.DataPropertyName = "LimiteCredito";
-            this.LIMITE_CREDITO.HeaderText = "Limite Crédito";
-            this.LIMITE_CREDITO.Name = "LIMITE_CREDITO";
-            this.LIMITE_CREDITO.ReadOnly = true;
-            this.LIMITE_CREDITO.Width = 60;
-            // 
-            // VOLUME_COMPRA
-            // 
-            this.VOLUME_COMPRA.DataPropertyName = "VolumeCompra";
-            this.VOLUME_COMPRA.HeaderText = "Volume Compra";
-            this.VOLUME_COMPRA.Name = "VOLUME_COMPRA";
-            this.VOLUME_COMPRA.ReadOnly = true;
-            this.VOLUME_COMPRA.Width = 60;
-            // 
-            // PRIMEIRA_COMPRA
-            // 
-            this.PRIMEIRA_COMPRA.DataPropertyName = "PrimeiraCompra";
-            this.PRIMEIRA_COMPRA.HeaderText = "Primeira Compra";
-            this.PRIMEIRA_COMPRA.Name = "PRIMEIRA_COMPRA";
-            this.PRIMEIRA_COMPRA.ReadOnly = true;
-            this.PRIMEIRA_COMPRA.Width = 60;
+            this.VOLUME_COMPRA});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridClientes.DefaultCellStyle = dataGridViewCellStyle2;
+            this.GridClientes.Location = new System.Drawing.Point(143, 292);
+            this.GridClientes.Name = "GridClientes";
+            this.GridClientes.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridClientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.GridClientes.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.GridClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.GridClientes.Size = new System.Drawing.Size(687, 188);
+            this.GridClientes.TabIndex = 40;
+            this.GridClientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grid_CellDoubleClick);
             // 
             // label8
             // 
@@ -498,6 +409,109 @@ namespace Controle_Vendas.Visualizacao
             this.btnCadastroVendas.UseVisualStyleBackColor = true;
             this.btnCadastroVendas.Click += new System.EventHandler(this.btnCadastroVendas_Click);
             // 
+            // CODIGO_CLIENTE
+            // 
+            this.CODIGO_CLIENTE.DataPropertyName = "CodigoCliente";
+            this.CODIGO_CLIENTE.HeaderText = "Código";
+            this.CODIGO_CLIENTE.Name = "CODIGO_CLIENTE";
+            this.CODIGO_CLIENTE.ReadOnly = true;
+            this.CODIGO_CLIENTE.Width = 70;
+            // 
+            // Nome
+            // 
+            this.Nome.DataPropertyName = "Nome";
+            this.Nome.HeaderText = "Nome";
+            this.Nome.Name = "Nome";
+            this.Nome.ReadOnly = true;
+            this.Nome.Width = 200;
+            // 
+            // CPF
+            // 
+            this.CPF.DataPropertyName = "Cpf";
+            this.CPF.HeaderText = "CPF";
+            this.CPF.Name = "CPF";
+            this.CPF.ReadOnly = true;
+            // 
+            // ENDERECO_1
+            // 
+            this.ENDERECO_1.DataPropertyName = "Endereco1";
+            this.ENDERECO_1.HeaderText = "Endereço 1";
+            this.ENDERECO_1.Name = "ENDERECO_1";
+            this.ENDERECO_1.ReadOnly = true;
+            this.ENDERECO_1.Width = 200;
+            // 
+            // ENDERECO_2
+            // 
+            this.ENDERECO_2.DataPropertyName = "Endereco2";
+            this.ENDERECO_2.HeaderText = "Endereço 2";
+            this.ENDERECO_2.Name = "ENDERECO_2";
+            this.ENDERECO_2.ReadOnly = true;
+            this.ENDERECO_2.Width = 120;
+            // 
+            // BAIRRO
+            // 
+            this.BAIRRO.DataPropertyName = "Bairro";
+            this.BAIRRO.HeaderText = "Bairro";
+            this.BAIRRO.Name = "BAIRRO";
+            this.BAIRRO.ReadOnly = true;
+            this.BAIRRO.Width = 180;
+            // 
+            // CIDADE
+            // 
+            this.CIDADE.DataPropertyName = "Cidade";
+            this.CIDADE.HeaderText = "Cidade";
+            this.CIDADE.Name = "CIDADE";
+            this.CIDADE.ReadOnly = true;
+            this.CIDADE.Width = 180;
+            // 
+            // UF
+            // 
+            this.UF.DataPropertyName = "Uf";
+            this.UF.HeaderText = "UF";
+            this.UF.Name = "UF";
+            this.UF.ReadOnly = true;
+            this.UF.Width = 40;
+            // 
+            // CEP
+            // 
+            this.CEP.DataPropertyName = "Cep";
+            this.CEP.HeaderText = "CEP";
+            this.CEP.Name = "CEP";
+            this.CEP.ReadOnly = true;
+            this.CEP.Width = 80;
+            // 
+            // DATA_NASCIMENTO
+            // 
+            this.DATA_NASCIMENTO.DataPropertyName = "DataNascimento";
+            this.DATA_NASCIMENTO.HeaderText = "Nascimento";
+            this.DATA_NASCIMENTO.Name = "DATA_NASCIMENTO";
+            this.DATA_NASCIMENTO.ReadOnly = true;
+            this.DATA_NASCIMENTO.Width = 80;
+            // 
+            // SEXO
+            // 
+            this.SEXO.DataPropertyName = "Sexo";
+            this.SEXO.HeaderText = "Sexo";
+            this.SEXO.Name = "SEXO";
+            this.SEXO.ReadOnly = true;
+            this.SEXO.Width = 40;
+            // 
+            // LIMITE_CREDITO
+            // 
+            this.LIMITE_CREDITO.DataPropertyName = "LimiteCredito";
+            this.LIMITE_CREDITO.HeaderText = "Limite Crédito";
+            this.LIMITE_CREDITO.Name = "LIMITE_CREDITO";
+            this.LIMITE_CREDITO.ReadOnly = true;
+            this.LIMITE_CREDITO.Width = 120;
+            // 
+            // VOLUME_COMPRA
+            // 
+            this.VOLUME_COMPRA.DataPropertyName = "VolumeCompra";
+            this.VOLUME_COMPRA.HeaderText = "Volume Compra";
+            this.VOLUME_COMPRA.Name = "VOLUME_COMPRA";
+            this.VOLUME_COMPRA.ReadOnly = true;
+            this.VOLUME_COMPRA.Width = 120;
+            // 
             // FormCadClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -520,7 +534,7 @@ namespace Controle_Vendas.Visualizacao
             this.Controls.Add(this.btnNovo);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtPesquisar);
-            this.Controls.Add(this.Grid);
+            this.Controls.Add(this.GridClientes);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtUF);
             this.Controls.Add(this.label6);
@@ -541,7 +555,7 @@ namespace Controle_Vendas.Visualizacao
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Clientes";
             this.Load += new System.EventHandler(this.FormCadClientes_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.Grid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridClientes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -555,7 +569,7 @@ namespace Controle_Vendas.Visualizacao
         private System.Windows.Forms.Button btnNovo;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtPesquisar;
-        private System.Windows.Forms.DataGridView Grid;
+        private System.Windows.Forms.DataGridView GridClientes;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtUF;
         private System.Windows.Forms.Label label6;
@@ -582,6 +596,7 @@ namespace Controle_Vendas.Visualizacao
         private System.Windows.Forms.TextBox txtVolumeCompra;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtLimiteCredito;
+        private System.Windows.Forms.Button btnCadastroVendas;
         private System.Windows.Forms.DataGridViewTextBoxColumn CODIGO_CLIENTE;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn CPF;
@@ -595,8 +610,6 @@ namespace Controle_Vendas.Visualizacao
         private System.Windows.Forms.DataGridViewTextBoxColumn SEXO;
         private System.Windows.Forms.DataGridViewTextBoxColumn LIMITE_CREDITO;
         private System.Windows.Forms.DataGridViewTextBoxColumn VOLUME_COMPRA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PRIMEIRA_COMPRA;
-        private System.Windows.Forms.Button btnCadastroVendas;
     }
 }
 

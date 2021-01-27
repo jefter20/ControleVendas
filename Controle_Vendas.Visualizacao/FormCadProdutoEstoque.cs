@@ -15,10 +15,14 @@ namespace Controle_Vendas.Visualizacao
 {
     public partial class FormCadProdutoEstoque : Form
     {
+        ProdutoEstoqueDominio objEstoque = new ProdutoEstoqueDominio();
+
         public FormCadProdutoEstoque()
         {
             InitializeComponent();
         }
+
+        private string opcoes = "";
 
         public void ListarGrid()
         {
@@ -32,7 +36,29 @@ namespace Controle_Vendas.Visualizacao
             catch (Exception ex)
             {
 
-                MessageBox.Show("Erro ao listar Dados da compra" + ex.Message);
+                MessageBox.Show("Erro ao listar Dados " + ex.Message);
+            }
+        }
+
+        private void IniciarOpcoes()
+        {
+            switch (opcoes)
+            {
+                case "Pesquisar":
+                    try
+                    {
+                        objEstoque.NomeProduto = txtPesquisar.Text;
+
+                        List<ProdutoEstoqueDominio> lista = new List<ProdutoEstoqueDominio>();
+                        lista = new ProdutoEstoqueNegocios().Buscar(objEstoque);
+                        GridProdutoEstoque.AutoGenerateColumns = false;
+                        GridProdutoEstoque.DataSource = lista;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao pesquisar Dados " + ex.Message);
+                    }
+                    break;
             }
         }
 
@@ -46,6 +72,12 @@ namespace Controle_Vendas.Visualizacao
             FormCadVendas form = new FormCadVendas();
             this.Hide();
             form.Show();
+        }
+
+        private void txtPesquisar_TextChanged(object sender, EventArgs e)
+        {
+            opcoes = "Pesquisar";
+            IniciarOpcoes();
         }
     }
 }

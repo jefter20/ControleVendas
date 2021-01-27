@@ -30,7 +30,6 @@ namespace Controle_Vendas.Visualizacao
         private void InitializeComponent()
         {
             this.GridProdutoEstoque = new System.Windows.Forms.DataGridView();
-            this.btnCadastroVendas = new System.Windows.Forms.Button();
             this.codigoEstoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codigoProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,6 +37,9 @@ namespace Controle_Vendas.Visualizacao
             this.tamanho = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sabor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantidadeEstoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnCadastroVendas = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtPesquisar = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.GridProdutoEstoque)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,21 +60,11 @@ namespace Controle_Vendas.Visualizacao
             this.tamanho,
             this.sabor,
             this.quantidadeEstoque});
-            this.GridProdutoEstoque.Location = new System.Drawing.Point(14, 63);
+            this.GridProdutoEstoque.Location = new System.Drawing.Point(14, 81);
             this.GridProdutoEstoque.Name = "GridProdutoEstoque";
             this.GridProdutoEstoque.ReadOnly = true;
-            this.GridProdutoEstoque.Size = new System.Drawing.Size(1071, 240);
+            this.GridProdutoEstoque.Size = new System.Drawing.Size(1071, 222);
             this.GridProdutoEstoque.TabIndex = 1;
-            // 
-            // btnCadastroVendas
-            // 
-            this.btnCadastroVendas.Location = new System.Drawing.Point(14, 29);
-            this.btnCadastroVendas.Name = "btnCadastroVendas";
-            this.btnCadastroVendas.Size = new System.Drawing.Size(124, 28);
-            this.btnCadastroVendas.TabIndex = 61;
-            this.btnCadastroVendas.Text = "Cadastro de Vendas";
-            this.btnCadastroVendas.UseVisualStyleBackColor = true;
-            this.btnCadastroVendas.Click += new System.EventHandler(this.btnCadastroVendas_Click);
             // 
             // codigoEstoque
             // 
@@ -124,18 +116,49 @@ namespace Controle_Vendas.Visualizacao
             this.quantidadeEstoque.Name = "quantidadeEstoque";
             this.quantidadeEstoque.ReadOnly = true;
             // 
+            // btnCadastroVendas
+            // 
+            this.btnCadastroVendas.Location = new System.Drawing.Point(14, 47);
+            this.btnCadastroVendas.Name = "btnCadastroVendas";
+            this.btnCadastroVendas.Size = new System.Drawing.Size(124, 28);
+            this.btnCadastroVendas.TabIndex = 61;
+            this.btnCadastroVendas.Text = "Cadastro de Vendas";
+            this.btnCadastroVendas.UseVisualStyleBackColor = true;
+            this.btnCadastroVendas.Click += new System.EventHandler(this.btnCadastroVendas_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(910, 62);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(53, 13);
+            this.label9.TabIndex = 63;
+            this.label9.Text = "Pesquisar";
+            // 
+            // txtPesquisar
+            // 
+            this.txtPesquisar.Location = new System.Drawing.Point(969, 55);
+            this.txtPesquisar.Name = "txtPesquisar";
+            this.txtPesquisar.Size = new System.Drawing.Size(116, 20);
+            this.txtPesquisar.TabIndex = 62;
+            this.txtPesquisar.TextChanged += new System.EventHandler(this.txtPesquisar_TextChanged);
+            // 
             // FormCadProdutoEstoque
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1097, 315);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.txtPesquisar);
             this.Controls.Add(this.btnCadastroVendas);
             this.Controls.Add(this.GridProdutoEstoque);
             this.Name = "FormCadProdutoEstoque";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Controle de Estoque";
             this.Load += new System.EventHandler(this.FormCadProdutoEstoque_Load);
             ((System.ComponentModel.ISupportInitialize)(this.GridProdutoEstoque)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -150,5 +173,7 @@ namespace Controle_Vendas.Visualizacao
         private System.Windows.Forms.DataGridViewTextBoxColumn tamanho;
         private System.Windows.Forms.DataGridViewTextBoxColumn sabor;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantidadeEstoque;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtPesquisar;
     }
 }

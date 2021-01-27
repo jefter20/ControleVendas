@@ -107,9 +107,10 @@ namespace Controle_Vendas.Dados
 
                 con.Open();
 
-                comando.CommandText = "INSERT INTO TABELA_CLIENTE_COMPRAS ([CODIGO_CLIENTE], [CODIGO_PRODUTO], [NOME_PRODUTO], [QUANTIDADE], [CREDITO_LOJA], [LIMITE_CREDITO], [PRECO], [PRECO_TOTAL], [DATA_HORA], [CLIENTE_PRIMEIRA_COMPRA]) VALUES (@CODIGO_CLIENTE, @CODIGO_PRODUTO, @NOME_PRODUTO, @QUANTIDADE, @CREDITO_LOJA, @LIMITE_CREDITO, @PRECO, @PRECO_TOTAL, @DATA_HORA, @CLIENTE_PRIMEIRA_COMPRA)";
+                comando.CommandText = "INSERT INTO TABELA_CLIENTE_COMPRAS ([CODIGO_CLIENTE], [NOME_CLIENTE], [CODIGO_PRODUTO], [NOME_PRODUTO], [QUANTIDADE], [CREDITO_LOJA], [LIMITE_CREDITO], [PRECO], [PRECO_TOTAL], [DATA_HORA], [CLIENTE_PRIMEIRA_COMPRA]) VALUES (@CODIGO_CLIENTE, @NOME_CLIENTE, @CODIGO_PRODUTO, @NOME_PRODUTO, @QUANTIDADE, @CREDITO_LOJA, @LIMITE_CREDITO, @PRECO, @PRECO_TOTAL, @DATA_HORA, @CLIENTE_PRIMEIRA_COMPRA)";
 
                 comando.Parameters.Add("CODIGO_CLIENTE", SqlDbType.Int).Value = objCompra.CodigoCliente;
+                comando.Parameters.Add("NOME_CLIENTE", SqlDbType.VarChar).Value = objCompra.NomeCliente;
                 comando.Parameters.Add("CODIGO_PRODUTO", SqlDbType.Int).Value = objCompra.CodigoProduto;
                 comando.Parameters.Add("NOME_PRODUTO", SqlDbType.VarChar).Value = objCompra.NomeProduto;
                 comando.Parameters.Add("QUANTIDADE", SqlDbType.Int).Value = objCompra.Quantidade;
@@ -224,11 +225,11 @@ namespace Controle_Vendas.Dados
                         ProdutoDominio dado = new ProdutoDominio();
 
                         dado.NomeProduto = Convert.ToString(dr["NOME_PRODUTO"]);
-                        dado.PrecoDeLista = Convert.ToDouble(dr["PRECO_DE_LISTA"]);
+                        dado.PrecoDeLista = Convert.ToDecimal(dr["PRECO_DE_LISTA"]);
                         dado.Embalagem = Convert.ToString(dr["EMBALAGEM"]);
                         dado.Tamanho = Convert.ToString(dr["TAMANHO"]);
                         dado.Sabor = Convert.ToString(dr["SABOR"]);
-                        dado.QuantidadeEstoque = Convert.ToDouble(dr["QUANTIDADE_EM_ESTOQUE"]);
+                        dado.QuantidadeEstoque = Convert.ToInt32(dr["QUANTIDADE_EM_ESTOQUE"]);
                         dado.CodigoProduto = Convert.ToInt32(dr["CODIGO_PRODUTO"]);
 
                         lista.Add(dado);
@@ -392,7 +393,7 @@ namespace Controle_Vendas.Dados
                 int qtd = comando.ExecuteNonQuery();
                 Console.Write(qtd);
                 return qtd;
-            };
+            }
         }
 
         public List<VendaDominio> Lista()

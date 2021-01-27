@@ -23,6 +23,8 @@ namespace Controle_Vendas.Visualizacao
         }
 
         private string opcoes = "";
+        private string teste = "";
+
 
         public void ListarGrid()
         {
@@ -30,6 +32,14 @@ namespace Controle_Vendas.Visualizacao
             {
                 List<ProdutoEstoqueDominio> lista = new List<ProdutoEstoqueDominio>();
                 lista = new ProdutoEstoqueNegocios().Lista();
+
+                foreach (var item in lista)
+                {
+                    teste = Convert.ToString(item);
+                }
+
+                teste.LastOrDefault();
+
                 GridProdutoEstoque.AutoGenerateColumns = false;
                 GridProdutoEstoque.DataSource = lista;
             }

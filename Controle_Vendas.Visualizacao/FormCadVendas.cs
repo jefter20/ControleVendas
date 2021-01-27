@@ -435,7 +435,7 @@ namespace Controle_Vendas.Visualizacao
                         {
                             MessageBox.Show(string.Format("Venda de {0} efetuada com sucesso!", txtNomeProduto.Text));
 
-                            opcoes = "AddProdutoEstoque";
+                            opcoes = "DeleteProdutoEstoque";
                             IniciarOpcoes();
 
                             opcoes = "AddClienteCompra";
@@ -525,6 +525,31 @@ namespace Controle_Vendas.Visualizacao
                     catch (Exception ex)
                     {
                         MessageBox.Show("Ocorreu um erro ao realizar compra " + ex);
+
+                    }
+                    break;
+
+                case "DeleteProdutoEstoque":
+                    try
+                    {
+                        objEstoque.CodigoProduto = Convert.ToInt32(txtCodigoProduto.Text);
+
+                        int x = VendaNegocios.DeleteProdutoEstoque(objEstoque);
+
+                        if (x > 0)
+                        {
+                            opcoes = "AddProdutoEstoque";
+                            IniciarOpcoes();
+                        }
+                        else
+                        {
+                            opcoes = "AddProdutoEstoque";
+                            IniciarOpcoes();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ocorreu um erro ao excluir " + ex.Message);
 
                     }
                     break;

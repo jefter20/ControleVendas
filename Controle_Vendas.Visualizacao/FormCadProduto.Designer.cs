@@ -32,6 +32,7 @@ namespace Controle_Vendas.Visualizacao
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnCadastroVendas = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
@@ -55,13 +56,13 @@ namespace Controle_Vendas.Visualizacao
             this.txtQuantidadeEstoque = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.btnControleEstoque = new System.Windows.Forms.Button();
-            this.precoDeLista = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantidadeEstoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tamanho = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.embalagem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sabor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomeProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codigoProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomeProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sabor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.embalagem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tamanho = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantidadeEstoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precoDeLista = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.GridProdutos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -175,6 +176,8 @@ namespace Controle_Vendas.Visualizacao
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.GridProdutos.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.GridProdutos.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.GridProdutos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridProdutos.Size = new System.Drawing.Size(745, 185);
             this.GridProdutos.TabIndex = 77;
@@ -308,61 +311,65 @@ namespace Controle_Vendas.Visualizacao
             this.btnControleEstoque.UseVisualStyleBackColor = true;
             this.btnControleEstoque.Click += new System.EventHandler(this.btnControleEstoque_Click);
             // 
-            // precoDeLista
+            // codigoProduto
             // 
-            this.precoDeLista.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.precoDeLista.DataPropertyName = "PrecoDeLista";
-            this.precoDeLista.HeaderText = "Preço";
-            this.precoDeLista.Name = "precoDeLista";
-            this.precoDeLista.ReadOnly = true;
+            this.codigoProduto.DataPropertyName = "CodigoProduto";
+            this.codigoProduto.FillWeight = 248.731F;
+            this.codigoProduto.HeaderText = "ID Produto";
+            this.codigoProduto.Name = "codigoProduto";
+            this.codigoProduto.ReadOnly = true;
+            this.codigoProduto.Width = 50;
             // 
-            // quantidadeEstoque
+            // nomeProduto
             // 
-            this.quantidadeEstoque.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.quantidadeEstoque.DataPropertyName = "QuantidadeEstoque";
-            this.quantidadeEstoque.HeaderText = "Quantidade em Estoque";
-            this.quantidadeEstoque.Name = "quantidadeEstoque";
-            this.quantidadeEstoque.ReadOnly = true;
+            this.nomeProduto.DataPropertyName = "NomeProduto";
+            this.nomeProduto.FillWeight = 75.21151F;
+            this.nomeProduto.HeaderText = "Nome";
+            this.nomeProduto.Name = "nomeProduto";
+            this.nomeProduto.ReadOnly = true;
+            this.nomeProduto.Width = 150;
             // 
-            // tamanho
+            // sabor
             // 
-            this.tamanho.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.tamanho.DataPropertyName = "Tamanho";
-            this.tamanho.HeaderText = "Tamanho";
-            this.tamanho.Name = "tamanho";
-            this.tamanho.ReadOnly = true;
+            this.sabor.DataPropertyName = "Sabor";
+            this.sabor.FillWeight = 75.21151F;
+            this.sabor.HeaderText = "Sabor";
+            this.sabor.Name = "sabor";
+            this.sabor.ReadOnly = true;
+            this.sabor.Width = 120;
             // 
             // embalagem
             // 
-            this.embalagem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.embalagem.DataPropertyName = "Embalagem";
+            this.embalagem.FillWeight = 75.21151F;
             this.embalagem.HeaderText = "Embalagem";
             this.embalagem.Name = "embalagem";
             this.embalagem.ReadOnly = true;
             // 
-            // sabor
+            // tamanho
             // 
-            this.sabor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.sabor.DataPropertyName = "Sabor";
-            this.sabor.HeaderText = "Sabor";
-            this.sabor.Name = "sabor";
-            this.sabor.ReadOnly = true;
+            this.tamanho.DataPropertyName = "Tamanho";
+            this.tamanho.FillWeight = 75.21151F;
+            this.tamanho.HeaderText = "Tamanho";
+            this.tamanho.Name = "tamanho";
+            this.tamanho.ReadOnly = true;
             // 
-            // nomeProduto
+            // quantidadeEstoque
             // 
-            this.nomeProduto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nomeProduto.DataPropertyName = "NomeProduto";
-            this.nomeProduto.HeaderText = "Nome";
-            this.nomeProduto.Name = "nomeProduto";
-            this.nomeProduto.ReadOnly = true;
+            this.quantidadeEstoque.DataPropertyName = "QuantidadeEstoque";
+            this.quantidadeEstoque.FillWeight = 75.21151F;
+            this.quantidadeEstoque.HeaderText = "Quantidade em Estoque";
+            this.quantidadeEstoque.Name = "quantidadeEstoque";
+            this.quantidadeEstoque.ReadOnly = true;
             // 
-            // codigoProduto
+            // precoDeLista
             // 
-            this.codigoProduto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.codigoProduto.DataPropertyName = "CodigoProduto";
-            this.codigoProduto.HeaderText = "ID Produto";
-            this.codigoProduto.Name = "codigoProduto";
-            this.codigoProduto.ReadOnly = true;
+            this.precoDeLista.DataPropertyName = "PrecoDeLista";
+            this.precoDeLista.FillWeight = 75.21151F;
+            this.precoDeLista.HeaderText = "Preço";
+            this.precoDeLista.Name = "precoDeLista";
+            this.precoDeLista.ReadOnly = true;
+            this.precoDeLista.Width = 80;
             // 
             // FormCadProduto
             // 

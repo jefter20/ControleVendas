@@ -59,6 +59,28 @@ namespace Controle_Vendas.Dados
             }
         }
 
+        public int DeleteProdutoEstoque(ProdutoEstoqueDominio objEstoque)
+        {
+            using (SqlConnection con = new SqlConnection())
+            {
+                con.ConnectionString = Properties.Settings.Default.banco;
+                SqlCommand comando = new SqlCommand();
+                comando.CommandType = CommandType.Text;
+
+                con.Open();
+
+                comando.CommandText = "DELETE FROM TABELA_PRODUTO_ESTOQUE WHERE CODIGO_PRODUTO = @CODIGO_PRODUTO";
+
+                comando.Parameters.Add("CODIGO_PRODUTO", SqlDbType.Int).Value = objEstoque.CodigoProduto;
+
+                comando.Connection = con;
+
+                int qtd = comando.ExecuteNonQuery();
+                Console.Write(qtd);
+                return qtd;
+            }
+        }
+
         public List<ProdutoEstoqueDominio> BuscaProdutoEstoque(ProdutoEstoqueDominio objEstoque)
         {
             using (SqlConnection con = new SqlConnection())

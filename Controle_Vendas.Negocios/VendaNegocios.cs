@@ -72,5 +72,10 @@ namespace Controle_Vendas.Negocios
         {
             return new VendaDados().AddProdutoEstoque(objEstoque);
         }
+
+        public static int DeleteProdutoEstoque(ProdutoEstoqueDominio objEstoque)
+        {
+            return new VendaDados().DeleteProdutoEstoque(objEstoque);
+        }
     }
 }

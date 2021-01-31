@@ -29,8 +29,8 @@ namespace Controle_Vendas.Visualizacao
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCodigoVenda = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -81,13 +81,13 @@ namespace Controle_Vendas.Visualizacao
             this.label6 = new System.Windows.Forms.Label();
             this.txtEmbalagem = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.txtCreditoLoja = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.txtNomeVendedor = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.txtTamanho = new System.Windows.Forms.TextBox();
             this.btnControleEstoque = new System.Windows.Forms.Button();
             this.btnListaProdutos = new System.Windows.Forms.Button();
+            this.cmbCreditoLoja = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.GridVendas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -319,14 +319,14 @@ namespace Controle_Vendas.Visualizacao
             this.GridVendas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridVendas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridVendas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.GridVendas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridVendas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigoVenda,
@@ -348,8 +348,8 @@ namespace Controle_Vendas.Visualizacao
             this.GridVendas.Location = new System.Drawing.Point(123, 282);
             this.GridVendas.Name = "GridVendas";
             this.GridVendas.ReadOnly = true;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.GridVendas.RowsDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.GridVendas.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.GridVendas.Size = new System.Drawing.Size(758, 220);
             this.GridVendas.TabIndex = 39;
             this.GridVendas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridVendas_CellDoubleClick);
@@ -557,17 +557,6 @@ namespace Controle_Vendas.Visualizacao
             this.label15.TabIndex = 7;
             this.label15.Text = "ID Vendedor *";
             // 
-            // txtCreditoLoja
-            // 
-            this.txtCreditoLoja.Location = new System.Drawing.Point(630, 30);
-            this.txtCreditoLoja.MaxLength = 1;
-            this.txtCreditoLoja.Name = "txtCreditoLoja";
-            this.txtCreditoLoja.Size = new System.Drawing.Size(63, 20);
-            this.txtCreditoLoja.TabIndex = 10;
-            this.txtCreditoLoja.Enter += new System.EventHandler(this.txtCreditoLoja_Enter);
-            this.txtCreditoLoja.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCreditoLoja_KeyPress);
-            this.txtCreditoLoja.Leave += new System.EventHandler(this.txtCreditoLoja_Leave);
-            // 
             // label16
             // 
             this.label16.AutoSize = true;
@@ -622,11 +611,26 @@ namespace Controle_Vendas.Visualizacao
             this.btnListaProdutos.UseVisualStyleBackColor = true;
             this.btnListaProdutos.Click += new System.EventHandler(this.btnListaProdutos_Click);
             // 
+            // cmbCreditoLoja
+            // 
+            this.cmbCreditoLoja.FormattingEnabled = true;
+            this.cmbCreditoLoja.Items.AddRange(new object[] {
+            "SIM",
+            "NAO"});
+            this.cmbCreditoLoja.Location = new System.Drawing.Point(630, 31);
+            this.cmbCreditoLoja.MaxDropDownItems = 2;
+            this.cmbCreditoLoja.Name = "cmbCreditoLoja";
+            this.cmbCreditoLoja.Size = new System.Drawing.Size(63, 21);
+            this.cmbCreditoLoja.TabIndex = 41;
+            this.cmbCreditoLoja.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbCreditoLoja_KeyPress);
+            this.cmbCreditoLoja.Leave += new System.EventHandler(this.cmbCreditoLoja_Leave);
+            // 
             // FormCadVendas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(902, 514);
+            this.Controls.Add(this.cmbCreditoLoja);
             this.Controls.Add(this.btnListaProdutos);
             this.Controls.Add(this.btnControleEstoque);
             this.Controls.Add(this.txtTamanho);
@@ -634,7 +638,6 @@ namespace Controle_Vendas.Visualizacao
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtEmbalagem);
             this.Controls.Add(this.label15);
-            this.Controls.Add(this.txtCreditoLoja);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.txtNomeVendedor);
             this.Controls.Add(this.label17);
@@ -712,7 +715,6 @@ namespace Controle_Vendas.Visualizacao
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtEmbalagem;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox txtCreditoLoja;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtNomeVendedor;
         private System.Windows.Forms.Label label17;
@@ -736,5 +738,6 @@ namespace Controle_Vendas.Visualizacao
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoVendedor;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeVendedor;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataHora;
+        protected internal System.Windows.Forms.ComboBox cmbCreditoLoja;
     }
 }

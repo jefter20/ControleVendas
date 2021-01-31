@@ -36,8 +36,9 @@ namespace Controle_Vendas.Visualizacao
         private int estoqueCodigoProduto = 0; 
         private double produtosEstoqueAtual = 0;
         private double produtosEstoqueInicial = 0;
-        private double ClientePrimeiraCompra = 0;
+        private double ClientePrimeiraCompra = 0; 
         private double ProdutoPrimeiraCompra = 0;
+        private double vendaCreditoLoja = 2;
 
         private void BuscaDadosClientes()
         {
@@ -190,13 +191,13 @@ namespace Controle_Vendas.Visualizacao
 
         private void ValidaVenda()
         {
-            if (txtCodigoCliente.Text == "" || txtCodigoProduto.Text == "" || txtCodigoVendedor.Text == "" || txtCreditoLoja.Text == "" || txtQuantidade.Text == "")
+            if (txtCodigoCliente.Text == "" || txtCodigoProduto.Text == "" || txtCodigoVendedor.Text == "" || cmbCreditoLoja.Text == "" || txtQuantidade.Text == "")
             {
                 MessageBox.Show("Por favor, verifique se todos os campos com (*) estão preenchidos corretamente!");
                 return;
             }
 
-            if (txtCreditoLoja.Text == Convert.ToString(1))
+            if (vendaCreditoLoja == Convert.ToDouble(1))
             {
                 if (ClientePrimeiraCompra == Convert.ToDouble(1))
                 {
@@ -237,7 +238,7 @@ namespace Controle_Vendas.Visualizacao
                 IniciarOpcoes();
             }
 
-            if (txtCreditoLoja.Text == Convert.ToString(0))
+            if (vendaCreditoLoja == Convert.ToDouble(0))
             {
                 if (ProdutoPrimeiraCompra == Convert.ToDouble(1))
                 {
@@ -288,6 +289,19 @@ namespace Controle_Vendas.Visualizacao
             }
         }
 
+        private void ValidaCreditoLoja()
+        {
+            if (Convert.ToString(cmbCreditoLoja.Text) == "SIM")
+            {
+                vendaCreditoLoja = 1;
+            }
+
+            if (Convert.ToString(cmbCreditoLoja.Text) == "NAO")
+            {
+                vendaCreditoLoja = 0;
+            }
+        }
+
         private void CaulculaPrecoTotal()
         {
             if (!string.IsNullOrEmpty(txtPreco.Text) && !string.IsNullOrEmpty(txtQuantidade.Text))
@@ -305,7 +319,7 @@ namespace Controle_Vendas.Visualizacao
         {
             txtCodigoProduto.Enabled = true;
             txtCodigoVendedor.Enabled = true;
-            txtCreditoLoja.Enabled = true;
+            cmbCreditoLoja.Enabled = true;
             txtBuscaCliente.Enabled = true;
             txtQuantidade.Enabled = true;
         }
@@ -314,7 +328,7 @@ namespace Controle_Vendas.Visualizacao
         {
             txtCodigoProduto.Enabled = false;
             txtCodigoVendedor.Enabled = false;
-            txtCreditoLoja.Enabled = false;
+            cmbCreditoLoja.Enabled = false;
             txtBuscaCliente.Enabled = false;
             txtQuantidade.Enabled = false;
         }
@@ -326,7 +340,7 @@ namespace Controle_Vendas.Visualizacao
             txtCodigoProduto.Text = "";
             txtEmbalagem.Text = "";
             txtCodigoVendedor.Text = "";
-            txtCreditoLoja.Text = "";
+            cmbCreditoLoja.Text = "";
             txtNomeCliente.Text = "";
             txtNomeProduto.Text = "";
             txtTamanho.Text = "";
@@ -354,9 +368,17 @@ namespace Controle_Vendas.Visualizacao
             }
         }
 
-        private void ValidaCamposNumericos(KeyPressEventArgs e)
+        private void ApenasCaracteresNumericos(KeyPressEventArgs e)
         {
             if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void ApenasCaracteresTexto(KeyPressEventArgs e)
+        {
+            if (!Char.IsLetter(e.KeyChar) && e.KeyChar != (char)8)
             {
                 e.Handled = true;
             }
@@ -439,7 +461,7 @@ namespace Controle_Vendas.Visualizacao
                         objVenda.CodigoProduto = Convert.ToInt32(txtCodigoProduto.Text);
                         objVenda.Embalagem = txtEmbalagem.Text;
                         objVenda.CodigoVendedor = Convert.ToInt32(txtCodigoVendedor.Text);
-                        objVenda.CreditoLoja = Convert.ToDouble(txtCreditoLoja.Text);
+                        objVenda.CreditoLoja = Convert.ToDouble(vendaCreditoLoja);
                         objVenda.NomeCliente = txtNomeCliente.Text;
                         objVenda.NomeProduto = txtNomeProduto.Text;
                         objVenda.Tamanho = txtTamanho.Text;
@@ -484,7 +506,7 @@ namespace Controle_Vendas.Visualizacao
                         objVenda.CodigoCliente = Convert.ToInt32(objCliente.CodigoCliente);
                         objVenda.CodigoProduto = Convert.ToInt32(txtCodigoProduto.Text);
                         objVenda.CodigoVendedor = Convert.ToInt32(txtCodigoVendedor.Text);
-                        objVenda.CreditoLoja = Convert.ToDouble(txtCreditoLoja.Text);
+                        objVenda.CreditoLoja = Convert.ToDouble(cmbCreditoLoja.Text);
                         objVenda.NomeCliente = txtNomeCliente.Text.ToString();
                         objVenda.NomeProduto = txtNomeProduto.Text.ToString();
                         objVenda.NomeVendedor = txtNomeVendedor.Text.ToString();
@@ -548,7 +570,7 @@ namespace Controle_Vendas.Visualizacao
                         objCompra.CodigoProduto = Convert.ToInt32(txtCodigoProduto.Text);
                         objCompra.NomeProduto = Convert.ToString(txtNomeProduto.Text);
                         objCompra.Quantidade = Convert.ToInt32(txtQuantidade.Text);
-                        objCompra.CreditoLoja = Convert.ToDouble(txtCreditoLoja.Text);
+                        objCompra.CreditoLoja = Convert.ToDouble(objVenda.CreditoLoja);
 
                         CalculaLimiteCredito();
 
@@ -593,8 +615,7 @@ namespace Controle_Vendas.Visualizacao
                         }
                         else
                         {
-                            opcoes = "AddProdutoEstoque";
-                            IniciarOpcoes();
+                            MessageBox.Show("Não foi possível atualizar o estoque!");
                         }
                     }
                     catch (Exception ex)
@@ -798,6 +819,45 @@ namespace Controle_Vendas.Visualizacao
             CaulculaPrecoTotal();
         }
 
+        private void cmbCreditoLoja_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(cmbCreditoLoja.Text))
+            {
+                ValidaCreditoLoja();
+            }
+            else
+            {
+                cmbCreditoLoja.Text = "";
+            }
+        }
+
+        private void txtBuscaCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ApenasCaracteresNumericos(e);
+        }
+
+        private void txtCodigoProduto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ApenasCaracteresNumericos(e);
+        }
+
+        private void txtCodigoVendedor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ApenasCaracteresNumericos(e);
+        }
+
+        private void txtQuantidade_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ApenasCaracteresNumericos(e);
+        }
+
+        private void cmbCreditoLoja_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ApenasCaracteresNumericos(e);
+
+            ApenasCaracteresTexto(e);
+        }
+
         private void GridVendas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             txtCodigoVenda.Text = GridVendas.CurrentRow.Cells[0].Value.ToString();
@@ -812,7 +872,7 @@ namespace Controle_Vendas.Visualizacao
             txtQuantidade.Text = GridVendas.CurrentRow.Cells[9].Value.ToString();
             txtPreco.Text = GridVendas.CurrentRow.Cells[10].Value.ToString();
             txtPrecoTotal.Text = GridVendas.CurrentRow.Cells[11].Value.ToString();
-            txtCreditoLoja.Text = GridVendas.CurrentRow.Cells[12].Value.ToString();
+            cmbCreditoLoja.Text = GridVendas.CurrentRow.Cells[12].Value.ToString();
             txtCodigoVendedor.Text = GridVendas.CurrentRow.Cells[13].Value.ToString();
             txtNomeVendedor.Text = GridVendas.CurrentRow.Cells[14].Value.ToString();
 
@@ -822,54 +882,6 @@ namespace Controle_Vendas.Visualizacao
             btnSalvar.Enabled = false;
             btnEditar.Enabled = true;
             btnExcluir.Enabled = true;
-        }
-
-        private void txtCreditoLoja_Leave(object sender, EventArgs e)
-        {
-
-
-            if (!string.IsNullOrEmpty(txtCreditoLoja.Text))
-            {
-                if (Convert.ToDouble(txtCreditoLoja.Text) != Convert.ToDouble(0) & Convert.ToDouble(txtCreditoLoja.Text) != Convert.ToDouble(1))
-                {
-                    txtCreditoLoja.Focus();
-                    txtCreditoLoja.Text = "";
-                }
-            }
-            else
-            {
-                txtCreditoLoja.Text = "";
-            }
-        }
-
-        private void txtCreditoLoja_Enter(object sender, EventArgs e)
-        {
-            MessageBox.Show("Por favor, insira ( 1 ) para SIM, 'compra no Crédito da Loja' ou ( 0 ) para NÃO!");
-        }
-
-        private void txtBuscaCliente_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ValidaCamposNumericos(e);
-        }
-
-        private void txtCodigoProduto_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ValidaCamposNumericos(e);
-        }
-
-        private void txtCodigoVendedor_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ValidaCamposNumericos(e);
-        }
-
-        private void txtCreditoLoja_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ValidaCamposNumericos(e);
-        }
-
-        private void txtQuantidade_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ValidaCamposNumericos(e);
         }
     }
 }

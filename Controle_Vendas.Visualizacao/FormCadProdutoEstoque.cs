@@ -23,8 +23,6 @@ namespace Controle_Vendas.Visualizacao
         }
 
         private string opcoes = "";
-        private string teste = "";
-
 
         public void ListarGrid()
         {
@@ -32,20 +30,11 @@ namespace Controle_Vendas.Visualizacao
             {
                 List<ProdutoEstoqueDominio> lista = new List<ProdutoEstoqueDominio>();
                 lista = new ProdutoEstoqueNegocios().Lista();
-
-                foreach (var item in lista)
-                {
-                    teste = Convert.ToString(item);
-                }
-
-                teste.LastOrDefault();
-
                 GridProdutoEstoque.AutoGenerateColumns = false;
                 GridProdutoEstoque.DataSource = lista;
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show("Erro ao listar Dados " + ex.Message);
             }
         }
@@ -72,22 +61,15 @@ namespace Controle_Vendas.Visualizacao
             }
         }
 
-        private void FormCadProdutoEstoque_Load(object sender, EventArgs e)
-        {
-            ListarGrid();
-        }
-
-        private void btnCadastroVendas_Click(object sender, EventArgs e)
-        {
-            FormCadVendas form = new FormCadVendas();
-            this.Hide();
-            form.Show();
-        }
-
         private void txtPesquisar_TextChanged(object sender, EventArgs e)
         {
             opcoes = "Pesquisar";
             IniciarOpcoes();
+        }
+
+        private void FormCadProdutoEstoque_Load(object sender, EventArgs e)
+        {
+            ListarGrid();
         }
     }
 }

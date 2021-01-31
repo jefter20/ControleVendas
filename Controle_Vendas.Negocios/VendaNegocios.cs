@@ -31,6 +31,17 @@ namespace Controle_Vendas.Negocios
             return new VendaDados().BuscaVendedor(objVendedor);
         }
 
+        public List<ClienteCompraDominio> BuscaClienteCompra(ClienteCompraDominio objCompra)
+        {
+            return new VendaDados().BuscaClienteCompra(objCompra);
+
+        }
+
+        public List<ProdutoEstoqueDominio> BuscaProdutoEstoque(ProdutoEstoqueDominio objEstoque)
+        {
+            return new VendaDados().BuscaProdutoEstoque(objEstoque);
+        }
+
         public static int Inserir(VendaDominio objVenda)
         {
             return new VendaDados().Inserir(objVenda);
@@ -46,26 +57,10 @@ namespace Controle_Vendas.Negocios
             return new VendaDados().Excluir(objVenda);
         }
 
-        public List<VendaDominio> Lista()
-        {
-            return new VendaDados().Lista();
-        }
-
         public static int AddClienteCompra(ClienteCompraDominio objCompra)
         {
             return new VendaDados().AddClienteCompra(objCompra);
 
-        }
-
-        public List<ClienteCompraDominio> BuscaClienteCompra(ClienteCompraDominio objCompra)
-        {
-            return new VendaDados().BuscaClienteCompra(objCompra);
-
-        }
-
-        public List<ProdutoEstoqueDominio> BuscaProdutoEstoque(ProdutoEstoqueDominio objEstoque)
-        {
-            return new VendaDados().BuscaProdutoEstoque(objEstoque);
         }
 
         public static int AddProdutoEstoque(ProdutoEstoqueDominio objEstoque)
@@ -77,5 +72,11 @@ namespace Controle_Vendas.Negocios
         {
             return new VendaDados().DeleteProdutoEstoque(objEstoque);
         }
+
+        public List<VendaDominio> Lista()
+        {
+            return new VendaDados().Lista();
+        }
+
     }
 }

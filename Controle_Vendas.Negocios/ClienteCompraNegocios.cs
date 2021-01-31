@@ -10,14 +10,14 @@ namespace Controle_Vendas.Negocios
 {
     public class ClienteCompraNegocios
     {
-        public List<ClienteCompraDominio> Lista()
-        {
-            return new ClienteCompraDados().Lista();
-        }
-
         public List<ClienteCompraDominio> Buscar(ClienteCompraDominio objCompra)
         {
             return new ClienteCompraDados().Buscar(objCompra);
+        }
+
+        public List<ClienteCompraDominio> Lista()
+        {
+            return new ClienteCompraDados().Lista();
         }
     }
 }

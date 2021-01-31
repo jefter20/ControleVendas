@@ -29,8 +29,8 @@ namespace Controle_Vendas.Visualizacao
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCodigoVenda = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -58,6 +58,7 @@ namespace Controle_Vendas.Visualizacao
             this.GridVendas = new System.Windows.Forms.DataGridView();
             this.codigoVenda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codigoCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cpf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codigoProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -86,6 +87,7 @@ namespace Controle_Vendas.Visualizacao
             this.label17 = new System.Windows.Forms.Label();
             this.txtTamanho = new System.Windows.Forms.TextBox();
             this.btnControleEstoque = new System.Windows.Forms.Button();
+            this.btnListaProdutos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.GridVendas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -180,6 +182,7 @@ namespace Controle_Vendas.Visualizacao
             this.txtCodigoProduto.Name = "txtCodigoProduto";
             this.txtCodigoProduto.Size = new System.Drawing.Size(71, 20);
             this.txtCodigoProduto.TabIndex = 6;
+            this.txtCodigoProduto.TextChanged += new System.EventHandler(this.txtCodigoProduto_TextChanged);
             this.txtCodigoProduto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoProduto_KeyPress);
             this.txtCodigoProduto.Leave += new System.EventHandler(this.txtCodigoProduto_Leave);
             // 
@@ -216,6 +219,7 @@ namespace Controle_Vendas.Visualizacao
             this.txtCodigoVendedor.Name = "txtCodigoVendedor";
             this.txtCodigoVendedor.Size = new System.Drawing.Size(71, 20);
             this.txtCodigoVendedor.TabIndex = 8;
+            this.txtCodigoVendedor.TextChanged += new System.EventHandler(this.txtCodigoVendedor_TextChanged);
             this.txtCodigoVendedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoVendedor_KeyPress);
             this.txtCodigoVendedor.Leave += new System.EventHandler(this.txtCodigoVendedor_Leave);
             // 
@@ -315,18 +319,19 @@ namespace Controle_Vendas.Visualizacao
             this.GridVendas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridVendas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridVendas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.GridVendas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridVendas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigoVenda,
             this.codigoCliente,
+            this.cpf,
             this.nomeCliente,
             this.codigoProduto,
             this.nomeProduto,
@@ -343,8 +348,8 @@ namespace Controle_Vendas.Visualizacao
             this.GridVendas.Location = new System.Drawing.Point(123, 282);
             this.GridVendas.Name = "GridVendas";
             this.GridVendas.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.GridVendas.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.GridVendas.RowsDefaultCellStyle = dataGridViewCellStyle14;
             this.GridVendas.Size = new System.Drawing.Size(758, 220);
             this.GridVendas.TabIndex = 39;
             this.GridVendas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridVendas_CellDoubleClick);
@@ -364,6 +369,13 @@ namespace Controle_Vendas.Visualizacao
             this.codigoCliente.Name = "codigoCliente";
             this.codigoCliente.ReadOnly = true;
             this.codigoCliente.Width = 70;
+            // 
+            // cpf
+            // 
+            this.cpf.DataPropertyName = "Cpf";
+            this.cpf.HeaderText = "CPF";
+            this.cpf.Name = "cpf";
+            this.cpf.ReadOnly = true;
             // 
             // nomeCliente
             // 
@@ -463,13 +475,15 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtBuscaCliente
             // 
+            this.txtBuscaCliente.AccessibleDescription = "";
+            this.txtBuscaCliente.AccessibleName = "";
             this.txtBuscaCliente.Location = new System.Drawing.Point(151, 30);
             this.txtBuscaCliente.Margin = new System.Windows.Forms.Padding(0);
             this.txtBuscaCliente.MaxLength = 11;
             this.txtBuscaCliente.Name = "txtBuscaCliente";
             this.txtBuscaCliente.Size = new System.Drawing.Size(107, 20);
             this.txtBuscaCliente.TabIndex = 3;
-            this.txtBuscaCliente.Enter += new System.EventHandler(this.txtBuscaCliente_Enter);
+            this.txtBuscaCliente.Tag = "";
             this.txtBuscaCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscaCliente_KeyPress);
             // 
             // label13
@@ -477,9 +491,9 @@ namespace Controle_Vendas.Visualizacao
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(148, 14);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(79, 13);
+            this.label13.Size = new System.Drawing.Size(108, 13);
             this.label13.TabIndex = 2;
-            this.label13.Text = "Busca Cliente *";
+            this.label13.Text = "Busca Cliente (CPF) *";
             // 
             // btnBuscaCliente
             // 
@@ -598,11 +612,22 @@ namespace Controle_Vendas.Visualizacao
             this.btnControleEstoque.UseVisualStyleBackColor = true;
             this.btnControleEstoque.Click += new System.EventHandler(this.btnControleEstoque_Click);
             // 
+            // btnListaProdutos
+            // 
+            this.btnListaProdutos.Location = new System.Drawing.Point(405, 249);
+            this.btnListaProdutos.Name = "btnListaProdutos";
+            this.btnListaProdutos.Size = new System.Drawing.Size(125, 27);
+            this.btnListaProdutos.TabIndex = 40;
+            this.btnListaProdutos.Text = "Lista de Produtos";
+            this.btnListaProdutos.UseVisualStyleBackColor = true;
+            this.btnListaProdutos.Click += new System.EventHandler(this.btnListaProdutos_Click);
+            // 
             // FormCadVendas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(902, 514);
+            this.Controls.Add(this.btnListaProdutos);
             this.Controls.Add(this.btnControleEstoque);
             this.Controls.Add(this.txtTamanho);
             this.Controls.Add(this.txtSabor);
@@ -694,8 +719,10 @@ namespace Controle_Vendas.Visualizacao
         private System.Windows.Forms.TextBox txtTamanho;
         private System.Windows.Forms.Button btnControleEstoque;
         public System.Windows.Forms.TextBox txtCodigoProduto;
+        private System.Windows.Forms.Button btnListaProdutos;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoVenda;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cpf;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoProduto;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeProduto;

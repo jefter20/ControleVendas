@@ -20,6 +20,7 @@ namespace Controle_Vendas.Visualizacao
         VendedorDominio objVendedor = new VendedorDominio();
         ClienteCompraDominio objCompra = new ClienteCompraDominio();
         ProdutoEstoqueDominio objEstoque = new ProdutoEstoqueDominio();
+        ListaProdutosDominio objListaProduto = new ListaProdutosDominio();
 
         public FormCadVendas()
         {
@@ -30,11 +31,13 @@ namespace Controle_Vendas.Visualizacao
         private double clienteLimiteCredito = 0;// TROCAR POR LimiteCreditoInicial
         private double compraLimiteCredito = 0;// TROCAR POR LimiteCreditoAtual
         private int compraCodigoCliente = 0;// TROCAR POR vendaCodigoCliente
-        private int estoqueCodigoProduto = 0;
+        private int produtoCodigoProduto = 0;
+        private int vendedorCodigoVendedor = 0;
+        private int estoqueCodigoProduto = 0; 
         private double produtosEstoqueAtual = 0;
         private double produtosEstoqueInicial = 0;
         private double ClientePrimeiraCompra = 0;
-        private double ProdutoPrimeiraCompra = 0; 
+        private double ProdutoPrimeiraCompra = 0;
 
         private void BuscaDadosClientes()
         {
@@ -90,6 +93,7 @@ namespace Controle_Vendas.Visualizacao
 
             foreach (var item in lista)
             {
+                produtoCodigoProduto = Convert.ToInt32(item.CodigoProduto);
                 txtNomeProduto.Text = Convert.ToString(item.NomeProduto);
                 txtPreco.Text = Convert.ToString(item.PrecoDeLista);
                 txtEmbalagem.Text = Convert.ToString(item.Embalagem);
@@ -139,6 +143,7 @@ namespace Controle_Vendas.Visualizacao
 
             foreach (var item in lista)
             {
+                vendedorCodigoVendedor = Convert.ToInt32(item.CodigoVendedor);
                 txtNomeVendedor.Text = Convert.ToString(item.NomeVendedor);
             }
         }
@@ -187,17 +192,9 @@ namespace Controle_Vendas.Visualizacao
         {
             if (txtCodigoCliente.Text == "" || txtCodigoProduto.Text == "" || txtCodigoVendedor.Text == "" || txtCreditoLoja.Text == "" || txtQuantidade.Text == "")
             {
-                MessageBox.Show("Por favor, preencha todos os campos com (*)!");
+                MessageBox.Show("Por favor, verifique se todos os campos com (*) estão preenchidos corretamente!");
                 return;
             }
-
-            /*
-            if (Convert.ToBoolean(txtBuscaCliente.MaxLength) == Convert.ToBoolean(11))
-            {
-                MessageBox.Show("isso é um teste!");
-                return;
-            }
-            */
 
             if (txtCreditoLoja.Text == Convert.ToString(1))
             {
@@ -265,6 +262,32 @@ namespace Controle_Vendas.Visualizacao
             }
         }
 
+        private void ValidaBuscaProduto()
+        {
+            if (Convert.ToInt32(txtCodigoProduto.Text) != produtoCodigoProduto)
+            {
+                MessageBox.Show(string.Format("Produto {0} não encontrado!", txtCodigoProduto.Text));
+
+                txtCodigoProduto.Text = "";
+                txtNomeProduto.Text = "";
+                txtSabor.Text = "";
+                txtEmbalagem.Text = "";
+                txtTamanho.Text = "";
+                txtPreco.Text = "";
+            }
+        }
+
+        private void ValidaBuscaVendedor()
+        {
+            if (Convert.ToInt32(txtCodigoVendedor.Text) != vendedorCodigoVendedor)
+            {
+                MessageBox.Show(string.Format("Vendedor {0} não encontrado!", txtCodigoVendedor.Text));
+
+                txtCodigoVendedor.Text = "";
+                txtNomeVendedor.Text = "";
+            }
+        }
+
         private void CaulculaPrecoTotal()
         {
             if (!string.IsNullOrEmpty(txtPreco.Text) && !string.IsNullOrEmpty(txtQuantidade.Text))
@@ -277,13 +300,6 @@ namespace Controle_Vendas.Visualizacao
                 txtPrecoTotal.Text = "";
             }
         }
-        /*
-        private DateTime DataHoraAtual()
-        {
-            //DateTime data = DateTime.Now.ToString("yyyy/MM/dd" + " - " + "HH:mm:ss");
-
-            
-        }*/
 
         private void HabilitarCampos()
         {
@@ -335,6 +351,14 @@ namespace Controle_Vendas.Visualizacao
             {
 
                 MessageBox.Show("Erro ao listar Dados " + ex.Message);
+            }
+        }
+
+        private void ValidaCamposNumericos(KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
+            {
+                e.Handled = true;
             }
         }
 
@@ -490,6 +514,32 @@ namespace Controle_Vendas.Visualizacao
                     }
                     break;
 
+                case "Excluir":
+                    try
+                    {
+                        objVenda.CodigoVenda = Convert.ToInt32(txtCodigoVenda.Text);
+
+                        int x = VendaNegocios.Excluir(objVenda);
+
+                        if (x > 0)
+                        {
+                            MessageBox.Show(string.Format("Venda {0} desfeita com sucesso!", txtCodigoVenda.Text));
+                            LimparCampos();
+                            DesabilitarCampos();
+                            ListarGrid();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Não foi possível desfazer a venda!");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ocorreu um erro ao excluir " + ex.Message);
+
+                    }
+                    break;
+
                 case "AddClienteCompra":
                     try
                     {
@@ -511,7 +561,7 @@ namespace Controle_Vendas.Visualizacao
 
                         if (x > 0)
                         {
-                            MessageBox.Show(string.Format("Compra de {0} efetuada com sucesso!", txtNomeProduto.Text));
+                            MessageBox.Show(string.Format("Lista de compras do cliente {0} atualizada com sucesso!", txtNomeCliente.Text));
                             LimparCampos();
                             DesabilitarCampos();
                             ListarGrid();
@@ -571,7 +621,7 @@ namespace Controle_Vendas.Visualizacao
 
                         if (x > 0)
                         {
-                            MessageBox.Show(string.Format("O estoque do {0} foi atualizado com sucesso!", txtNomeProduto.Text));
+                            MessageBox.Show(string.Format("Estoque de {0} atualizado com sucesso!", txtNomeProduto.Text));
                         }
                         else
                         {
@@ -585,57 +635,20 @@ namespace Controle_Vendas.Visualizacao
 
                     }
                     break;
-
-                case "Excluir":
-                    try
-                    {
-                        objVenda.CodigoVenda = Convert.ToInt32(txtCodigoVenda.Text);
-
-                        int x = VendaNegocios.Excluir(objVenda);
-
-                        if (x > 0)
-                        {
-                            MessageBox.Show(string.Format("Venda {0} desfeita com sucesso!", txtCodigoVenda.Text));
-                            LimparCampos();
-                            DesabilitarCampos();
-                            ListarGrid();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Não foi possível desfazer a venda!");
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Ocorreu um erro ao excluir " + ex.Message);
-
-                    }
-                    break;
             }
         }
 
         private void FormCadVendas_Load(object sender, EventArgs e)
         {
-            DesabilitarCampos();
-            ListarGrid();
-            LimparCampos();
-
             txtPesquisar.Focus();
             btnNovo.Enabled = true;
             btnSalvar.Enabled = false;
             btnEditar.Enabled = true;
             btnExcluir.Enabled = true;
-            /*txtCodigoVenda.Enabled = false;
-            txtEmbalagem.Enabled = false;
-            txtCodigoCliente.Enabled = false;
-            txtNomeCliente.Enabled = false;
-            txtNomeProduto.Enabled = false;
-            txtTamanho.Enabled = false;
-            /txtNomeVendedor.Enabled = false;
-            txtSabor.Enabled = false;
-            txtPreco.Enabled = false;
-            txtPrecoTotal.Enabled = false;*/
-            
+
+            DesabilitarCampos();
+            ListarGrid();
+            LimparCampos();
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
@@ -658,7 +671,6 @@ namespace Controle_Vendas.Visualizacao
             btnSalvar.Enabled = true;
             btnEditar.Enabled = true;
             btnExcluir.Enabled = false;
-            txtPesquisar.Focus();
         }
 
         private void btnVendaEditar_Click(object sender, EventArgs e)
@@ -683,84 +695,9 @@ namespace Controle_Vendas.Visualizacao
             btnExcluir.Enabled = true;
         }
 
-        private void txtPesquisar_TextChanged(object sender, EventArgs e)
-        {
-            opcoes = "Pesquisar";
-            IniciarOpcoes();
-        }
-
-        private void txtCodigoProduto_Leave(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtCodigoProduto.Text))
-            {
-                opcoes = "BuscaProduto";
-                IniciarOpcoes();
-            }
-            else
-            {
-                txtCodigoProduto.Text = "";
-            }
-            
-        }
-
-        private void txtCodigoVendedor_Leave(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtCodigoVendedor.Text))
-            {
-                opcoes = "BuscaVendedor";
-                IniciarOpcoes();
-            }
-            else
-            {
-                txtCodigoProduto.Text = "";
-            }
-        }
-
-        private void txtBuscaCliente_Enter(object sender, EventArgs e)
-        {
-            MessageBox.Show("Por favor, para buscar os dados do Cliente, insira o CPF!");
-        }
-
-        private void txtPreco_TextChanged(object sender, EventArgs e)
-        {
-            CaulculaPrecoTotal();
-        }
-
-        private void GridVendas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            txtCodigoVenda.Text = GridVendas.CurrentRow.Cells[0].Value.ToString();
-            txtCodigoCliente.Text = GridVendas.CurrentRow.Cells[1].Value.ToString();
-            txtNomeCliente.Text = GridVendas.CurrentRow.Cells[2].Value.ToString();
-            txtCreditoLoja.Text = GridVendas.CurrentRow.Cells[3].Value.ToString();
-            txtCodigoProduto.Text = GridVendas.CurrentRow.Cells[4].Value.ToString();
-            txtNomeProduto.Text = GridVendas.CurrentRow.Cells[5].Value.ToString();
-            txtEmbalagem.Text = GridVendas.CurrentRow.Cells[6].Value.ToString();
-            txtTamanho.Text = GridVendas.CurrentRow.Cells[7].Value.ToString();
-            txtSabor.Text = GridVendas.CurrentRow.Cells[8].Value.ToString();
-            txtQuantidade.Text = GridVendas.CurrentRow.Cells[9].Value.ToString();
-            txtPreco.Text = GridVendas.CurrentRow.Cells[10].Value.ToString();
-            txtPrecoTotal.Text = GridVendas.CurrentRow.Cells[11].Value.ToString();
-            txtCodigoVendedor.Text = GridVendas.CurrentRow.Cells[12].Value.ToString();
-            txtNomeVendedor.Text = GridVendas.CurrentRow.Cells[13].Value.ToString();
-
-            HabilitarCampos();
-
-            btnNovo.Enabled = true;
-            btnSalvar.Enabled = false;
-            btnEditar.Enabled = true;
-            btnExcluir.Enabled = true;
-        }
-
-        private void btnBuscaCliente_Click(object sender, EventArgs e)
-        {
-            opcoes = "BuscaCliente";
-            IniciarOpcoes();
-        }
-
         private void btnControleEstoque_Click(object sender, EventArgs e)
         {
             FormCadProdutoEstoque form = new FormCadProdutoEstoque();
-            this.Hide();
             form.Show();
         }
 
@@ -771,63 +708,168 @@ namespace Controle_Vendas.Visualizacao
             form.Show();
         }
 
+        private void btnListaProdutos_Click(object sender, EventArgs e)
+        {
+            FormCadListaProdutos form = new FormCadListaProdutos();
+            form.Show();
+        }
+
+        private void btnBuscaCliente_Click(object sender, EventArgs e)
+        {
+            opcoes = "BuscaCliente";
+            IniciarOpcoes();
+        }
+
+        private void txtPesquisar_TextChanged(object sender, EventArgs e)
+        {
+            opcoes = "Pesquisar";
+            IniciarOpcoes();
+        }
+
+        private void txtCodigoProduto_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtCodigoProduto.Text))
+            {
+                opcoes = "BuscaProduto";
+                IniciarOpcoes();
+            }
+            else
+            {
+                txtCodigoProduto.Text = "";
+            }
+        }
+
+        private void txtCodigoProduto_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtCodigoProduto.Text))
+            {
+                opcoes = "BuscaProduto";
+                IniciarOpcoes();
+
+                ValidaBuscaProduto();
+            }
+            else
+            {
+                txtCodigoProduto.Text = "";
+                txtNomeProduto.Text = "";
+                txtSabor.Text = "";
+                txtEmbalagem.Text = "";
+                txtTamanho.Text = "";
+                txtPreco.Text = "";
+            }
+        }
+
+        private void txtCodigoVendedor_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtCodigoVendedor.Text))
+            {
+                opcoes = "BuscaVendedor";
+                IniciarOpcoes();
+            }
+            else
+            {
+                txtCodigoVendedor.Text = "";
+            }
+        }
+
+        private void txtCodigoVendedor_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtCodigoVendedor.Text))
+            {
+                opcoes = "BuscaVendedor";
+                IniciarOpcoes();
+
+                ValidaBuscaVendedor();
+            }
+            else
+            {
+                txtCodigoVendedor.Text = "";
+                txtNomeVendedor.Text = "";
+            }
+        }
+
+        private void txtPreco_TextChanged(object sender, EventArgs e)
+        {
+            CaulculaPrecoTotal();
+        }
+
+        private void txtQuantidade_TextChanged(object sender, EventArgs e)
+        {
+            CaulculaPrecoTotal();
+        }
+
+        private void GridVendas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtCodigoVenda.Text = GridVendas.CurrentRow.Cells[0].Value.ToString();
+            txtCodigoCliente.Text = GridVendas.CurrentRow.Cells[1].Value.ToString();
+            txtBuscaCliente.Text = GridVendas.CurrentRow.Cells[2].Value.ToString();
+            txtNomeCliente.Text = GridVendas.CurrentRow.Cells[3].Value.ToString();
+            txtCodigoProduto.Text = GridVendas.CurrentRow.Cells[4].Value.ToString();
+            txtNomeProduto.Text = GridVendas.CurrentRow.Cells[5].Value.ToString();
+            txtEmbalagem.Text = GridVendas.CurrentRow.Cells[6].Value.ToString();
+            txtTamanho.Text = GridVendas.CurrentRow.Cells[7].Value.ToString();
+            txtSabor.Text = GridVendas.CurrentRow.Cells[8].Value.ToString();
+            txtQuantidade.Text = GridVendas.CurrentRow.Cells[9].Value.ToString();
+            txtPreco.Text = GridVendas.CurrentRow.Cells[10].Value.ToString();
+            txtPrecoTotal.Text = GridVendas.CurrentRow.Cells[11].Value.ToString();
+            txtCreditoLoja.Text = GridVendas.CurrentRow.Cells[12].Value.ToString();
+            txtCodigoVendedor.Text = GridVendas.CurrentRow.Cells[13].Value.ToString();
+            txtNomeVendedor.Text = GridVendas.CurrentRow.Cells[14].Value.ToString();
+
+            HabilitarCampos();
+
+            btnNovo.Enabled = true;
+            btnSalvar.Enabled = false;
+            btnEditar.Enabled = true;
+            btnExcluir.Enabled = true;
+        }
+
         private void txtCreditoLoja_Leave(object sender, EventArgs e)
         {
-            if (Convert.ToDouble(txtCreditoLoja.Text) != Convert.ToDouble(0) & Convert.ToDouble(txtCreditoLoja.Text) != Convert.ToDouble(1))
+
+
+            if (!string.IsNullOrEmpty(txtCreditoLoja.Text))
             {
-                MessageBox.Show("Por favor, insira ( 1 ) para SIM e ( 0 ) para NÃO!");
+                if (Convert.ToDouble(txtCreditoLoja.Text) != Convert.ToDouble(0) & Convert.ToDouble(txtCreditoLoja.Text) != Convert.ToDouble(1))
+                {
+                    txtCreditoLoja.Focus();
+                    txtCreditoLoja.Text = "";
+                }
+            }
+            else
+            {
+                txtCreditoLoja.Text = "";
             }
         }
 
         private void txtCreditoLoja_Enter(object sender, EventArgs e)
         {
             MessageBox.Show("Por favor, insira ( 1 ) para SIM, 'compra no Crédito da Loja' ou ( 0 ) para NÃO!");
-
         }
 
         private void txtBuscaCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
-            {
-                e.Handled = true;
-            }
+            ValidaCamposNumericos(e);
         }
 
         private void txtCodigoProduto_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
-            {
-                e.Handled = true;
-            }
+            ValidaCamposNumericos(e);
         }
 
         private void txtCodigoVendedor_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
-            {
-                e.Handled = true;
-            }
+            ValidaCamposNumericos(e);
         }
 
         private void txtCreditoLoja_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
-            {
-                e.Handled = true;
-            }
+            ValidaCamposNumericos(e);
         }
 
         private void txtQuantidade_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void txtQuantidade_TextChanged(object sender, EventArgs e)
-        {
-            CaulculaPrecoTotal();
+            ValidaCamposNumericos(e);
         }
     }
 }

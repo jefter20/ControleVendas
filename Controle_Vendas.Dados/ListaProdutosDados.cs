@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Controle_Vendas.Dados
 {
-    public class ProdutoEstoqueDados
+    public class ListaProdutosDados
     {
-        public List<ProdutoEstoqueDominio> Buscar(ProdutoEstoqueDominio objEstoque)
+        public List<ListaProdutosDominio> Lista()
         {
             using (SqlConnection con = new SqlConnection())
             {
@@ -21,14 +21,12 @@ namespace Controle_Vendas.Dados
 
                 con.Open();
 
-                comando.CommandText = "SELECT [CODIGO_ESTOQUE], [CODIGO_PRODUTO], [NOME_PRODUTO], [EMBALAGEM], [TAMANHO], [SABOR], [QUANTIDADE_EM_ESTOQUE] FROM TABELA_PRODUTO_ESTOQUE WHERE NOME_PRODUTO LIKE @NOME_PRODUTO";
-
-                comando.Parameters.Add("NOME_PRODUTO", SqlDbType.VarChar).Value = objEstoque.NomeProduto + "%";
+                comando.CommandText = "SELECT CODIGO_PRODUTO, NOME_PRODUTO, EMBALAGEM, TAMANHO, SABOR, QUANTIDADE_EM_ESTOQUE, PRECO_DE_LISTA FROM TABELA_PRODUTOS ORDER BY CODIGO_PRODUTO";
 
                 comando.Connection = con;
 
                 SqlDataReader dr;
-                List<ProdutoEstoqueDominio> lista = new List<ProdutoEstoqueDominio>();
+                List<ListaProdutosDominio> lista = new List<ListaProdutosDominio>();
 
                 dr = comando.ExecuteReader();
 
@@ -36,15 +34,15 @@ namespace Controle_Vendas.Dados
                 {
                     while (dr.Read())
                     {
-                        ProdutoEstoqueDominio dado = new ProdutoEstoqueDominio();
+                        ListaProdutosDominio dado = new ListaProdutosDominio();
 
-                        dado.CodigoEstoque = Convert.ToInt32(dr["CODIGO_ESTOQUE"]);
                         dado.CodigoProduto = Convert.ToInt32(dr["CODIGO_PRODUTO"]);
                         dado.NomeProduto = Convert.ToString(dr["NOME_PRODUTO"]);
                         dado.Embalagem = Convert.ToString(dr["EMBALAGEM"]);
                         dado.Tamanho = Convert.ToString(dr["TAMANHO"]);
                         dado.Sabor = Convert.ToString(dr["SABOR"]);
-                        dado.QuantidadeEstoque = Convert.ToDouble(dr["QUANTIDADE_EM_ESTOQUE"]);
+                        dado.QuantidadeEstoqueInicial = Convert.ToInt32(dr["QUANTIDADE_EM_ESTOQUE"]);
+                        dado.PrecoDeLista = Convert.ToDecimal(dr["PRECO_DE_LISTA"]);
 
                         lista.Add(dado);
                     }
@@ -53,7 +51,7 @@ namespace Controle_Vendas.Dados
             }
         }
 
-        public List<ProdutoEstoqueDominio> Lista()
+        public List<ListaProdutosDominio> Buscar(ListaProdutosDominio objListaProdutos)
         {
             using (SqlConnection con = new SqlConnection())
             {
@@ -63,12 +61,14 @@ namespace Controle_Vendas.Dados
 
                 con.Open();
 
-                comando.CommandText = "SELECT DISTINCT CODIGO_ESTOQUE, CODIGO_PRODUTO, NOME_PRODUTO, EMBALAGEM, TAMANHO, SABOR, QUANTIDADE_EM_ESTOQUE FROM TABELA_PRODUTO_ESTOQUE ORDER BY CODIGO_ESTOQUE";
+                comando.CommandText = "SELECT CODIGO_PRODUTO, NOME_PRODUTO, EMBALAGEM, TAMANHO, SABOR, QUANTIDADE_EM_ESTOQUE, PRECO_DE_LISTA FROM TABELA_PRODUTOS WHERE NOME_PRODUTO LIKE @NOME_PRODUTO";
+
+                comando.Parameters.Add("NOME_PRODUTO", SqlDbType.VarChar).Value = objListaProdutos.NomeProduto + "%";
 
                 comando.Connection = con;
 
                 SqlDataReader dr;
-                List<ProdutoEstoqueDominio> lista = new List<ProdutoEstoqueDominio>();
+                List<ListaProdutosDominio> lista = new List<ListaProdutosDominio>();
 
                 dr = comando.ExecuteReader();
 
@@ -76,15 +76,15 @@ namespace Controle_Vendas.Dados
                 {
                     while (dr.Read())
                     {
-                        ProdutoEstoqueDominio dado = new ProdutoEstoqueDominio();
+                        ListaProdutosDominio dado = new ListaProdutosDominio();
 
-                        dado.CodigoEstoque = Convert.ToInt32(dr["CODIGO_ESTOQUE"]);
                         dado.CodigoProduto = Convert.ToInt32(dr["CODIGO_PRODUTO"]);
                         dado.NomeProduto = Convert.ToString(dr["NOME_PRODUTO"]);
                         dado.Embalagem = Convert.ToString(dr["EMBALAGEM"]);
                         dado.Tamanho = Convert.ToString(dr["TAMANHO"]);
                         dado.Sabor = Convert.ToString(dr["SABOR"]);
-                        dado.QuantidadeEstoque = Convert.ToDouble(dr["QUANTIDADE_EM_ESTOQUE"]);
+                        dado.QuantidadeEstoqueInicial = Convert.ToInt32(dr["QUANTIDADE_EM_ESTOQUE"]);
+                        dado.PrecoDeLista = Convert.ToDecimal(dr["PRECO_DE_LISTA"]);
 
                         lista.Add(dado);
                     }

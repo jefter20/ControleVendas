@@ -128,11 +128,11 @@ namespace Controle_Vendas.Dados
                         ProdutoDominio dado = new ProdutoDominio();
 
                         dado.NomeProduto = Convert.ToString(dr["NOME_PRODUTO"]);
-                        dado.PrecoDeLista = Convert.ToDecimal(dr["PRECO_DE_LISTA"]);
+                        dado.PrecoDeLista = Convert.ToString(dr["PRECO_DE_LISTA"]);
                         dado.Embalagem = Convert.ToString(dr["EMBALAGEM"]);
                         dado.Tamanho = Convert.ToString(dr["TAMANHO"]);
                         dado.Sabor = Convert.ToString(dr["SABOR"]);
-                        dado.QuantidadeEstoque = Convert.ToInt32(dr["QUANTIDADE_EM_ESTOQUE"]);
+                        dado.QuantidadeEstoqueInicial = Convert.ToString(dr["QUANTIDADE_ESTOQUE_INICIAL"]);
                         dado.CodigoProduto = Convert.ToInt32(dr["CODIGO_PRODUTO"]);
 
                         lista.Add(dado);

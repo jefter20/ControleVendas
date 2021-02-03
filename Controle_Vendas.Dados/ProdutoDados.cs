@@ -21,7 +21,7 @@ namespace Controle_Vendas.Dados
 
                 con.Open();
 
-                comando.CommandText = "SELECT [CODIGO_PRODUTO], [NOME_PRODUTO], [EMBALAGEM], [TAMANHO], [SABOR], [QUANTIDADE_EM_ESTOQUE], [PRECO_DE_LISTA] FROM TABELA_PRODUTOS WHERE NOME_PRODUTO LIKE @NOME_PRODUTO";
+                comando.CommandText = "SELECT [CODIGO_PRODUTO], [NOME_PRODUTO], [EMBALAGEM], [TAMANHO], [UNIDADE_MEDIDA], [SABOR], [QUANTIDADE_ESTOQUE_INICIAL], [PRECO_DE_LISTA] FROM TABELA_PRODUTOS WHERE NOME_PRODUTO LIKE @NOME_PRODUTO";
 
                 comando.Parameters.Add("NOME_PRODUTO", SqlDbType.VarChar).Value = objProduto.NomeProduto + "%";
 
@@ -42,9 +42,10 @@ namespace Controle_Vendas.Dados
                         dado.NomeProduto = Convert.ToString(dr["NOME_PRODUTO"]);
                         dado.Embalagem = Convert.ToString(dr["EMBALAGEM"]);
                         dado.Tamanho = Convert.ToString(dr["TAMANHO"]);
+                        dado.UnidadeMedida = Convert.ToString(dr["UNIDADE_MEDIDA"]);
                         dado.Sabor = Convert.ToString(dr["SABOR"]);
-                        dado.QuantidadeEstoque = Convert.ToInt32(dr["QUANTIDADE_EM_ESTOQUE"]);
-                        dado.PrecoDeLista = Convert.ToDecimal(dr["PRECO_DE_LISTA"]);
+                        dado.QuantidadeEstoqueInicial = Convert.ToString(dr["QUANTIDADE_ESTOQUE_INICIAL"]);
+                        dado.PrecoDeLista = Convert.ToString(dr["PRECO_DE_LISTA"]);
                         
                         lista.Add(dado);
                     }
@@ -63,13 +64,14 @@ namespace Controle_Vendas.Dados
 
                 con.Open();
 
-                comando.CommandText = "INSERT INTO TABELA_PRODUTOS ([NOME_PRODUTO], [EMBALAGEM], [TAMANHO], [SABOR], [QUANTIDADE_EM_ESTOQUE], [PRECO_DE_LISTA]) VALUES (@NOME_PRODUTO, @EMBALAGEM, @TAMANHO, @SABOR, @QUANTIDADE_EM_ESTOQUE, @PRECO_DE_LISTA)";
+                comando.CommandText = "INSERT INTO TABELA_PRODUTOS ([NOME_PRODUTO], [EMBALAGEM], [TAMANHO], [UNIDADE_MEDIDA], [SABOR], [QUANTIDADE_ESTOQUE_INICIAL], [PRECO_DE_LISTA]) VALUES (@NOME_PRODUTO, @EMBALAGEM, @TAMANHO, @UNIDADE_MEDIDA, @SABOR, @QUANTIDADE_ESTOQUE_INICIAL, @PRECO_DE_LISTA)";
 
                 comando.Parameters.Add("NOME_PRODUTO", SqlDbType.VarChar).Value = objProduto.NomeProduto;
                 comando.Parameters.Add("EMBALAGEM", SqlDbType.VarChar).Value = objProduto.Embalagem;
-                comando.Parameters.Add("TAMANHO", SqlDbType.VarChar).Value = objProduto.Tamanho;
+                comando.Parameters.Add("TAMANHO", SqlDbType.Decimal).Value = objProduto.Tamanho;
+                comando.Parameters.Add("UNIDADE_MEDIDA", SqlDbType.VarChar).Value = objProduto.UnidadeMedida;
                 comando.Parameters.Add("SABOR", SqlDbType.VarChar).Value = objProduto.Sabor;
-                comando.Parameters.Add("QUANTIDADE_EM_ESTOQUE", SqlDbType.Int).Value = objProduto.QuantidadeEstoque;
+                comando.Parameters.Add("QUANTIDADE_ESTOQUE_INICIAL", SqlDbType.Decimal).Value = objProduto.QuantidadeEstoqueInicial;
                 comando.Parameters.Add("PRECO_DE_LISTA", SqlDbType.Decimal).Value = objProduto.PrecoDeLista;
 
                 comando.Connection = con;
@@ -111,15 +113,16 @@ namespace Controle_Vendas.Dados
 
                 con.Open();
 
-                comando.CommandText = "UPDATE TABELA_PRODUTOS SET NOME_PRODUTO = @NOME_PRODUTO, EMBALAGEM = @EMBALAGEM, TAMANHO = @TAMANHO, SABOR = @SABOR, QUANTIDADE_EM_ESTOQUE = @QUANTIDADE_EM_ESTOQUE, PRECO_DE_LISTA = @PRECO_DE_LISTA WHERE CODIGO_PRODUTO = @CODIGO_PRODUTO";
+                comando.CommandText = "UPDATE TABELA_PRODUTOS SET NOME_PRODUTO = @NOME_PRODUTO, EMBALAGEM = @EMBALAGEM, TAMANHO = @TAMANHO, UNIDADE_MEDIDA = @UNIDADE_MEDIDA, SABOR = @SABOR, QUANTIDADE_ESTOQUE_INICIAL = @QUANTIDADE_ESTOQUE_INICIAL, PRECO_DE_LISTA = @PRECO_DE_LISTA WHERE CODIGO_PRODUTO = @CODIGO_PRODUTO";
 
                 comando.Parameters.Add("CODIGO_PRODUTO", SqlDbType.Int).Value = objProduto.CodigoProduto;
                 comando.Parameters.Add("NOME_PRODUTO", SqlDbType.VarChar).Value = objProduto.NomeProduto;
                 comando.Parameters.Add("EMBALAGEM", SqlDbType.VarChar).Value = objProduto.Embalagem;
-                comando.Parameters.Add("TAMANHO", SqlDbType.VarChar).Value = objProduto.Tamanho;
+                comando.Parameters.Add("TAMANHO", SqlDbType.Decimal).Value = objProduto.Tamanho;
+                comando.Parameters.Add("UNIDADE_MEDIDA", SqlDbType.VarChar).Value = objProduto.UnidadeMedida;
                 comando.Parameters.Add("SABOR", SqlDbType.VarChar).Value = objProduto.Sabor;
-                comando.Parameters.Add("QUANTIDADE_EM_ESTOQUE", SqlDbType.Int).Value = objProduto.QuantidadeEstoque;
-                comando.Parameters.Add("PRECO_DE_LISTA", SqlDbType.Money).Value = objProduto.PrecoDeLista;
+                comando.Parameters.Add("QUANTIDADE_ESTOQUE_INICIAL", SqlDbType.Decimal).Value = objProduto.QuantidadeEstoqueInicial;
+                comando.Parameters.Add("PRECO_DE_LISTA", SqlDbType.Decimal).Value = objProduto.PrecoDeLista;
 
                 comando.Connection = con;
 
@@ -139,7 +142,7 @@ namespace Controle_Vendas.Dados
 
                 con.Open();
 
-                comando.CommandText = "SELECT CODIGO_PRODUTO, NOME_PRODUTO, EMBALAGEM, TAMANHO, SABOR, QUANTIDADE_EM_ESTOQUE, PRECO_DE_LISTA FROM TABELA_PRODUTOS ORDER BY CODIGO_PRODUTO";
+                comando.CommandText = "SELECT CODIGO_PRODUTO, NOME_PRODUTO, EMBALAGEM, TAMANHO, CONCAT(TAMANHO, UNIDADE_MEDIDA) AS TAMANHO_MEDIDA, UNIDADE_MEDIDA, SABOR, QUANTIDADE_ESTOQUE_INICIAL, PRECO_DE_LISTA FROM TABELA_PRODUTOS ORDER BY CODIGO_PRODUTO";
 
                 comando.Connection = con;
 
@@ -158,9 +161,11 @@ namespace Controle_Vendas.Dados
                         dado.NomeProduto = Convert.ToString(dr["NOME_PRODUTO"]);
                         dado.Embalagem = Convert.ToString(dr["EMBALAGEM"]);
                         dado.Tamanho = Convert.ToString(dr["TAMANHO"]);
+                        dado.ConcatTamanhoMedida = Convert.ToString(dr["TAMANHO_MEDIDA"]);
+                        dado.UnidadeMedida = Convert.ToString(dr["UNIDADE_MEDIDA"]);
                         dado.Sabor = Convert.ToString(dr["SABOR"]);
-                        dado.QuantidadeEstoque = Convert.ToInt32(dr["QUANTIDADE_EM_ESTOQUE"]);
-                        dado.PrecoDeLista = Convert.ToDecimal(dr["PRECO_DE_LISTA"]);
+                        dado.QuantidadeEstoqueInicial = Convert.ToString(dr["QUANTIDADE_ESTOQUE_INICIAL"]);
+                        dado.PrecoDeLista = Convert.ToString(dr["PRECO_DE_LISTA"]);
 
                         lista.Add(dado);
                     }

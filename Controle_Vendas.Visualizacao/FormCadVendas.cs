@@ -100,7 +100,7 @@ namespace Controle_Vendas.Visualizacao
                 txtEmbalagem.Text = Convert.ToString(item.Embalagem);
                 txtTamanho.Text = Convert.ToString(item.Tamanho);
                 txtSabor.Text = Convert.ToString(item.Sabor);
-                produtosEstoqueInicial = Convert.ToDouble(item.QuantidadeEstoque);
+                produtosEstoqueInicial = Convert.ToDouble(item.QuantidadeEstoqueInicial);
 
                 objEstoque.CodigoProduto = Convert.ToInt32(item.CodigoProduto);
             }

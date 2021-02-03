@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -25,7 +26,7 @@ namespace Controle_Vendas.Visualizacao
 
         private void ValidaProduto()
         {
-            if (txtNomeProduto.Text == "" || txtEmbalagem.Text == "" || txtTamanho.Text == "" || txtSabor.Text == "" || txtQuantidadeEstoque.Text == "" || txtPreco.Text == "")
+            if (txtNomeProduto.Text == "" || txtEmbalagem.Text == "" || txtTamanho.Text == "" || cmbMedida.Text == "" || txtSabor.Text == "" || txtQuantidadeEstoqueInicial.Text == "" || txtPreco.Text == "")
             {
                 MessageBox.Show("Por favor, preencha todos os campos com (*)!");
                 return;
@@ -35,6 +36,111 @@ namespace Controle_Vendas.Visualizacao
             IniciarOpcoes();
         }
 
+        private void ValidaUnidadeMedidaTamanho()
+        {
+            if (!string.IsNullOrEmpty(txtTamanho.Text))
+            {
+                if (Convert.ToDouble(txtTamanho.Text) > 0 && Convert.ToDouble(txtTamanho.Text) <= 1)
+                {
+                    cmbMedida.Text = " Litro";
+                    return;
+                }
+
+                if (Convert.ToDouble(txtTamanho.Text) > 1 && Convert.ToDouble(txtTamanho.Text) < 100)
+                {
+                    cmbMedida.Text = " Litros";
+                    return;
+                }
+
+                if (Convert.ToDouble(txtTamanho.Text) >= 100 && Convert.ToDouble(txtTamanho.Text) < 1000)
+                {
+                    cmbMedida.Text = " ml";
+                    return;
+                }
+
+                if (Convert.ToDouble(txtTamanho.Text) >= 1000)
+                {
+                    MessageBox.Show("Valor acima do permitido!");
+                    txtTamanho.Text = "";
+                    cmbMedida.Text = "";
+                    return;
+                }
+
+               if (Convert.ToDouble(txtTamanho.Text) <= 0)
+                {
+                    txtTamanho.Text = "";
+                    cmbMedida.Text = "";
+                    return;
+                }
+            }
+            else
+            {
+                txtTamanho.Text = "";
+                cmbMedida.Text = "";
+            }
+
+            
+        }
+
+        private void ApenasCaracteresTexto(KeyPressEventArgs e)
+        {
+            if (!Char.IsLetter(e.KeyChar) && !Char.IsWhiteSpace(e.KeyChar) && e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void ApenasNumerosDecimais(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar) || e.KeyChar.Equals((char)Keys.Back))
+            {
+                TextBox t = (TextBox) sender;
+                string s = Regex.Replace(t.Text, "[^0-9]", string.Empty);
+                if (s == string.Empty) s = "00";
+
+                if (s.Length > 0) 
+                {
+                    if (e.KeyChar.Equals((char)Keys.Back))
+                        s = s.Substring(0, s.Length - 1);
+                    else
+                        s += e.KeyChar;
+                }
+                else
+                {
+                    return;
+                }
+
+                t.Text = string.Format("{0:#,##0.00}", Double.Parse(s) / 100);
+            }
+
+            e.Handled = true;
+        }
+
+        private void ApenasNumerosInteiros(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar) || e.KeyChar.Equals((char)Keys.Back))
+            {
+                TextBox t = (TextBox) sender;
+                string s = Regex.Replace(t.Text, "[^0-9]", string.Empty);
+
+                if (s.Length > 0)
+                {
+                    if (e.KeyChar.Equals((char)Keys.Back))
+                        s = s.Substring(0, s.Length - 1);
+                    else
+                        s += e.KeyChar;
+                }
+                else
+                {
+                    return;
+                }
+
+                if (s == string.Empty) s = "00";
+                t.Text = string.Format("{0:#,##}", Double.Parse(s));
+            }
+
+            e.Handled = true;
+        }
 
         private void HabilitarCampos()
         {
@@ -42,7 +148,7 @@ namespace Controle_Vendas.Visualizacao
             txtEmbalagem.Enabled = true;
             txtTamanho.Enabled = true;
             txtSabor.Enabled = true;
-            txtQuantidadeEstoque.Enabled = true;
+            txtQuantidadeEstoqueInicial.Enabled = true;
             txtPreco.Enabled = true;
         }
 
@@ -51,8 +157,9 @@ namespace Controle_Vendas.Visualizacao
             txtNomeProduto.Enabled = false;
             txtEmbalagem.Enabled = false;
             txtTamanho.Enabled = false;
+            cmbMedida.Enabled = false;
             txtSabor.Enabled = false;
-            txtQuantidadeEstoque.Enabled = false;
+            txtQuantidadeEstoqueInicial.Enabled = false;
             txtPreco.Enabled = false;
         }
 
@@ -62,8 +169,9 @@ namespace Controle_Vendas.Visualizacao
             txtNomeProduto.Text = "";
             txtEmbalagem.Text = "";
             txtTamanho.Text = "";
+            cmbMedida.Text = "";
             txtSabor.Text = "";
-            txtQuantidadeEstoque.Text = "";
+            txtQuantidadeEstoqueInicial.Text = "";
             txtPreco.Text = "";
         }
 
@@ -114,9 +222,10 @@ namespace Controle_Vendas.Visualizacao
                         objProduto.NomeProduto = Convert.ToString(txtNomeProduto.Text);
                         objProduto.Embalagem = Convert.ToString(txtEmbalagem.Text);
                         objProduto.Tamanho = Convert.ToString(txtTamanho.Text);
+                        objProduto.UnidadeMedida = Convert.ToString(cmbMedida.Text);
                         objProduto.Sabor = Convert.ToString(txtSabor.Text);
-                        objProduto.QuantidadeEstoque = Convert.ToInt32(txtQuantidadeEstoque.Text);
-                        objProduto.PrecoDeLista = Convert.ToDecimal(txtPreco.Text);
+                        objProduto.QuantidadeEstoqueInicial = Convert.ToString(txtQuantidadeEstoqueInicial.Text);
+                        objProduto.PrecoDeLista = Convert.ToString(txtPreco.Text);
 
                         int x = ProdutoNegocios.Inserir(objProduto);
 
@@ -136,7 +245,7 @@ namespace Controle_Vendas.Visualizacao
                     catch (Exception ex)
                     {
 
-                        MessageBox.Show("Erro ao adicionado Produto " + ex.Message);
+                        MessageBox.Show("Erro ao adicionar Produto " + ex.Message);
                     }
                     break;
 
@@ -148,8 +257,8 @@ namespace Controle_Vendas.Visualizacao
                         objProduto.Embalagem = Convert.ToString(txtEmbalagem.Text);
                         objProduto.Tamanho = Convert.ToString(txtTamanho.Text);
                         objProduto.Sabor = Convert.ToString(txtSabor.Text);
-                        objProduto.QuantidadeEstoque = Convert.ToInt32(txtQuantidadeEstoque.Text);
-                        objProduto.PrecoDeLista = Convert.ToDecimal(txtPreco.Text);
+                        objProduto.QuantidadeEstoqueInicial = Convert.ToString(txtQuantidadeEstoqueInicial.Text);
+                        objProduto.PrecoDeLista = Convert.ToString(txtPreco.Text);
 
                         int x = ProdutoNegocios.Editar(objProduto);
 
@@ -216,6 +325,20 @@ namespace Controle_Vendas.Visualizacao
             form.Show();
         }
 
+        private void FormCadProduto_Load(object sender, EventArgs e)
+        {
+            DesabilitarCampos();
+            ListarGrid();
+            LimparCampos();
+
+            txtPesquisar.Focus();
+            btnNovo.Enabled = true;
+            btnSalvar.Enabled = false;
+            btnEditar.Enabled = true;
+            btnExcluir.Enabled = true;
+            cmbMedida.Enabled = false;
+        }
+
         private void btnNovo_Click(object sender, EventArgs e)
         {
             opcoes = "Novo";
@@ -260,23 +383,45 @@ namespace Controle_Vendas.Visualizacao
             btnExcluir.Enabled = true;
         }
 
-        private void FormCadProduto_Load(object sender, EventArgs e)
-        {
-            DesabilitarCampos();
-            ListarGrid();
-            LimparCampos();
-
-            txtPesquisar.Focus();
-            btnNovo.Enabled = true;
-            btnSalvar.Enabled = false;
-            btnEditar.Enabled = true;
-            btnExcluir.Enabled = true;
-        }
-
         private void txtPesquisar_TextChanged(object sender, EventArgs e)
         {
             opcoes = "Pesquisar";
             IniciarOpcoes();
+        }
+
+        private void txtTamanho_TextChanged(object sender, EventArgs e)
+        {
+            ValidaUnidadeMedidaTamanho();
+        }
+
+        private void txtNomeProduto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ApenasCaracteresTexto(e);
+        }
+
+        private void txtSabor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ApenasCaracteresTexto(e);
+        }
+
+        private void txtEmbalagem_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ApenasCaracteresTexto(e);
+        }
+
+        private void txtTamanho_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ApenasNumerosDecimais(sender, e);
+        }
+
+        private void txtQuantidadeEstoqueInicial_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ApenasNumerosInteiros(sender, e);
+        }
+
+        private void txtPreco_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ApenasNumerosDecimais(sender, e);
         }
 
         private void GridProdutos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -286,8 +431,9 @@ namespace Controle_Vendas.Visualizacao
             txtSabor.Text = GridProdutos.CurrentRow.Cells[2].Value.ToString();
             txtEmbalagem.Text = GridProdutos.CurrentRow.Cells[3].Value.ToString();
             txtTamanho.Text = GridProdutos.CurrentRow.Cells[4].Value.ToString();
-            txtQuantidadeEstoque.Text = GridProdutos.CurrentRow.Cells[5].Value.ToString();
-            txtPreco.Text = GridProdutos.CurrentRow.Cells[6].Value.ToString();
+            cmbMedida.Text = GridProdutos.CurrentRow.Cells[6].Value.ToString();
+            txtQuantidadeEstoqueInicial.Text = GridProdutos.CurrentRow.Cells[7].Value.ToString();
+            txtPreco.Text = GridProdutos.CurrentRow.Cells[8].Value.ToString();
 
             HabilitarCampos();
 

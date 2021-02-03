@@ -53,15 +53,19 @@ namespace Controle_Vendas.Visualizacao
             this.label4 = new System.Windows.Forms.Label();
             this.txtCodigoProduto = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtQuantidadeEstoque = new System.Windows.Forms.TextBox();
+            this.txtQuantidadeEstoqueInicial = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.btnControleEstoque = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmbMedida = new System.Windows.Forms.ComboBox();
             this.codigoProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sabor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.embalagem = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tamanho = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantidadeEstoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.concatTamanhoMedida = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.unidadeMedida = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantidadeEstoqueInicial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precoDeLista = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.GridProdutos)).BeginInit();
             this.SuspendLayout();
@@ -119,7 +123,7 @@ namespace Controle_Vendas.Visualizacao
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(701, 229);
+            this.label9.Location = new System.Drawing.Point(764, 229);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(53, 13);
             this.label9.TabIndex = 79;
@@ -127,7 +131,7 @@ namespace Controle_Vendas.Visualizacao
             // 
             // txtPesquisar
             // 
-            this.txtPesquisar.Location = new System.Drawing.Point(760, 222);
+            this.txtPesquisar.Location = new System.Drawing.Point(823, 222);
             this.txtPesquisar.Name = "txtPesquisar";
             this.txtPesquisar.Size = new System.Drawing.Size(116, 20);
             this.txtPesquisar.TabIndex = 78;
@@ -155,7 +159,9 @@ namespace Controle_Vendas.Visualizacao
             this.sabor,
             this.embalagem,
             this.tamanho,
-            this.quantidadeEstoque,
+            this.concatTamanhoMedida,
+            this.unidadeMedida,
+            this.quantidadeEstoqueInicial,
             this.precoDeLista});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -179,7 +185,7 @@ namespace Controle_Vendas.Visualizacao
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.GridProdutos.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.GridProdutos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridProdutos.Size = new System.Drawing.Size(745, 185);
+            this.GridProdutos.Size = new System.Drawing.Size(808, 185);
             this.GridProdutos.TabIndex = 77;
             this.GridProdutos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridProdutos_CellDoubleClick);
             // 
@@ -190,6 +196,8 @@ namespace Controle_Vendas.Visualizacao
             this.txtTamanho.Name = "txtTamanho";
             this.txtTamanho.Size = new System.Drawing.Size(123, 20);
             this.txtTamanho.TabIndex = 121;
+            this.txtTamanho.TextChanged += new System.EventHandler(this.txtTamanho_TextChanged);
+            this.txtTamanho.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTamanho_KeyPress);
             // 
             // txtSabor
             // 
@@ -198,6 +206,7 @@ namespace Controle_Vendas.Visualizacao
             this.txtSabor.Name = "txtSabor";
             this.txtSabor.Size = new System.Drawing.Size(160, 20);
             this.txtSabor.TabIndex = 117;
+            this.txtSabor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSabor_KeyPress);
             // 
             // txtEmbalagem
             // 
@@ -206,6 +215,7 @@ namespace Controle_Vendas.Visualizacao
             this.txtEmbalagem.Name = "txtEmbalagem";
             this.txtEmbalagem.Size = new System.Drawing.Size(123, 20);
             this.txtEmbalagem.TabIndex = 119;
+            this.txtEmbalagem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmbalagem_KeyPress);
             // 
             // label14
             // 
@@ -223,6 +233,7 @@ namespace Controle_Vendas.Visualizacao
             this.txtNomeProduto.Name = "txtNomeProduto";
             this.txtNomeProduto.Size = new System.Drawing.Size(319, 20);
             this.txtNomeProduto.TabIndex = 111;
+            this.txtNomeProduto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomeProduto_KeyPress);
             // 
             // txtPreco
             // 
@@ -230,6 +241,7 @@ namespace Controle_Vendas.Visualizacao
             this.txtPreco.Name = "txtPreco";
             this.txtPreco.Size = new System.Drawing.Size(119, 20);
             this.txtPreco.TabIndex = 123;
+            this.txtPreco.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPreco_KeyPress);
             // 
             // label11
             // 
@@ -284,22 +296,23 @@ namespace Controle_Vendas.Visualizacao
             this.label5.TabIndex = 95;
             this.label5.Text = "ID Produto";
             // 
-            // txtQuantidadeEstoque
+            // txtQuantidadeEstoqueInicial
             // 
-            this.txtQuantidadeEstoque.Location = new System.Drawing.Point(23, 153);
-            this.txtQuantidadeEstoque.MaxLength = 10;
-            this.txtQuantidadeEstoque.Name = "txtQuantidadeEstoque";
-            this.txtQuantidadeEstoque.Size = new System.Drawing.Size(124, 20);
-            this.txtQuantidadeEstoque.TabIndex = 127;
+            this.txtQuantidadeEstoqueInicial.Location = new System.Drawing.Point(23, 153);
+            this.txtQuantidadeEstoqueInicial.MaxLength = 10;
+            this.txtQuantidadeEstoqueInicial.Name = "txtQuantidadeEstoqueInicial";
+            this.txtQuantidadeEstoqueInicial.Size = new System.Drawing.Size(124, 20);
+            this.txtQuantidadeEstoqueInicial.TabIndex = 127;
+            this.txtQuantidadeEstoqueInicial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuantidadeEstoqueInicial_KeyPress);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(20, 137);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(125, 13);
+            this.label10.Size = new System.Drawing.Size(92, 13);
             this.label10.TabIndex = 126;
-            this.label10.Text = "Quantidade em Estoque*";
+            this.label10.Text = "Quantidade Inicial";
             // 
             // btnControleEstoque
             // 
@@ -311,10 +324,29 @@ namespace Controle_Vendas.Visualizacao
             this.btnControleEstoque.UseVisualStyleBackColor = true;
             this.btnControleEstoque.Click += new System.EventHandler(this.btnControleEstoque_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(879, 79);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 13);
+            this.label2.TabIndex = 129;
+            this.label2.Text = "Medida *";
+            // 
+            // cmbMedida
+            // 
+            this.cmbMedida.Enabled = false;
+            this.cmbMedida.FormattingEnabled = true;
+            this.cmbMedida.Location = new System.Drawing.Point(882, 95);
+            this.cmbMedida.Name = "cmbMedida";
+            this.cmbMedida.Size = new System.Drawing.Size(57, 21);
+            this.cmbMedida.TabIndex = 131;
+            // 
             // codigoProduto
             // 
             this.codigoProduto.DataPropertyName = "CodigoProduto";
             this.codigoProduto.FillWeight = 248.731F;
+            this.codigoProduto.Frozen = true;
             this.codigoProduto.HeaderText = "ID Produto";
             this.codigoProduto.Name = "codigoProduto";
             this.codigoProduto.ReadOnly = true;
@@ -324,43 +356,63 @@ namespace Controle_Vendas.Visualizacao
             // 
             this.nomeProduto.DataPropertyName = "NomeProduto";
             this.nomeProduto.FillWeight = 75.21151F;
+            this.nomeProduto.Frozen = true;
             this.nomeProduto.HeaderText = "Nome";
             this.nomeProduto.Name = "nomeProduto";
             this.nomeProduto.ReadOnly = true;
-            this.nomeProduto.Width = 150;
+            this.nomeProduto.Width = 170;
             // 
             // sabor
             // 
             this.sabor.DataPropertyName = "Sabor";
             this.sabor.FillWeight = 75.21151F;
+            this.sabor.Frozen = true;
             this.sabor.HeaderText = "Sabor";
             this.sabor.Name = "sabor";
             this.sabor.ReadOnly = true;
-            this.sabor.Width = 120;
+            this.sabor.Width = 130;
             // 
             // embalagem
             // 
             this.embalagem.DataPropertyName = "Embalagem";
             this.embalagem.FillWeight = 75.21151F;
+            this.embalagem.Frozen = true;
             this.embalagem.HeaderText = "Embalagem";
             this.embalagem.Name = "embalagem";
             this.embalagem.ReadOnly = true;
+            this.embalagem.Width = 120;
             // 
             // tamanho
             // 
             this.tamanho.DataPropertyName = "Tamanho";
-            this.tamanho.FillWeight = 75.21151F;
-            this.tamanho.HeaderText = "Tamanho";
+            this.tamanho.HeaderText = "Tamanho(Oculto)";
             this.tamanho.Name = "tamanho";
             this.tamanho.ReadOnly = true;
+            this.tamanho.Visible = false;
             // 
-            // quantidadeEstoque
+            // concatTamanhoMedida
             // 
-            this.quantidadeEstoque.DataPropertyName = "QuantidadeEstoque";
-            this.quantidadeEstoque.FillWeight = 75.21151F;
-            this.quantidadeEstoque.HeaderText = "Quantidade em Estoque";
-            this.quantidadeEstoque.Name = "quantidadeEstoque";
-            this.quantidadeEstoque.ReadOnly = true;
+            this.concatTamanhoMedida.DataPropertyName = "ConcatTamanhoMedida";
+            this.concatTamanhoMedida.FillWeight = 75.21151F;
+            this.concatTamanhoMedida.HeaderText = "Tamanho";
+            this.concatTamanhoMedida.Name = "concatTamanhoMedida";
+            this.concatTamanhoMedida.ReadOnly = true;
+            // 
+            // unidadeMedida
+            // 
+            this.unidadeMedida.DataPropertyName = "UnidadeMedida";
+            this.unidadeMedida.HeaderText = "Unida de Medida(Oculto)";
+            this.unidadeMedida.Name = "unidadeMedida";
+            this.unidadeMedida.ReadOnly = true;
+            this.unidadeMedida.Visible = false;
+            // 
+            // quantidadeEstoqueInicial
+            // 
+            this.quantidadeEstoqueInicial.DataPropertyName = "QuantidadeEstoqueInicial";
+            this.quantidadeEstoqueInicial.FillWeight = 75.21151F;
+            this.quantidadeEstoqueInicial.HeaderText = "Quantidade Inicial";
+            this.quantidadeEstoqueInicial.Name = "quantidadeEstoqueInicial";
+            this.quantidadeEstoqueInicial.ReadOnly = true;
             // 
             // precoDeLista
             // 
@@ -369,15 +421,16 @@ namespace Controle_Vendas.Visualizacao
             this.precoDeLista.HeaderText = "Preço";
             this.precoDeLista.Name = "precoDeLista";
             this.precoDeLista.ReadOnly = true;
-            this.precoDeLista.Width = 80;
             // 
             // FormCadProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(897, 445);
+            this.ClientSize = new System.Drawing.Size(958, 445);
+            this.Controls.Add(this.cmbMedida);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnControleEstoque);
-            this.Controls.Add(this.txtQuantidadeEstoque);
+            this.Controls.Add(this.txtQuantidadeEstoqueInicial);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtTamanho);
             this.Controls.Add(this.txtSabor);
@@ -401,7 +454,7 @@ namespace Controle_Vendas.Visualizacao
             this.Controls.Add(this.GridProdutos);
             this.Name = "FormCadProduto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormCadProduto";
+            this.Text = "Cadastro de Produtos";
             this.Load += new System.EventHandler(this.FormCadProduto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.GridProdutos)).EndInit();
             this.ResumeLayout(false);
@@ -431,15 +484,19 @@ namespace Controle_Vendas.Visualizacao
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtCodigoProduto;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtQuantidadeEstoque;
+        private System.Windows.Forms.TextBox txtQuantidadeEstoqueInicial;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnControleEstoque;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cmbMedida;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoProduto;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeProduto;
         private System.Windows.Forms.DataGridViewTextBoxColumn sabor;
         private System.Windows.Forms.DataGridViewTextBoxColumn embalagem;
         private System.Windows.Forms.DataGridViewTextBoxColumn tamanho;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantidadeEstoque;
+        private System.Windows.Forms.DataGridViewTextBoxColumn concatTamanhoMedida;
+        private System.Windows.Forms.DataGridViewTextBoxColumn unidadeMedida;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantidadeEstoqueInicial;
         private System.Windows.Forms.DataGridViewTextBoxColumn precoDeLista;
     }
 }
